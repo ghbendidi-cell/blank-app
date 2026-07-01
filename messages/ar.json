@@ -1,0 +1,173 @@
+{
+  "nav": {
+    "destinations": "الوجهات",
+    "packs": "العروض",
+    "omra": "العمرة والحج",
+    "groupes": "رحلات جماعية",
+    "avis": "آراء العملاء",
+    "aPropos": "من نحن",
+    "contact": "اتصل بنا",
+    "callCta": "اتصال",
+    "whatsappCta": "واتساب"
+  },
+  "common": {
+    "from": "ابتداء من",
+    "mad": "درهم",
+    "nights": "{count, plural, one {# ليلة} other {# ليالي}}",
+    "days": "{count, plural, one {# يوم} other {# أيام}}",
+    "seeAll": "عرض الكل",
+    "seeAllPacks": "عرض جميع العروض",
+    "readMore": "اقرأ المزيد",
+    "requestQuote": "اطلب عرض سعر",
+    "reviews": "{count, plural, one {# رأي} other {# آراء}}",
+    "loading": "جارٍ التحميل...",
+    "noResults": "لا توجد نتائج لهذه المعايير. حاول توسيع نطاق البحث.",
+    "placeholderImageAlt": "الصورة قادمة قريبا"
+  },
+  "home": {
+    "heroTitle": "رحلتك القادمة تبدأ من المعاريف",
+    "heroSubtitle": "عروض المغرب والعالم والعمرة والحج. عرض سعر مجاني، ومستشارون متواجدون عبر الهاتف والواتساب.",
+    "searchPlaceholder": "إلى أين تريد السفر؟",
+    "searchButton": "بحث",
+    "popularDestinations": "الوجهات الأكثر طلبا",
+    "featuredPacks": "عروض مميزة",
+    "omraTitle": "العمرة والحج 2026",
+    "omraSubtitle": "برامج مرفقة انطلاقا من الدار البيضاء، مع تأطير كامل.",
+    "omraCta": "اكتشف برامجنا",
+    "whyUsTitle": "لماذا تختار Millenium Travel",
+    "whyUs1Title": "وكالة معتمدة",
+    "whyUs1Text": "عضو في IATA، شريك المكتب الوطني المغربي للسياحة، أكثر من 15 سنة خبرة بالدار البيضاء.",
+    "whyUs2Title": "عرض سعر خلال 24 ساعة",
+    "whyUs2Text": "رد سريع عبر الهاتف أو الواتساب أو البريد الإلكتروني، دون التزام.",
+    "whyUs3Title": "مرافقة داخل الوكالة",
+    "whyUs3Text": "قابل أحد مستشارينا بالمعاريف لإتمام رحلتك بكل ثقة.",
+    "testimonialsTitle": "ماذا يقول مسافرونا",
+    "blogTitle": "آخر المقالات",
+    "visitTitle": "زوروا وكالتنا بالمعاريف",
+    "visitSubtitle": "مستشارونا في استقبالكم من الاثنين إلى السبت لتحضير رحلتكم."
+  },
+  "packs": {
+    "title": "عروض السفر",
+    "subtitle": "صفِّ حسب الوجهة والميزانية والمدة ونوع الرحلة لإيجاد العرض المناسب لك.",
+    "filters": {
+      "title": "التصفية",
+      "destination": "الوجهة",
+      "allDestinations": "جميع الوجهات",
+      "budget": "الميزانية (درهم)",
+      "duration": "المدة",
+      "allDurations": "جميع المدد",
+      "type": "نوع الرحلة",
+      "allTypes": "جميع الأنواع",
+      "reset": "إعادة تعيين",
+      "apply": "تطبيق"
+    },
+    "types": {
+      "maroc": "المغرب",
+      "international": "دولي",
+      "omra": "عمرة",
+      "hajj": "حج",
+      "groupe": "جماعي",
+      "sur-mesure": "حسب الطلب"
+    },
+    "sort": {
+      "label": "الترتيب حسب",
+      "priceAsc": "السعر تصاعديا",
+      "priceDesc": "السعر تنازليا",
+      "popularity": "الأكثر طلبا"
+    },
+    "resultsCount": "{count, plural, one {# عرض موجود} other {# عروض موجودة}}",
+    "compare": "مقارنة",
+    "compareBarTitle": "مقارنة العروض المختارة",
+    "compareClear": "إفراغ الاختيار"
+  },
+  "packDetail": {
+    "highlights": "أبرز المميزات",
+    "itinerary": "برنامج الرحلة",
+    "inclusions": "ما يشمله العرض",
+    "exclusions": "ما لا يشمله العرض",
+    "priceVariants": "الأسعار",
+    "departureDates": "تواريخ المغادرة القادمة",
+    "faq": "الأسئلة الشائعة",
+    "reviews": "آراء حول هذا العرض",
+    "leaveReview": "أضف رأيك",
+    "similarPacks": "عروض مشابهة",
+    "requestQuoteFor": "اطلب عرض سعر لهذه الرحلة",
+    "day": "اليوم {number}"
+  },
+  "destinations": {
+    "title": "الوجهات",
+    "subtitle": "المغرب، الدولي، الشرق الأوسط، أوروبا، آسيا — اكتشف جميع وجهاتنا.",
+    "bestPeriod": "أفضل فترة للسفر",
+    "visaInfo": "معلومات التأشيرة",
+    "packsIn": "عروض {destination}",
+    "packsCount": "{count, plural, one {# عرض} other {# عروض}}"
+  },
+  "avis": {
+    "title": "آراء مسافرينا",
+    "subtitle": "اكتشف تجارب عملائنا الذين سافروا مع Millenium Travel.",
+    "overallRating": "التقييم العام",
+    "basedOn": "بناء على {count, plural, one {# رأي} other {# آراء}}",
+    "filterByDestination": "تصفية حسب الوجهة",
+    "verifiedClient": "عميل موثق",
+    "leaveReviewTitle": "شاركنا تجربتك",
+    "form": {
+      "name": "اسمك",
+      "rating": "تقييمك",
+      "comment": "تعليقك",
+      "pack": "العرض المعني (اختياري)",
+      "submit": "إرسال رأيي",
+      "success": "شكرا! تم إرسال رأيك وسيُنشر بعد المراجعة."
+    },
+    "visitCta": "زوروا وكالتنا بالمعاريف"
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "subtitle": "يرد عليك أحد مستشارينا خلال 24 ساعة عبر الهاتف أو الواتساب أو البريد الإلكتروني.",
+    "form": {
+      "name": "الاسم الكامل",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني (اختياري)",
+      "type": "نوع الطلب",
+      "typeDevis": "طلب عرض سعر",
+      "typeRappel": "طلب اتصال",
+      "typeInfo": "سؤال عام",
+      "preferredContact": "وسيلة التواصل المفضلة",
+      "contactPhone": "الهاتف",
+      "contactWhatsapp": "واتساب",
+      "contactEmail": "البريد الإلكتروني",
+      "message": "رسالتك",
+      "budget": "الميزانية التقريبية (اختياري)",
+      "dates": "التواريخ المتوقعة (اختياري)",
+      "submit": "إرسال طلبي",
+      "sending": "جارٍ الإرسال...",
+      "success": "شكرا! تم إرسال طلبك بنجاح. سيتصل بك أحد مستشارينا خلال 24 ساعة.",
+      "error": "حدث خطأ. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة.",
+      "required": "هذا الحقل مطلوب"
+    },
+    "agencyTitle": "وكالتنا",
+    "address": "العنوان",
+    "hours": "ساعات العمل",
+    "directions": "عرض الاتجاهات",
+    "teamTitle": "فريقنا"
+  },
+  "about": {
+    "title": "من نحن - Millenium Travel",
+    "intro": "وكالة سفر بحي المعاريف بالدار البيضاء، متخصصة في عروض المغرب والدولي والعمرة والحج.",
+    "certificationsTitle": "اعتماداتنا",
+    "teamTitle": "فريقنا"
+  },
+  "footer": {
+    "tagline": "وكالة سفركم بحي المعاريف، الدار البيضاء.",
+    "quickLinks": "روابط سريعة",
+    "legal": "معلومات قانونية",
+    "legalNotice": "الإشعار القانوني",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الاستخدام",
+    "followUs": "تابعونا",
+    "rights": "جميع الحقوق محفوظة."
+  },
+  "sticky": {
+    "quote": "عرض سعر",
+    "call": "اتصال"
+  }
+}

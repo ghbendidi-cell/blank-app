@@ -1,0 +1,173 @@
+{
+  "nav": {
+    "destinations": "Destinations",
+    "packs": "Packs",
+    "omra": "Omra & Hajj",
+    "groupes": "Groupes",
+    "avis": "Avis",
+    "aPropos": "À propos",
+    "contact": "Contact",
+    "callCta": "Appeler",
+    "whatsappCta": "WhatsApp"
+  },
+  "common": {
+    "from": "dès",
+    "mad": "MAD",
+    "nights": "{count, plural, one {# nuit} other {# nuits}}",
+    "days": "{count, plural, one {# jour} other {# jours}}",
+    "seeAll": "Voir tout",
+    "seeAllPacks": "Voir tous les packs",
+    "readMore": "En savoir plus",
+    "requestQuote": "Demander un devis",
+    "reviews": "{count, plural, one {# avis} other {# avis}}",
+    "loading": "Chargement...",
+    "noResults": "Aucun résultat pour ces critères. Essayez d'élargir votre recherche.",
+    "placeholderImageAlt": "Photo à venir"
+  },
+  "home": {
+    "heroTitle": "Votre prochain voyage commence à Maarif",
+    "heroSubtitle": "Packs Maroc, international et Omra/Hajj. Devis gratuit, conseillers disponibles par téléphone et WhatsApp.",
+    "searchPlaceholder": "Où voulez-vous partir ?",
+    "searchButton": "Rechercher",
+    "popularDestinations": "Destinations populaires",
+    "featuredPacks": "Packs à la une",
+    "omraTitle": "Omra & Hajj 2026",
+    "omraSubtitle": "Programmes accompagnés au départ de Casablanca, encadrement complet.",
+    "omraCta": "Découvrir nos programmes",
+    "whyUsTitle": "Pourquoi choisir Millenium Travel",
+    "whyUs1Title": "Agence agréée",
+    "whyUs1Text": "Membre IATA, partenaire ONMT, plus de 15 ans d'expérience à Casablanca.",
+    "whyUs2Title": "Devis sous 24h",
+    "whyUs2Text": "Réponse rapide par téléphone, WhatsApp ou email, sans engagement.",
+    "whyUs3Title": "Accompagnement en agence",
+    "whyUs3Text": "Rencontrez un conseiller à Maarif pour finaliser votre voyage en toute confiance.",
+    "testimonialsTitle": "Ce que disent nos voyageurs",
+    "blogTitle": "Derniers articles",
+    "visitTitle": "Rendez-nous visite à Maarif",
+    "visitSubtitle": "Nos conseillers vous accueillent du lundi au samedi pour construire votre voyage."
+  },
+  "packs": {
+    "title": "Nos packs voyage",
+    "subtitle": "Filtrez par destination, budget, durée et type de voyage pour trouver votre pack idéal.",
+    "filters": {
+      "title": "Filtres",
+      "destination": "Destination",
+      "allDestinations": "Toutes les destinations",
+      "budget": "Budget (MAD)",
+      "duration": "Durée",
+      "allDurations": "Toutes durées",
+      "type": "Type de voyage",
+      "allTypes": "Tous les types",
+      "reset": "Réinitialiser",
+      "apply": "Appliquer"
+    },
+    "types": {
+      "maroc": "Maroc",
+      "international": "International",
+      "omra": "Omra",
+      "hajj": "Hajj",
+      "groupe": "Groupe",
+      "sur-mesure": "Sur-mesure"
+    },
+    "sort": {
+      "label": "Trier par",
+      "priceAsc": "Prix croissant",
+      "priceDesc": "Prix décroissant",
+      "popularity": "Popularité"
+    },
+    "resultsCount": "{count, plural, one {# pack trouvé} other {# packs trouvés}}",
+    "compare": "Comparer",
+    "compareBarTitle": "Comparer les packs sélectionnés",
+    "compareClear": "Vider la sélection"
+  },
+  "packDetail": {
+    "highlights": "Points forts",
+    "itinerary": "Itinéraire",
+    "inclusions": "Ce qui est inclus",
+    "exclusions": "Ce qui n'est pas inclus",
+    "priceVariants": "Tarifs",
+    "departureDates": "Prochains départs",
+    "faq": "Questions fréquentes",
+    "reviews": "Avis sur ce pack",
+    "leaveReview": "Laisser un avis",
+    "similarPacks": "Packs similaires",
+    "requestQuoteFor": "Demander un devis pour ce pack",
+    "day": "Jour {number}"
+  },
+  "destinations": {
+    "title": "Destinations",
+    "subtitle": "Maroc, international, Moyen-Orient, Europe, Asie — découvrez toutes nos destinations.",
+    "bestPeriod": "Meilleure période",
+    "visaInfo": "Informations visa",
+    "packsIn": "Packs pour {destination}",
+    "packsCount": "{count, plural, one {# pack} other {# packs}}"
+  },
+  "avis": {
+    "title": "Avis de nos voyageurs",
+    "subtitle": "Découvrez les expériences de nos clients partis avec Millenium Travel.",
+    "overallRating": "Note globale",
+    "basedOn": "basée sur {count, plural, one {# avis} other {# avis}}",
+    "filterByDestination": "Filtrer par destination",
+    "verifiedClient": "Client vérifié",
+    "leaveReviewTitle": "Partagez votre expérience",
+    "form": {
+      "name": "Votre nom",
+      "rating": "Votre note",
+      "comment": "Votre commentaire",
+      "pack": "Pack concerné (optionnel)",
+      "submit": "Envoyer mon avis",
+      "success": "Merci ! Votre avis a été envoyé et sera publié après modération."
+    },
+    "visitCta": "Visitez-nous à Maarif"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Un conseiller vous répond sous 24h par téléphone, WhatsApp ou email.",
+    "form": {
+      "name": "Nom complet",
+      "phone": "Téléphone",
+      "email": "Email (optionnel)",
+      "type": "Type de demande",
+      "typeDevis": "Demande de devis",
+      "typeRappel": "Demande de rappel",
+      "typeInfo": "Question générale",
+      "preferredContact": "Moyen de contact préféré",
+      "contactPhone": "Téléphone",
+      "contactWhatsapp": "WhatsApp",
+      "contactEmail": "Email",
+      "message": "Votre message",
+      "budget": "Budget approximatif (optionnel)",
+      "dates": "Dates envisagées (optionnel)",
+      "submit": "Envoyer ma demande",
+      "sending": "Envoi en cours...",
+      "success": "Merci ! Votre demande a bien été envoyée. Un conseiller vous recontacte sous 24h.",
+      "error": "Une erreur est survenue. Merci de réessayer ou de nous appeler directement.",
+      "required": "Ce champ est requis"
+    },
+    "agencyTitle": "Notre agence",
+    "address": "Adresse",
+    "hours": "Horaires d'ouverture",
+    "directions": "Voir l'itinéraire",
+    "teamTitle": "Notre équipe"
+  },
+  "about": {
+    "title": "À propos de Millenium Travel",
+    "intro": "Agence de voyage basée à Maarif, Casablanca, spécialisée dans les packs Maroc, international et Omra/Hajj.",
+    "certificationsTitle": "Nos certifications",
+    "teamTitle": "Notre équipe"
+  },
+  "footer": {
+    "tagline": "Votre agence de voyage à Maarif, Casablanca.",
+    "quickLinks": "Liens rapides",
+    "legal": "Informations légales",
+    "legalNotice": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "CGU",
+    "followUs": "Suivez-nous",
+    "rights": "Tous droits réservés."
+  },
+  "sticky": {
+    "quote": "Devis",
+    "call": "Appeler"
+  }
+}
