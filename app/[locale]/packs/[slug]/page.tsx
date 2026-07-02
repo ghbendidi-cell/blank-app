@@ -36,8 +36,10 @@ export async function generateMetadata({
   const title = pick(pack.titleFr, pack.titleAr, locale as Locale);
   const description = pick(pack.highlightsFr.join(", "), pack.highlightsAr.join("، "), locale as Locale);
 
+  const durationLabel = pack.durationDays > 0 ? `${pack.durationDays}j ` : "";
+
   return {
-    title: `${title} – ${pack.durationDays}j dès ${pack.priceFrom} MAD`,
+    title: `${title} – ${durationLabel}dès ${pack.priceFrom} MAD`,
     description,
   };
 }
@@ -110,12 +112,14 @@ export default async function PackDetailPage({
                 {destination ? pick(destination.nameFr, destination.nameAr, locale) : ""} · {tTypes(pack.tripType)}
               </p>
               <h1 className="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">{title}</h1>
-              <div className="mt-2 flex items-center gap-2">
-                <Stars rating={pack.ratingAvg} />
-                <span className="text-sm text-slate-500">
-                  {pack.ratingAvg} ({tCommon("reviews", { count: pack.ratingCount })})
-                </span>
-              </div>
+              {pack.ratingCount > 0 && (
+                <div className="mt-2 flex items-center gap-2">
+                  <Stars rating={pack.ratingAvg} />
+                  <span className="text-sm text-slate-500">
+                    {pack.ratingAvg} ({tCommon("reviews", { count: pack.ratingCount })})
+                  </span>
+                </div>
+              )}
 
               <ul className="mt-4 flex flex-wrap gap-2">
                 {pack.highlightsFr.map((_, index) => (
@@ -159,7 +163,11 @@ export default async function PackDetailPage({
                   </div>
                 </>
               ) : (
-                <p className="text-sm text-slate-500">{tCommon("noResults")}</p>
+                <p className="text-sm text-slate-500">
+                  {locale === "ar"
+                    ? "لا توجد آراء بعد لهذا العرض. كونوا أول من يشاركنا تجربته."
+                    : "Aucun avis pour le moment sur ce pack. Soyez le premier à partager votre expérience."}
+                </p>
               )}
             </section>
 
@@ -180,7 +188,11 @@ export default async function PackDetailPage({
               <div className="rounded-xl border border-slate-200 p-5">
                 <PriceBadge amount={pack.priceFrom} locale={locale} size="lg" />
                 <p className="mt-2 text-sm text-slate-500">
-                  {t("departureDates")}: {pack.departureDates.map((d) => formatDate(d, locale)).join(" · ")}
+                  {pack.departureDates.length > 0
+                    ? `${t("departureDates")}: ${pack.departureDates.map((d) => formatDate(d, locale)).join(" · ")}`
+                    : locale === "ar"
+                      ? "التواريخ: تواصلوا معنا لمعرفة أقرب المواعيد"
+                      : "Dates : nous consulter pour les prochains départs"}
                 </p>
               </div>
               <PriceTable variants={pack.priceVariants} />

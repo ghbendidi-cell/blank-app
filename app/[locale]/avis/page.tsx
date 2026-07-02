@@ -61,16 +61,24 @@ export default function AvisPage() {
           </select>
         </div>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredReviews.map((review) => (
-            <div key={review.id}>
-              <ReviewCard review={review} />
-              {packTitleFor(review.packId) && (
-                <p className="mt-1 text-xs text-slate-400">{packTitleFor(review.packId)}</p>
-              )}
-            </div>
-          ))}
-        </div>
+        {filteredReviews.length > 0 ? (
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredReviews.map((review) => (
+              <div key={review.id}>
+                <ReviewCard review={review} />
+                {packTitleFor(review.packId) && (
+                  <p className="mt-1 text-xs text-slate-400">{packTitleFor(review.packId)}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-6 rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-500">
+            {locale === "ar"
+              ? "لا توجد آراء بعد. كونوا أول من يشارك تجربته مع Millenium Travel."
+              : "Aucun avis pour le moment. Soyez le premier à partager votre expérience avec Millenium Travel."}
+          </p>
+        )}
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
           <div>

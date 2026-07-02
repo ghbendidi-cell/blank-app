@@ -19,7 +19,8 @@ export default async function HomePage() {
 
   const featuredDestinations = destinations.filter((d) => d.featured).slice(0, 4);
   const featuredPacks = packs.filter((p) => p.isFeatured).slice(0, 6);
-  const omraPack = packs.find((p) => p.tripType === "omra");
+  const omraPack = packs.find((p) => p.tripType === "omra" || p.tripType === "hajj");
+  const featuredReviews = reviews.slice(0, 6);
 
   return (
     <div>
@@ -83,10 +84,12 @@ export default async function HomePage() {
         <TrustBadges />
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-12">
-        <h2 className="mb-6 text-xl font-bold text-slate-900">{t("testimonialsTitle")}</h2>
-        <TestimonialCarousel reviews={reviews.slice(0, 6)} />
-      </section>
+      {featuredReviews.length > 0 && (
+        <section className="mx-auto max-w-7xl px-4 py-12">
+          <h2 className="mb-6 text-xl font-bold text-slate-900">{t("testimonialsTitle")}</h2>
+          <TestimonialCarousel reviews={featuredReviews} />
+        </section>
+      )}
 
       <section className="mx-auto max-w-7xl px-4 py-12">
         <h2 className="mb-2 text-xl font-bold text-slate-900">{t("visitTitle")}</h2>

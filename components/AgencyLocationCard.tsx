@@ -7,7 +7,7 @@ export default function AgencyLocationCard() {
   const locale = useLocale() as Locale;
   const t = useTranslations("contact");
   const address = pick(agency.addressFr, agency.addressAr, locale);
-  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${agency.geo.lat},${agency.geo.lng}`;
+  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${agency.name} ${agency.addressFr}`)}`;
 
   return (
     <div className="overflow-hidden rounded-xl border border-slate-200">

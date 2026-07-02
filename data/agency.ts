@@ -1,17 +1,16 @@
 import type { Agency } from "@/lib/types";
 
-// Coordonnées fictives — à remplacer par les vraies informations de l'agence avant mise en production.
 export const agency: Agency = {
   id: "agency-maarif",
-  name: "Millenium Travel — Maarif",
-  addressFr: "Boulevard Massira Al Khadra, Maarif, Casablanca",
-  addressAr: "شارع المسيرة الخضراء، المعاريف، الدار البيضاء",
+  name: "Millenium Travel",
+  addressFr: "25, Rue Aziz Bellal, Maârif, Casablanca",
+  addressAr: "25، زنقة عزيز بلال، المعاريف، الدار البيضاء",
   city: "Casablanca",
-  neighborhood: "Maarif",
+  neighborhood: "Maârif",
   geo: { lat: 33.5822, lng: -7.6293 },
-  phone: "+212522000000",
-  whatsapp: "+212600000000",
-  email: "contact@milleniumtravel.ma",
+  phone: "+212522237365",
+  whatsapp: "+212669324855",
+  email: "info@milleniumtravel.ma",
   openingHours: [
     { dayFr: "Lundi – Vendredi", dayAr: "الاثنين - الجمعة", hours: "9h00 – 19h00" },
     { dayFr: "Samedi", dayAr: "السبت", hours: "9h30 – 17h00" },
