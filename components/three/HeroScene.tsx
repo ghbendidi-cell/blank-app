@@ -5,7 +5,6 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Sparkles } from "@react-three/drei";
 import type { Group } from "three";
 import Globe from "./Globe";
-import PaperPlane from "./PaperPlane";
 import FloatingPanel from "./FloatingPanel";
 
 const DESTINATION_COLORS = ["#F69F83", "#6D9891", "#AFAC9B", "#76575D"];
@@ -45,7 +44,6 @@ export default function HeroScene() {
       <Suspense fallback={null}>
         <CameraRig>
           <Globe />
-          <PaperPlane />
           {panelPositions.map((position, index) => (
             <FloatingPanel key={index} position={position} color={DESTINATION_COLORS[index]} scale={0.85} />
           ))}
