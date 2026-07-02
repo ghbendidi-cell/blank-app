@@ -1,0 +1,906 @@
+%  INTERNSHIP REPORT — BI NEW VISION, CASABLANCA
+%  Copy and paste this entire file into a new Overleaf project
+% ============================================================
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{float}
+
+\definecolor{navyblue}{RGB}{31, 73, 125}
+\definecolor{codegray}{RGB}{245,245,245}
+
+\hypersetup{colorlinks=true, linkcolor=navyblue, urlcolor=navyblue}
+
+\lstset{
+  backgroundcolor=\color{codegray},
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible
+}
+
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Internship Report --- BI New Vision}
+\fancyhead[R]{\small Casablanca, 2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ============================================================
+\begin{document}
+
+% --- TITLE PAGE ---
+\begin{titlepage}
+\centering
+\vspace*{4cm}
+
+{\color{navyblue}\rule{\linewidth}{1.5pt}}\\[0.6cm]
+{\Huge\bfseries\color{navyblue} Internship Report}\\[0.4cm]
+{\large BI New Vision --- Casablanca, Morocco}\\[0.3cm]
+{\color{navyblue}\rule{\linewidth}{1.5pt}}
+
+\vspace{3cm}
+
+\begin{tabular}{ll}
+\textbf{Intern:}      & Ghali Bendidi \\[8pt]
+\textbf{School:}      & University College London \\[8pt]
+\textbf{Program:}     & Civil Engineering \\[8pt]
+\textbf{Supervisor:}  & [Supervisor Name] \\[8pt]
+\textbf{Duration:}    & 30 days --- 15/06/2026 to 15/07/2026 \\[8pt]
+\textbf{Year:}        & 2025--2026 \\
+\end{tabular}
+
+\end{titlepage}
+
+% --- TABLE OF CONTENTS ---
+\newpage
+\tableofcontents
+\newpage
+
+% ============================================================
+\section*{\color{navyblue} Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+I would like to thank the entire team at BI New Vision for welcoming me and making this internship a valuable learning experience. I am particularly grateful to my supervisor and all the colleagues who shared their knowledge and time throughout these 30 days.
+
+% ============================================================
+\section*{\color{navyblue} Introduction}
+\addcontentsline{toc}{section}{Introduction}
+
+This report presents my internship experience at \textbf{BI New Vision}, an IT consulting company specialising in digital transformation, based in Casablanca, Morocco. Over a period of 30 days, I had the opportunity to discover the company's work in the fields of Artificial Intelligence, data processing, and software development.
+
+The report is structured as follows: a detailed presentation of the company, its structure, and the projects it carries out; the technical concepts encountered during the internship; a detailed study of an OCR image-preprocessing pipeline, including an extended comparison with classical CPU-testable alternatives and with 2025--2026 research, together with a set of algorithms provided for hands-on testing in Google Colab, and a Streamlit prototype I built to test it; and finally a summary of the skills and knowledge developed.
+
+% ============================================================
+\section{\color{navyblue} Company Presentation}
+
+\subsection{Overview of BI New Vision}
+
+Founded in 2016, \textbf{BI New Vision} is an IT consulting company specialising in digital transformation. In under a decade, it has established itself as a key player across several complementary domains: Big Data, Business Intelligence, application development, infrastructure, testing, and project management. Rather than focusing on a single niche, the company positions itself as an end-to-end partner able to support a client from data strategy through to the deployment of production software.
+
+The company currently employs over 150 people in Morocco, serves more than 20 clients, and generates a turnover of 108 million MAD. Its approach is built on four pillars:
+
+\begin{itemize}
+  \item \textbf{Innovation:} Integrating new technologies --- including AI and Big Data --- to address concrete business challenges rather than technology for its own sake.
+  \item \textbf{Client proximity:} Providing personalised and lasting support, positioning consultants close to the client's own teams and processes.
+  \item \textbf{Digitalisation:} Optimising internal and client processes through high-performance digital tools, reducing manual and error-prone workflows.
+  \item \textbf{Social responsibility:} Promoting diversity within its teams and respect for the environment in how the company operates.
+\end{itemize}
+
+\subsection{Company Overview}
+
+\vspace{0.5em}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Field} & \textbf{Details} \\
+\midrule
+Company name  & Bi NewVision \\
+Founded       & 2016 \\
+Address       & Green Work Center, Building A, Floor 5, No.19, Casablanca \\
+Phone         & +212 520 877 845 \\
+Website       & \url{www.bi-newvision.com} \\
+Sector        & IT consulting and digital transformation \\
+Legal form    & SARL \\
+\bottomrule
+\end{tabularx}
+
+\subsection{International Presence}
+
+Although headquartered in Casablanca, BI New Vision has developed a significant international footprint, which reflects its ambition to grow beyond the Moroccan market and to serve clients directly from local offices:
+
+\begin{itemize}
+  \item \textbf{Casablanca} (headquarters): 150 employees, 108M MAD turnover
+  \item \textbf{Paris}: 380 consultants
+  \item \textbf{Dubai}: 20 consultants
+  \item \textbf{Washington}: Currently being established
+\end{itemize}
+
+\subsection{Organisational Structure}
+
+BI New Vision is organised around five departments, each covering a distinct part of the company's activity:
+
+\begin{itemize}
+  \item \textbf{Management:} Led by founder and CEO Souhail Kabi, defining the strategic vision.
+  \item \textbf{Sales Team:} Business development and client relationship management.
+  \item \textbf{Administrative Team:} Accounting and human resources.
+  \item \textbf{Technical Teams:} Three operational units --- Data (Big Data \& BI), AI, and Products \& Development. My internship took place within the \textbf{AI unit}, whose three core professions are described in Section~1.6 and whose projects are described in Section~1.7.
+  \item \textbf{Operations and Recruitment Team:} Talent acquisition.
+\end{itemize}
+
+\subsection{Areas of Expertise}
+
+BI New Vision structures its offering around three main pillars, each corresponding to a stage in a client's data maturity:
+
+\begin{enumerate}
+  \item \textbf{Data Governance:} Data quality and master data management --- ensuring that the data a client relies on for decision-making is accurate, consistent, and properly maintained before it is used downstream.
+  \item \textbf{Business Intelligence \& Analytics:} Data integration, with particular expertise in the \textbf{telecommunications sector}, where the company helps clients consolidate data from multiple systems into unified reporting and analytics.
+  \item \textbf{Big Data \& Artificial Intelligence:} Data visualisation, with specific applications in the \textbf{retail sector}, and --- as illustrated by the project described below --- AI-driven optimisation systems for other industries such as air transport.
+\end{enumerate}
+
+\subsection{AI-Related Roles}
+
+Within the AI unit, work on client projects is organised around three complementary professions:
+
+\vspace{0.5em}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Role} & \textbf{Responsibilities} \\
+\midrule
+Data Analyst    & Analyses and interprets existing data to extract insights and support decision-making. \\
+\addlinespace
+Data Engineer   & Designs and maintains data pipelines: collection, storage, transformation, and making data available to other teams. \\
+\addlinespace
+Data Scientist  & Builds statistical and machine learning models to predict, classify, or optimise based on data. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{1em}
+
+\subsection{Company Projects}
+
+The following projects illustrate the type of work carried out by BI New Vision's \textbf{AI unit}, the team I joined during my internship.
+
+\subsubsection*{Digital Twin for Aircraft Stand Allocation --- ONDA}
+
+The AI team's main client for this project is the \textbf{Office National Des Aéroports (ONDA)}, the Moroccan public body responsible for managing civil airports. Created in 1990, ONDA oversees more than 20 airports, including the hubs of Casablanca Mohammed V, Marrakech-Ménara, and Agadir-Al Massira. As part of its strategic plan \textit{Envol 2025}, ONDA is seeking to modernise its airport operations through artificial intelligence.
+
+\textbf{Problem statement.} Aircraft stand allocation is a major operational challenge in high-traffic airports. ONDA's current systems face several limitations:
+
+\begin{itemize}
+  \item Rigidity in planning, limiting responsiveness to unexpected events.
+  \item Poor interoperability between different information systems.
+  \item Decision-making that remains largely manual and insufficiently automated.
+\end{itemize}
+
+This leads to allocation conflicts, cascading delays, and underuse of available infrastructure. The challenge BI New Vision was brought in to address is therefore to design an intelligent system capable of continuously optimising aircraft-to-stand assignment while meeting safety and efficiency requirements.
+
+\textbf{Project objectives.} The project consists of developing a \textbf{Digital Twin} solution for dynamic aircraft stand allocation, with the following goals:
+
+\begin{itemize}
+  \item Improve stand planning for better flight allocation.
+  \item Optimise passenger flow management to reduce congestion.
+  \item Streamline aircraft rotations for more efficient resource use.
+  \item Enable 3D visualisation of planning through an intuitive interface.
+  \item Maximise stand occupancy rates and reduce operational costs.
+\end{itemize}
+
+\subsubsection*{Computer Vision Technology}
+
+The AI unit also develops \textbf{computer vision} solutions, including the OCR image-preprocessing pipeline described in Section~3, used to prepare scanned or photographed documents for automated text extraction.
+
+\subsubsection*{AI Agents for Banks}
+
+Another area of work is the design of \textbf{AI agents} for banking-sector clients, following the agent-based approach described in Section~2.3: a first LLM interprets the user's request, a separate execution agent carries it out on the bank's systems, and a third LLM turns the result into a natural-language response.
+
+% ============================================================
+\section{\color{navyblue} Technical Concepts}
+
+\subsection{What is an LLM?}
+
+An \textbf{LLM} (Large Language Model) is an AI system trained on very large amounts of text data. It can understand and generate human language in a natural way. Well-known examples include Claude (Anthropic), Gemini (Google), and ChatGPT (OpenAI). These models form the foundation of most modern AI applications.
+
+\subsection{The 4 Steps of Building an LLM}
+
+Building an LLM follows a structured process with four key steps:
+
+\begin{enumerate}
+  \item \textbf{Data:} This is the most important step. Every AI needs a dataset to be able to answer questions accurately. The quality of the LLM depends directly on the quality of its data --- poorly structured or incomplete data will inevitably lead to inaccurate results.
+
+  \item \textbf{Model:} This involves choosing the model best suited to the situation. The choice depends on the project's constraints: data size, task type (text generation, classification, extraction, etc.), available resources, and performance requirements.
+
+  \item \textbf{Train:} The model is fed a large volume of data. \textbf{Important:} data must be cleaned and preprocessed before this step, as raw or inconsistent data degrades the quality of the trained model.
+
+  \item \textbf{Test:} The trained model is evaluated on data it has never seen, in order to measure its real-world performance and identify areas for improvement before deployment.
+\end{enumerate}
+
+\subsection{Three Approaches to Building an AI Solution}
+
+\vspace{0.5em}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Approach} & \textbf{How it works} \\
+\midrule
+Fine-tuning & An open-source LLM (e.g. Qwen, LLaMA) is further trained on the company's own data. The model becomes specialised in the company's domain and vocabulary. \\
+\addlinespace
+RAG & The company's documents are converted into a vector database. When a user asks a question, the AI searches this database to retrieve relevant information before generating an answer. \\
+\addlinespace
+Agent & Multiple AI components work together: one LLM transforms the question into a query, a second agent executes it on a system (separated for security), and a third LLM converts the result into a natural language answer. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{1em}
+
+Two further technologies are commonly combined with these approaches on client projects:
+
+\begin{itemize}
+  \item \textbf{STT --- Speech-to-Text:} Converts spoken language into written text in real time, used for transcription automation.
+  \item \textbf{OCR --- Optical Character Recognition:} Automatically extracts text from document images (invoices, ID cards, etc.), as detailed in Section~3.
+\end{itemize}
+
+% ============================================================
+\section{\color{navyblue} OCR and Image Processing}
+
+\subsection{Why Preprocessing Matters}
+
+Before an OCR system can read text from an image, the image must be cleaned and enhanced. Raw photos or scans are often blurry, noisy, skewed, or poorly lit, which significantly reduces recognition accuracy. The team uses an 8-step preprocessing pipeline to prepare images before they are processed by the OCR engine. This pipeline is entirely built on \textbf{classical, hand-tuned computer vision methods} (OpenCV, scikit-image, SciPy) rather than trained neural networks, which makes it fast, lightweight, and easy to run without a GPU --- an important trade-off discussed further in Section~3.3.
+
+\subsection{The 8-Step Pipeline}
+
+\subsubsection*{Step 1 --- Blur Detection (Laplacian + Variance)}
+
+To measure the blur in an image, the Laplacian operator is applied. It computes the sum of the second-order partial derivatives along the $x$ and $y$ axes:
+
+\[
+\nabla^2 f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2}
+\]
+
+The blurrier the image, the smaller the pixel variations, and therefore the lower the Laplacian response. The variance of this response is then used as a sharpness indicator:
+
+\[
+V = \frac{1}{N} \sum_{i=1}^{N} \left( L_i - \bar{L} \right)^2
+\]
+
+If $V$ falls below a set threshold, the image is considered too blurry for reliable OCR processing.
+
+\subsubsection*{Step 2 --- Noise Reduction (Bilateral Filter)}
+
+Noise refers to unwanted random pixels scattered across the image. A Gaussian filter could be used --- it averages neighbouring pixels --- but it would blur the image uniformly and risk erasing thin characters. The \textbf{bilateral filter} is preferred because it only averages pixels that are both spatially close \textit{and} similar in colour:
+
+\[
+I_{\text{filtered}}(x) = \frac{1}{W(x)} \sum_{y \in \Omega} I(y) \cdot G_{\sigma_s}(\|x - y\|) \cdot G_{\sigma_r}(|I(x) - I(y)|)
+\]
+
+where $G_{\sigma_s}$ is the spatial weight, $G_{\sigma_r}$ is the intensity weight, and $W(x)$ is the normalisation factor. This preserves edges and text details while still removing noise. Section~3.3 compares this choice against several other denoising formulas that can be tested directly on a laptop CPU.
+
+\subsubsection*{Step 3 --- Sharpness Enhancement (Unsharp Masking)}
+
+Even after denoising, the image may still lack clarity. \textbf{Unsharp Masking} is applied: a blurred version of the image is first created, then the difference between the original and the blurred version is amplified:
+
+\[
+\text{Result} = \text{Original} + k \times (\text{Original} - \text{Blurred})
+\]
+
+where $k$ is an amplification coefficient (typically between 1 and 2). This operation reinforces edges and makes characters sharper and more defined.
+
+\subsubsection*{Step 4 --- Skew Correction (Canny + Hough Transform)}
+
+Even a very slight tilt can cause significant OCR errors. Two methods are combined to correct it:
+
+\textbf{Canny Edge Detection:} The image gradient is computed, then two thresholds $T_{\text{low}}$ and $T_{\text{high}}$ are applied to identify significant edge pixels, filtering out noise.
+
+\textbf{Hough Transform:} Each edge point is mapped into the $(\rho, \theta)$ space using:
+
+\[
+\rho = x \cos\theta + y \sin\theta
+\]
+
+The most frequently occurring values of $\theta$ correspond to the dominant text orientation. The image is then rotated by this angle to straighten the lines. Note that this method only corrects \textbf{in-plane rotation}; it cannot fix perspective distortion or the 3D curvature of a photographed (non-scanned) page --- a limitation addressed by the dewarping networks discussed in Section~3.3.
+
+\subsubsection*{Step 5 --- Local Contrast Enhancement (CLAHE)}
+
+Lighting is often unevenly distributed across an image. \textbf{CLAHE} (Contrast Limited Adaptive Histogram Equalization) divides the image into small tiles and equalises the brightness histogram independently in each one. The contrast limit prevents excessive noise amplification, unlike standard global histogram equalisation, which would over-brighten already bright regions.
+
+\subsubsection*{Step 6 --- Scaling (Upscaling $\times$2)}
+
+The image is enlarged by a factor of 2 to make the OCR engine's task easier. For the pixels created during resizing, \textbf{bicubic interpolation} (\texttt{INTER\_CUBIC}) is used: it estimates each new pixel value from the 16 nearest neighbours using a bicubic polynomial of the general form
+
+\[
+p(x, y) = \sum_{i=0}^{3} \sum_{j=0}^{3} a_{ij} \cdot x^i \cdot y^j ,
+\]
+
+whose coefficients $a_{ij}$ are fitted locally from the neighbouring pixel values. This produces a smoother and sharper result than nearest-neighbour or linear interpolation.
+
+\subsubsection*{Step 7 --- Binarisation (Sauvola / Otsu)}
+
+The image is converted to black and white, which is more precise for OCR. Rather than a fixed global threshold, adaptive methods automatically find the optimal threshold.
+
+\textbf{Otsu's method (1979):} It finds the threshold $t$ that maximises the between-class variance between black and white pixels:
+
+\[
+\sigma_B^2(t) = \omega_0(t)\,\omega_1(t)\,\left[\mu_0(t) - \mu_1(t)\right]^2
+\]
+
+\textbf{Sauvola's method (2000):} It computes a local adaptive threshold for each region of the image:
+
+\[
+T(x,y) = \mu(x,y) \cdot \left[1 + k \left(\frac{\sigma(x,y)}{R} - 1\right)\right]
+\]
+
+where $\mu$ and $\sigma$ are the local mean and standard deviation, $R$ is the dynamic range of the standard deviation, and $k$ is a sensitivity parameter. Sauvola is particularly well-suited to documents with uneven lighting.
+
+\subsubsection*{Step 8 --- Morphology (Opening, Closing, Dilation)}
+
+Finally, three geometric operations clean up the binary image. All are based on a structuring element $B$:
+
+\begin{itemize}
+  \item \textbf{Opening} $(A \ominus B) \oplus B$: erosion followed by dilation. Removes small noise spots without affecting characters.
+  \item \textbf{Closing} $(A \oplus B) \ominus B$: dilation followed by erosion. Fills small holes or gaps inside characters.
+  \item \textbf{Dilation} $A \oplus B$: slightly expands the white regions, helping to reconnect broken letter strokes.
+\end{itemize}
+
+% ============================================================
+\subsection{Comparison with 2025--2026 Research}
+
+The core difference between the 8-step pipeline above and current research is simple: \textbf{rule-based versus learned}. Every step in the pipeline applies a fixed mathematical rule --- a threshold, a filter, a formula --- tuned by hand, with no step ever having ``learned'' from data. This is a deliberate and reasonable engineering choice: it requires no training data or GPU, runs fast, and remains fully interpretable, since each step can be inspected and adjusted independently. In contrast, 2025--2026 research replaces much of this with neural networks trained on millions of degraded/clean image pairs, which learn the best transformation directly instead of following a fixed formula.
+
+The gap between the two approaches is not uniform across the pipeline; it is largest in three places:
+
+\begin{itemize}
+  \item \textbf{Skew correction (Step 4).} Canny + Hough only corrects a 2D in-plane rotation. Networks such as DocTr (Feng et al., ACM MM 2021), UVDoc (Verhoeven et al., SIGGRAPH Asia 2023), and DocMamba (Han \& Li, 2025) correct the full 3D curvature of a photographed (not just scanned) page --- a major advantage for documents captured with a phone camera rather than a flatbed scanner.
+  \item \textbf{Binarisation (Step 7).} On clean, well-lit modern scans, Otsu and Sauvola remain competitive. But on degraded documents (stains, uneven lighting, yellowed paper), transformer-based networks such as DocEnTR (Souibgui et al., 2022) and HUT-Net (2025) clearly outperform them on the standard DIBCO/H-DIBCO benchmarks.
+  \item \textbf{Denoising and sharpening (Steps 2--3).} Transformers such as Restormer (Zamir et al., CVPR 2022) and NAFNet (Chen et al., ECCV 2022) handle real-world noise and motion blur in a single pass, where the bilateral filter and unsharp masking --- designed mainly for simpler, near-Gaussian noise --- are more limited.
+\end{itemize}
+
+However, judging the pipeline only against GPU-hungry transformers gives an incomplete picture, since most of these networks cannot be run on a personal laptop without a dedicated GPU. A fairer and more practical comparison also includes the \textbf{other classical, CPU-only algorithms} that could have been chosen at each step instead of the ones actually used in production. The next two subsections detail these alternatives mathematically, and provide the exact metrics and code needed to reproduce the comparison on any machine.
+
+\subsubsection*{Testable Classical Alternatives (No GPU Required)}
+
+\paragraph{Denoising alternatives to the bilateral filter (Step 2).}
+
+\begin{itemize}
+  \item \textbf{Gaussian filter.} Convolves the image with an isotropic Gaussian kernel:
+  \[
+  I_{\text{filtered}}(x) = \sum_{y \in \Omega} I(y)\, G_\sigma(\|x-y\|), \qquad G_\sigma(r) = \frac{1}{2\pi\sigma^2} e^{-r^2/2\sigma^2}
+  \]
+  Fastest of all methods, but blurs edges uniformly regardless of local structure --- the reason it was rejected in favour of the bilateral filter.
+
+  \item \textbf{Median filter.} Replaces each pixel by the median value of its neighbourhood $\Omega_x$:
+  \[
+  I_{\text{filtered}}(x) = \operatorname{median}\{\, I(y) : y \in \Omega_x \,\}
+  \]
+  Non-linear and very effective against impulsive (``salt-and-pepper'') noise, but tends to round sharp corners of characters.
+
+  \item \textbf{Non-Local Means (NLM), Buades et al. (2005).} Generalises the bilateral filter by comparing entire patches $P(x)$ instead of single pixel intensities:
+  \[
+  I_{\text{filtered}}(x) = \frac{1}{W(x)} \sum_{y \in \Omega} I(y)\, w(x,y), \qquad w(x,y) = \exp\!\left(-\frac{\|P(x)-P(y)\|_2^2}{h^2}\right)
+  \]
+  Produces noticeably better texture and edge preservation than the bilateral filter, at the cost of a much higher computational complexity ($O(N^2)$ over search windows versus a small local window for the bilateral filter).
+
+  \item \textbf{Wiener filter.} A frequency-domain, statistically-optimal linear filter that minimises the mean squared error given the noise and signal power spectra $S_n$ and $S_f$:
+  \[
+  H(u,v) = \frac{H^{*}(u,v)}{|H(u,v)|^{2} + S_n(u,v)/S_f(u,v)}
+  \]
+  Well suited to known, stationary noise models, but less effective on the spatially-varying noise typical of scanned documents.
+
+  \item \textbf{Wavelet (soft-threshold) denoising, Donoho \& Johnstone (1994).} The image is decomposed with a discrete wavelet transform (DWT); each detail coefficient $d$ is shrunk towards zero:
+  \[
+  \hat{d} = \operatorname{sign}(d)\cdot\max(|d| - \lambda,\, 0)
+  \]
+  and the image is reconstructed from the thresholded coefficients. Preserves edges well because it acts on high-frequency detail coefficients directly, rather than smoothing pixel neighbourhoods.
+
+  \item \textbf{BM3D, Dabov et al. (2007).} Still one of the strongest \emph{non-learned} denoisers: it groups similar image patches into 3D blocks, denoises them jointly in a transform domain (collaborative filtering), then aggregates the results back into the image. Close to the performance of many deep denoisers on Gaussian noise, but noticeably slower than every method above.
+\end{itemize}
+
+\paragraph{Sharpening alternatives to unsharp masking (Step 3).}
+
+\begin{itemize}
+  \item \textbf{Laplacian sharpening.} Subtracts a scaled Laplacian directly from the image:
+  \[
+  I_{\text{sharp}} = I - c \cdot \nabla^2 I
+  \]
+  Simpler and cheaper than unsharp masking, but more sensitive to noise since it uses second-order derivatives directly.
+
+  \item \textbf{High-boost filtering.} A generalisation of unsharp masking with an amplification factor $A \ge 1$ applied to the original image itself:
+  \[
+  I_{\text{hb}} = A \cdot I - \text{Blur}(I)
+  \]
+  When $A=1$, this reduces exactly to unsharp masking; larger $A$ preserves more of the low-frequency content while still boosting edges.
+
+  \item \textbf{Guided filter, He et al. (2010).} An edge-preserving smoothing filter that can also be used for detail boosting. It fits a local linear model between a guidance image $G$ and the output $q$ in each window $\omega_k$:
+  \[
+  q_i = a_k G_i + b_k, \qquad \forall i \in \omega_k
+  \]
+  with $a_k, b_k$ obtained by minimising a regularised least-squares cost. Runs in linear time in the number of pixels, independent of the window radius, which makes it attractive for large document scans.
+\end{itemize}
+
+\paragraph{Binarisation alternatives to Otsu/Sauvola (Step 7).}
+
+\begin{itemize}
+  \item \textbf{Niblack (1986).} The direct predecessor of Sauvola; the local threshold is a simple linear combination of the local mean and standard deviation:
+  \[
+  T(x,y) = \mu(x,y) + k \cdot \sigma(x,y), \qquad k \approx -0.2
+  \]
+  Simpler than Sauvola but more prone to introducing noise (false dark blobs) in uniformly-coloured background regions, which is precisely the artefact Sauvola's $R$-normalisation term was designed to fix.
+
+  \item \textbf{Bernsen (1986).} Threshold set at the midpoint of the local contrast range:
+  \[
+  T(x,y) = \tfrac{1}{2}\left[ I_{\max}(x,y) + I_{\min}(x,y) \right]
+  \]
+  computed over a local window; regions where $I_{\max}-I_{\min}$ is below a contrast threshold are treated as uniform background.
+
+  \item \textbf{Adaptive mean/Gaussian threshold (OpenCV \texttt{adaptiveThreshold}).} The threshold at each pixel is the (Gaussian-weighted) mean of its neighbourhood minus a constant $C$:
+  \[
+  T(x,y) = \left(\sum_{(i,j)\in\Omega} w_{ij}\, I(x{+}i, y{+}j)\right) - C
+  \]
+  Very fast, widely available, and a reasonable default when Sauvola/Niblack are not implemented in the target environment.
+\end{itemize}
+
+\paragraph{Interpolation alternatives to bicubic (Step 6).}
+
+\begin{itemize}
+  \item \textbf{Nearest-neighbour.} Copies the value of the closest input pixel; zero computational cost but produces visible blockiness.
+  \item \textbf{Bilinear.} Linear interpolation along $x$ then $y$ using the 4 nearest pixels; smoother than nearest-neighbour but blurs fine strokes more than bicubic.
+  \item \textbf{Lanczos (Lanczos-4).} Uses a windowed-sinc kernel over an $8\times 8$ neighbourhood:
+  \[
+  L(x) = \operatorname{sinc}(x)\cdot\operatorname{sinc}(x/a), \quad -a < x < a,\ a=4
+  \]
+  Generally sharper than bicubic on high-frequency content (thin character strokes), at a slightly higher computational cost.
+\end{itemize}
+
+\paragraph{Deskew alternatives to Hough (Step 4).}
+
+\begin{itemize}
+  \item \textbf{Projection-profile method.} For each candidate angle $\theta$ in a search range, the image is rotated by $\theta$ and the horizontal projection profile $p(y) = \sum_x \mathbb{1}[I(x,y) < 128]$ is computed. The angle that maximises the variance of the profile,
+  \[
+  \hat{\theta} = \arg\max_{\theta} \operatorname{Var}\big(p_\theta(y)\big),
+  \]
+  is chosen, since correctly-aligned text lines produce the sharpest, most separated peaks in the row-sum histogram. Simple to implement and robust on clean scans, but computationally heavier than Hough because it requires re-rendering the image at every candidate angle.
+  \item \textbf{Minimum-area bounding box.} Fits the smallest rotated rectangle around the detected text contours (e.g.\ via \texttt{cv2.minAreaRect}) and uses its orientation as the skew angle. Faster than the projection-profile search, but less robust when the page contains non-text elements (tables, images, stamps).
+\end{itemize}
+
+\subsubsection*{Quantitative Comparison Metrics}
+
+To compare all of the above methods objectively rather than by visual inspection alone, three standard metrics are used, computed between a processed image $I_1$ and a reference image $I_2$ of the same size $M\times N$:
+
+\[
+\text{MSE} = \frac{1}{MN}\sum_{i=1}^{M}\sum_{j=1}^{N}\big(I_1(i,j) - I_2(i,j)\big)^2
+\]
+
+\[
+\text{PSNR} = 10 \log_{10}\!\left(\frac{\text{MAX}^2}{\text{MSE}}\right), \qquad \text{MAX} = 255 \text{ for 8-bit images}
+\]
+
+\[
+\text{SSIM}(x,y) = \frac{(2\mu_x\mu_y + C_1)(2\sigma_{xy} + C_2)}{(\mu_x^2+\mu_y^2+C_1)(\sigma_x^2+\sigma_y^2+C_2)}
+\]
+
+where $\mu$, $\sigma^2$, and $\sigma_{xy}$ are local means, variances, and covariance (Wang et al., 2004). A higher PSNR and an SSIM closer to 1 indicate a result closer to the reference; together with wall-clock execution time, these three numbers are enough to rank every method above on any test image.
+
+\subsubsection*{Extended Comparison Table}
+
+\vspace{0.5em}
+\begin{tabularx}{\textwidth}{lXXX}
+\toprule
+\textbf{Step} & \textbf{Used in the pipeline} & \textbf{Classical CPU alternatives (testable on a laptop)} & \textbf{2025--2026 DL counterpart (GPU)} \\
+\midrule
+Denoising (2) & Bilateral filter & Gaussian, Median, Non-Local Means, Wiener, Wavelet soft-threshold, BM3D & Restormer, NAFNet \\
+\addlinespace
+Sharpening (3) & Unsharp masking & Laplacian sharpening, High-boost filtering, Guided filter & Restormer (joint denoise+sharpen) \\
+\addlinespace
+Deskew (4) & Canny + Hough & Projection-profile search, Minimum-area bounding box & DocTr, UVDoc, DocMamba (3D dewarping) \\
+\addlinespace
+Upscaling (6) & Bicubic & Nearest-neighbour, Bilinear, Lanczos-4 & ESPCN, FSRCNN, EDSR (learned super-resolution) \\
+\addlinespace
+Binarisation (7) & Otsu / Sauvola & Niblack, Bernsen, Adaptive mean/Gaussian threshold & DocEnTR, HUT-Net \\
+\bottomrule
+\end{tabularx}
+
+\vspace{1em}
+
+\subsubsection*{The Broader Shift: End-to-End OCR Models}
+
+Beyond improving individual steps, the dominant trend in 2025--2026 is not to refine the pipeline further but to \textbf{remove it altogether}. Vision-Language Models built specifically for document understanding --- such as \textit{dots.ocr} (Li et al., 2025), \textit{PaddleOCR-VL} (Cui et al., 2025), \textit{MinerU2.5} (Niu et al., 2025), \textit{DeepSeek-OCR}, \textit{Nemotron Parse 1.1} (NVIDIA, 2025), \textit{HunyuanOCR} (2025), and \textit{Qianfan-OCR} (Baidu, 2026) --- read a raw document image directly and perform layout analysis and recognition jointly, in a single forward pass, with no explicit preprocessing pipeline at all. Qianfan-OCR, for instance, reports state-of-the-art results on the OmniDocBench v1.5 and OlmOCR benchmarks while explicitly avoiding the multi-stage preprocessing and postprocessing that classical pipelines like the one used at BI New Vision require.
+
+This does not make the 8-step pipeline obsolete, however. End-to-end VLMs require a GPU, are computationally expensive, and behave as a black box that is hard to debug step by step --- all important drawbacks for a cost-sensitive, auditable deployment such as ONDA's. In practice, this is less ``old versus new'' and more a genuine trade-off between interpretability/cost and raw accuracy, and, as the table above shows, the interpretable side of that trade-off is itself a spectrum of classical methods worth comparing carefully before reaching for a neural network.
+
+% ============================================================
+\subsection{Practical Comparison Protocol: Algorithms for Google Colab}
+
+To turn the comparison above into something reproducible rather than purely descriptive, this section provides self-contained Python code, organised as independent Colab cells, that runs entirely on the free CPU tier of Google Colab (no GPU required, except for the optional super-resolution cell). Each cell prints the PSNR/SSIM/timing table discussed above and displays a side-by-side visual grid, so every claim made in Section~3.3 can be checked on any personal image.
+
+\paragraph{Cell 0 --- Setup and image loading.}
+\begin{lstlisting}
+!pip install -q opencv-python-headless scikit-image scipy PyWavelets numpy matplotlib
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+import time
+from skimage.filters import threshold_otsu, threshold_sauvola, threshold_niblack
+from skimage.metrics import peak_signal_noise_ratio as psnr
+from skimage.metrics import structural_similarity as ssim
+from skimage.restoration import denoise_wavelet
+
+try:
+    from google.colab import files
+    uploaded = files.upload()
+    fname = list(uploaded.keys())[0]
+    img_color = cv2.imread(fname)
+except ImportError:
+    import urllib.request
+    url = "https://raw.githubusercontent.com/opencv/opencv/master/samples/data/text_defocus.jpg"
+    urllib.request.urlretrieve(url, "sample.jpg")
+    img_color = cv2.imread("sample.jpg")
+
+img = cv2.cvtColor(img_color, cv2.COLOR_BGR2GRAY)
+plt.figure(figsize=(6, 6))
+plt.imshow(img, cmap="gray")
+plt.title("Original")
+plt.axis("off")
+plt.show()
+\end{lstlisting}
+
+\paragraph{Cell 1 --- Denoising comparison (Gaussian, Median, Bilateral, NLM, Wavelet).}
+\begin{lstlisting}
+def add_gaussian_noise(image, sigma=15):
+    noisy = image.astype(np.float32) + np.random.normal(0, sigma, image.shape)
+    return np.clip(noisy, 0, 255).astype(np.uint8)
+
+clean = img.copy()
+noisy = add_gaussian_noise(clean, sigma=15)
+
+def gaussian_denoise(im):  return cv2.GaussianBlur(im, (5, 5), 1.5)
+def median_denoise(im):    return cv2.medianBlur(im, 5)
+def bilateral_denoise(im): return cv2.bilateralFilter(im, 9, 75, 75)
+def nlm_denoise(im):       return cv2.fastNlMeansDenoising(im, None, h=10,
+                                   templateWindowSize=7, searchWindowSize=21)
+def wavelet_denoise(im):
+    out = denoise_wavelet(im, rescale_sigma=True, mode="soft")
+    return (out * 255).astype(np.uint8) if out.max() <= 1.0 else out.astype(np.uint8)
+
+denoise_methods = {
+    "Noisy input":      lambda im: im,
+    "Gaussian":         gaussian_denoise,
+    "Median":           median_denoise,
+    "Bilateral":        bilateral_denoise,
+    "Non-Local Means":  nlm_denoise,
+    "Wavelet (soft)":   wavelet_denoise,
+}
+
+results = {}
+for name, fn in denoise_methods.items():
+    t0 = time.time()
+    out = fn(noisy)
+    dt = time.time() - t0
+    p, s = psnr(clean, out), ssim(clean, out)
+    results[name] = (out, dt, p, s)
+    print(f"{name:18s} | time: {dt*1000:6.1f} ms | PSNR: {p:5.2f} dB | SSIM: {s:5.3f}")
+
+fig, axes = plt.subplots(1, len(results), figsize=(4 * len(results), 4))
+for ax, (name, (out, dt, p, s)) in zip(axes, results.items()):
+    ax.imshow(out, cmap="gray")
+    ax.set_title(f"{name}\nPSNR={p:.1f} SSIM={s:.2f}")
+    ax.axis("off")
+plt.tight_layout()
+plt.show()
+\end{lstlisting}
+
+\paragraph{Cell 2 --- Sharpening comparison (Unsharp mask, Laplacian, High-boost).}
+\begin{lstlisting}
+def unsharp_mask(im, k=1.5, sigma=2):
+    blurred = cv2.GaussianBlur(im, (0, 0), sigma)
+    return cv2.addWeighted(im, 1 + k, blurred, -k, 0)
+
+def laplacian_sharpen(im, c=1.0):
+    lap = cv2.Laplacian(im, cv2.CV_64F)
+    out = im.astype(np.float64) - c * lap
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+def high_boost(im, A=1.5, sigma=2):
+    blurred = cv2.GaussianBlur(im, (0, 0), sigma)
+    mask = im.astype(np.float64) - blurred.astype(np.float64)
+    out = A * im.astype(np.float64) + mask
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+sharp_methods = {
+    "Original":            lambda im: im,
+    "Unsharp Mask":        unsharp_mask,
+    "Laplacian sharpen":   laplacian_sharpen,
+    "High-boost (A=1.5)":  high_boost,
+}
+
+fig, axes = plt.subplots(1, len(sharp_methods), figsize=(4 * len(sharp_methods), 4))
+for ax, (name, fn) in zip(axes, sharp_methods.items()):
+    ax.imshow(fn(img), cmap="gray")
+    ax.set_title(name)
+    ax.axis("off")
+plt.tight_layout()
+plt.show()
+\end{lstlisting}
+
+\paragraph{Cell 3 --- Binarisation comparison (Otsu, Sauvola, Niblack, adaptive Gaussian).}
+\begin{lstlisting}
+def binarize_otsu(im):
+    t = threshold_otsu(im)
+    return (im > t).astype(np.uint8) * 255
+
+def binarize_sauvola(im, window=25, k=0.2):
+    t = threshold_sauvola(im, window_size=window, k=k)
+    return (im > t).astype(np.uint8) * 255
+
+def binarize_niblack(im, window=25, k=-0.2):
+    t = threshold_niblack(im, window_size=window, k=k)
+    return (im > t).astype(np.uint8) * 255
+
+def binarize_adaptive_gaussian(im, block_size=25, C=10):
+    return cv2.adaptiveThreshold(im, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                  cv2.THRESH_BINARY, block_size, C)
+
+bin_methods = {
+    "Otsu (global)":     binarize_otsu,
+    "Sauvola (local)":   binarize_sauvola,
+    "Niblack (local)":   binarize_niblack,
+    "Adaptive Gaussian": binarize_adaptive_gaussian,
+}
+
+fig, axes = plt.subplots(1, len(bin_methods), figsize=(4 * len(bin_methods), 4))
+for ax, (name, fn) in zip(axes, bin_methods.items()):
+    t0 = time.time()
+    out = fn(img)
+    dt = time.time() - t0
+    ax.imshow(out, cmap="gray")
+    ax.set_title(f"{name}\n{dt*1000:.1f} ms")
+    ax.axis("off")
+plt.tight_layout()
+plt.show()
+\end{lstlisting}
+
+\paragraph{Cell 4 --- Interpolation comparison (Nearest, Bilinear, Bicubic, Lanczos).}
+\begin{lstlisting}
+h, w = img.shape
+small = cv2.resize(img, (w // 2, h // 2), interpolation=cv2.INTER_AREA)
+
+interp_methods = {
+    "Nearest":  cv2.INTER_NEAREST,
+    "Bilinear": cv2.INTER_LINEAR,
+    "Bicubic":  cv2.INTER_CUBIC,
+    "Lanczos4": cv2.INTER_LANCZOS4,
+}
+
+fig, axes = plt.subplots(1, len(interp_methods), figsize=(4 * len(interp_methods), 4))
+for ax, (name, flag) in zip(axes, interp_methods.items()):
+    up = cv2.resize(small, (w, h), interpolation=flag)
+    p, s = psnr(img, up), ssim(img, up)
+    ax.imshow(up, cmap="gray")
+    ax.set_title(f"{name}\nPSNR={p:.1f} SSIM={s:.2f}")
+    ax.axis("off")
+plt.tight_layout()
+plt.show()
+\end{lstlisting}
+
+\paragraph{Cell 5 --- Optional: learned super-resolution vs. bicubic (requires downloading pretrained weights, CPU-compatible).}
+\begin{lstlisting}
+!wget -q -O ESPCN_x2.pb https://github.com/fannymonori/TF-ESPCN/raw/master/export/ESPCN_x2.pb
+!wget -q -O FSRCNN_x2.pb https://github.com/Saafke/FSRCNN_Tensorflow/raw/master/models/FSRCNN_x2.pb
+
+sr = cv2.dnn_superres.DnnSuperResImpl_create()
+small_color = cv2.cvtColor(small, cv2.COLOR_GRAY2BGR)
+
+for name, path, alg, scale in [("ESPCN", "ESPCN_x2.pb", "espcn", 2),
+                                ("FSRCNN", "FSRCNN_x2.pb", "fsrcnn", 2)]:
+    sr.readModel(path)
+    sr.setModel(alg, scale)
+    up_color = sr.upsample(small_color)
+    up = cv2.cvtColor(up_color, cv2.COLOR_BGR2GRAY)
+    p, s = psnr(img, up), ssim(img, up)
+    print(f"{name}: PSNR={p:.2f} dB, SSIM={s:.3f}")
+\end{lstlisting}
+
+\paragraph{Cell 6 --- Deskew comparison (Hough vs. projection profile).}
+\begin{lstlisting}
+def rotate_image(im, angle):
+    h, w = im.shape
+    M = cv2.getRotationMatrix2D((w / 2, h / 2), angle, 1.0)
+    return cv2.warpAffine(im, M, (w, h), borderValue=255)
+
+def deskew_hough(im):
+    edges = cv2.Canny(im, 50, 150)
+    lines = cv2.HoughLines(edges, 1, np.pi / 180, 150)
+    if lines is None:
+        return 0.0
+    angles = [(theta * 180 / np.pi) - 90 for rho, theta in lines[:, 0]]
+    return float(np.median(angles))
+
+def deskew_projection(im, angle_range=10, step=0.2):
+    best_angle, best_score = 0.0, -1.0
+    for angle in np.arange(-angle_range, angle_range, step):
+        rotated = rotate_image(im, angle)
+        proj = np.sum(rotated < 128, axis=1)
+        score = np.var(proj)
+        if score > best_score:
+            best_score, best_angle = score, angle
+    return best_angle
+
+true_angle = 4.0
+test_img = rotate_image(img, -true_angle)
+
+angle_hough = deskew_hough(test_img)
+angle_proj = deskew_projection(test_img)
+
+print(f"True angle:                  {true_angle:.2f} deg")
+print(f"Hough estimate:               {angle_hough:.2f} deg (error {abs(angle_hough - true_angle):.2f})")
+print(f"Projection profile estimate:  {angle_proj:.2f} deg (error {abs(angle_proj - true_angle):.2f})")
+\end{lstlisting}
+
+A ready-to-open version of these cells is provided as a companion Jupyter notebook (\texttt{colab\_image\_processing\_comparisons.ipynb}), which can be uploaded directly to Google Colab via \textit{File > Upload notebook}.
+
+\subsection{Personal Experiment}
+
+To better understand the impact of preprocessing, I manually applied the pipeline to a single document containing two distinct types of content: a printed section and a handwritten section written in pencil (no pen or ink was used in the handwritten part).
+
+For the printed section, the results were highly satisfying: the text came out sharp, well-contrasted, and clearly readable after processing. The binarisation step in particular produced a clean black-and-white output with no significant loss of information.
+
+For the pencil section, however, the results revealed an important limitation. After binarisation, the pencil marks appeared in a noticeably different tone from the printed text, because the thresholding step does not handle lighter, low-contrast strokes as reliably as high-contrast ink or print. This suggests that an OCR engine would likely struggle to read this pencil-written content without further tuning, since pencil marks are inherently lighter and less contrasted than printed ink.
+
+From a technical standpoint, these results confirm that the pipeline is well-optimised for printed documents, and that handwritten input benefits from being written in ink --- or from an additional, dedicated preprocessing step tuned for low-contrast strokes --- to achieve reliable OCR output.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.48\textwidth]{IMG_0360.jpeg}
+\hfill
+\includegraphics[width=0.48\textwidth]{IMG_0361.png}
+\caption{Before and after preprocessing}
+\end{figure}
+
+% ============================================================
+\section{\color{navyblue} Streamlit Prototype}
+
+To make the 8-step pipeline easy to test and demonstrate --- both for myself and for non-technical colleagues --- I built an interactive web prototype using \textbf{Streamlit}, a Python framework that turns a script into a shareable web application without requiring any front-end code.
+
+\subsection{Why Streamlit}
+
+Streamlit was chosen because it lets a data science or computer vision script be turned into a usable interface (file upload, sliders, buttons, image previews) in a few lines of Python, which made it well suited for quickly demonstrating the effect of each preprocessing step to the team.
+
+\subsection{Development Environment}
+
+The prototype was developed in a \textbf{GitHub Codespace} (a cloud-based VS Code environment), using \texttt{uv} --- a fast Python package and virtual-environment manager --- to handle dependencies.
+
+\subsection{Setup Process}
+
+\begin{enumerate}
+  \item \textbf{Base image.} The Codespace's \texttt{.devcontainer/devcontainer.json} initially used a minimal Linux base image built on \texttt{musl} (Alpine-style). This caused the dependency installation to fail, because \texttt{opencv-python-headless} does not ship a prebuilt wheel for \texttt{musllinux} systems. The fix was to switch the \texttt{image} field to a standard Debian-based image:
+\begin{lstlisting}
+"image": "mcr.microsoft.com/devcontainers/python:3.11"
+\end{lstlisting}
+  followed by rebuilding the container.
+
+  \item \textbf{Installing \texttt{uv}} (if not already available):
+\begin{lstlisting}
+curl -LsSf https://astral.sh/uv/install.sh | sh
+\end{lstlisting}
+
+  \item \textbf{Adding dependencies.} Each preprocessing step requires a different library (OpenCV for filtering, SciPy for the Wiener filter, scikit-image for Sauvola thresholding):
+\begin{lstlisting}
+uv add opencv-python-headless scipy scikit-image pillow numpy
+\end{lstlisting}
+
+  \item \textbf{Implementing the pipeline.} The file \texttt{streamlit\_app.py} defines one Python function per pipeline step (\texttt{detect\_blur}, \texttt{denoise}, \texttt{sharpen}, \texttt{deskew}, \texttt{apply\_clahe}, \texttt{upscale}, \texttt{binarize}, \texttt{morphology}), an orchestrator function that chains them together, and a Streamlit interface with:
+  \begin{itemize}
+    \item a file uploader for the input image,
+    \item sidebar controls to toggle or tune each step (denoising method, scale factor, binarisation method, morphological operation),
+    \item a side-by-side before/after comparison and a display of the intermediate results of every step,
+    \item the Laplacian-variance blur score, with a warning if the image is too blurry,
+    \item a button to download the final processed image.
+  \end{itemize}
+
+  \item \textbf{Running the app.}
+\begin{lstlisting}
+uv run streamlit run streamlit_app.py
+\end{lstlisting}
+  Streamlit starts a local server on port 8501; in a Codespace, this port is automatically forwarded and can be opened directly in the browser tab that GitHub opens, or via the \textbf{Ports} panel.
+\end{enumerate}
+
+This small prototype turned an offline processing script into a tool that colleagues could use directly from a browser to test the pipeline on their own scanned documents, without writing or running any code themselves.
+
+% ============================================================
+\section{\color{navyblue} Resources}
+
+\vspace{0.5em}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Tool} & \textbf{Description} \\
+\midrule
+Ollama (\url{https://ollama.com}) & Run large language models locally and for free. Useful for testing AI without cloud costs. \\
+\addlinespace
+Medium (\url{https://medium.com}) & Technical articles and tutorials on AI and data science. Helpful for topics like vector databases and RAG. \\
+\addlinespace
+Kaggle (\url{https://kaggle.com}) & Platform with machine learning competitions and public datasets. Good for practising data science skills. \\
+\addlinespace
+Streamlit (\url{https://streamlit.io}) & Python framework used to turn the preprocessing pipeline into an interactive web prototype (see Section~4). \\
+\addlinespace
+Google Colab (\url{https://colab.research.google.com}) & Free hosted Jupyter environment used to run the classical-vs-classical and classical-vs-DL comparison algorithms of Section~3.4. \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\newpage
+\section*{\color{navyblue} Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+
+\textit{This section will be completed at the end of the 30-day internship.}
+
+\begin{itemize}
+  \item Skills developed during the internship
+  \item Contributions made to the team and projects
+  \item Personal reflections on the experience
+  \item Future goals and perspectives
+\end{itemize}
+
+% ============================================================
+\newpage
+\section*{\color{navyblue} References}
+\addcontentsline{toc}{section}{References}
+
+\subsection*{Company and Project}
+\begin{itemize}
+  \item BI New Vision --- \url{https://bi-newvision.com}
+  \item ONDA --- \url{https://www.onda.ma}
+  \item Ollama --- \url{https://ollama.com}
+  \item Medium --- \url{https://medium.com}
+  \item Kaggle --- \url{https://kaggle.com}
+  \item Streamlit --- \url{https://streamlit.io}
+  \item OpenCV --- \url{https://docs.opencv.org}
+  \item scikit-image --- \url{https://scikit-image.org}
+\end{itemize}
+
+\subsection*{2025--2026 Research on Document Image Processing}
+\begin{itemize}
+  \item Zamir, S.W., Arora, A., Khan, S., Hayat, M., Khan, F.S., Yang, M.-H. (2022). \textit{Restormer: Efficient Transformer for High-Resolution Image Restoration}. CVPR. \url{https://github.com/swz30/Restormer}
+  \item Chen, L., Chu, X., Zhang, X., Sun, J. (2022). \textit{Simple Baselines for Image Restoration} (NAFNet). ECCV. arXiv:2204.04676.
+  \item Al Radi, A.M., Majumder, P.S., Khan, M.M. (2025). \textit{From Attention to Frequency: Integration of Vision Transformer and FFT-ReLU for Enhanced Image Deblurring}. WACV. \url{https://arxiv.org/abs/2511.10806}
+  \item Feng, H., Wang, Y., Zhou, W., Deng, J., Li, H. (2021). \textit{DocTr: Document Image Transformer for Geometric Unwarping and Illumination Correction}. ACM MM. arXiv:2110.12942.
+  \item Istomin, V., Afanasyev, I. (2025). \textit{Efficient Document Image Dewarping via Hybrid Deep Learning and Cubic Polynomial Geometry Restoration}. \url{https://arxiv.org/abs/2501.03145}
+  \item Han, M., Li, H. (2025). \textit{DocMamba: Robust Document Image Dewarping via Selective State Space Sequence Modeling}. International Conference on Multimedia Modeling.
+  \item Recent dewarping papers (D2Dewarp, BookNet, Axis-Aligned Document Dewarping, 2025--2026) --- collected in \url{https://github.com/ZZZHANG-jx/Recommendations-Document-Image-Processing}
+  \item Souibgui, M.A., Biswas, S., Jemni, S.K., Kessentini, Y., Fornés, A., Lladós, J., Pal, U. (2022). \textit{DocEnTr: An End-to-End Document Image Enhancement Transformer}. arXiv:2201.10252.
+  \item \textit{An Efficient Transformer-CNN Network for Document Image Binarization} (MobileViT + U-Net). MDPI Electronics, 2024. \url{https://www.mdpi.com/2079-9292/13/12/2243}
+  \item \textit{HUT-Net: A Hybrid U-Net Transformer Network with Attention Mechanisms for Historical Document Image Binarization}, 2025.
+  \item Zhang, J., Peng, D., Liu, C., Zhang, P., Jin, L. (2024). \textit{DocRes: A Generalist Model Toward Unifying Document Image Restoration Tasks}. CVPR.
+  \item Liang, J. et al. (2021). \textit{SwinIR: Image Restoration Using Swin Transformer}. ICCV Workshops.
+  \item \textit{Qianfan-OCR: A Unified End-to-End Model for Document Intelligence}. Baidu, 2026. \url{https://arxiv.org/abs/2603.13398}
+  \item \textit{Nemotron Parse 1.1}. NVIDIA, 2025. \url{https://arxiv.org/abs/2511.20478}
+  \item \textit{MinerU2.5: A Decoupled Vision-Language Model for Efficient High-Resolution Document Parsing}. 2025. \url{https://arxiv.org/abs/2509.22186}
+  \item \textit{HunyuanOCR Technical Report}. 2025. \url{https://arxiv.org/abs/2511.19575}
+  \item \textit{Visual Merit or Linguistic Crutch? A Close Look at DeepSeek-OCR}. 2026. \url{https://arxiv.org/abs/2601.03714}
+\end{itemize}
+
+\subsection*{Classical Image Processing Methods}
+\begin{itemize}
+  \item Otsu, N. (1979). \textit{A Threshold Selection Method from Gray-Level Histograms}. IEEE Transactions on Systems, Man, and Cybernetics.
+  \item Sauvola, J., Pietikäinen, M. (2000). \textit{Adaptive Document Image Binarization}. Pattern Recognition, 33(2).
+  \item Niblack, W. (1986). \textit{An Introduction to Digital Image Processing}. Prentice-Hall.
+  \item Bernsen, J. (1986). \textit{Dynamic Thresholding of Grey-Level Images}. International Conference on Pattern Recognition.
+  \item Buades, A., Coll, B., Morel, J.-M. (2005). \textit{A Non-Local Algorithm for Image Denoising}. CVPR.
+  \item Dabov, K., Foi, A., Katkovnik, V., Egiazarian, K. (2007). \textit{Image Denoising by Sparse 3-D Transform-Domain Collaborative Filtering} (BM3D). IEEE Transactions on Image Processing.
+  \item Donoho, D.L., Johnstone, I.M. (1994). \textit{Ideal Spatial Adaptation by Wavelet Shrinkage}. Biometrika, 81(3).
+  \item He, K., Sun, J., Tang, X. (2010). \textit{Guided Image Filtering}. ECCV.
+  \item Wang, Z., Bovik, A.C., Sheikh, H.R., Simoncelli, E.P. (2004). \textit{Image Quality Assessment: From Error Visibility to Structural Similarity} (SSIM). IEEE Transactions on Image Processing.
+\end{itemize}
+
+\end{document}
