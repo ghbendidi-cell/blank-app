@@ -10,40 +10,41 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Palette : Juniper, Napa, Cameo, Geraldine, Russett
         brand: {
-          DEFAULT: "#0e7c86",
-          dark: "#0a4f57",
-          light: "#e5f5f6",
+          DEFAULT: "#6D9891",
+          dark: "#4e6d68",
+          light: "#e5eceb",
         },
         accent: {
-          DEFAULT: "#ff6b35",
-          dark: "#e2501c",
-          light: "#ffe8de",
+          DEFAULT: "#F69F83",
+          dark: "#b1725e",
+          light: "#fdeee9",
         },
         gold: {
-          DEFAULT: "#c9a227",
-          dark: "#9c7d1c",
-          light: "#faf3dd",
+          DEFAULT: "#E0C1A5",
+          dark: "#a18b77",
+          light: "#f9f4ef",
         },
         egypt: {
-          DEFAULT: "#c9772d",
-          dark: "#8f4e17",
-          light: "#faf0e2",
+          DEFAULT: "#F69F83",
+          dark: "#b1725e",
+          light: "#fdeee9",
         },
         vietnam: {
-          DEFAULT: "#0e9f6e",
-          dark: "#046c4e",
-          light: "#e3f9f1",
+          DEFAULT: "#6D9891",
+          dark: "#4e6d68",
+          light: "#e5eceb",
         },
         turkey: {
-          DEFAULT: "#1a8fd1",
-          dark: "#0b5a86",
-          light: "#e5f4fc",
+          DEFAULT: "#AFAC9B",
+          dark: "#7e7c70",
+          light: "#f1f0ed",
         },
         hajj: {
-          DEFAULT: "#3d2e6b",
-          dark: "#221a42",
-          light: "#f1edf9",
+          DEFAULT: "#76575D",
+          dark: "#553f43",
+          light: "#e6e1e2",
         },
       },
       fontFamily: {

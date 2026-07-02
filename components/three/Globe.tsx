@@ -17,11 +17,11 @@ export default function Globe({ position = [2.2, 0.2, -1] as [number, number, nu
     <group position={position}>
       <mesh ref={groupRef}>
         <icosahedronGeometry args={[1.3, 1]} />
-        <meshStandardMaterial color="#0e7c86" flatShading roughness={0.4} metalness={0.15} />
+        <meshStandardMaterial color="#6D9891" flatShading roughness={0.4} metalness={0.15} />
       </mesh>
       <mesh ref={wireRef} scale={1.03}>
         <icosahedronGeometry args={[1.3, 1]} />
-        <meshBasicMaterial color="#ffe8de" wireframe transparent opacity={0.35} />
+        <meshBasicMaterial color="#E0C1A5" wireframe transparent opacity={0.35} />
       </mesh>
     </group>
   );

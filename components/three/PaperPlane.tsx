@@ -20,7 +20,7 @@ export default function PaperPlane({
   radius = 3.6,
   center = [0.5, 0.4, -1] as [number, number, number],
   speed = 0.22,
-  color = "#ffffff",
+  color = "#f9f4ef",
 }: {
   radius?: number;
   center?: [number, number, number];
@@ -49,9 +49,9 @@ export default function PaperPlane({
   return (
     <group ref={ref}>
       <mesh geometry={planeShapeGeometry()} castShadow>
-        <meshStandardMaterial color={color} flatShading roughness={0.35} metalness={0.05} emissive="#ff6b35" emissiveIntensity={0.15} />
+        <meshStandardMaterial color={color} flatShading roughness={0.35} metalness={0.05} emissive="#F69F83" emissiveIntensity={0.15} />
       </mesh>
-      <Trail width={2.2} length={7} color="#ffe8de" attenuation={(t) => t * t}>
+      <Trail width={2.2} length={7} color="#E0C1A5" attenuation={(t) => t * t}>
         <mesh ref={tipRef} position={[0, 0.5, 0]} visible={false}>
           <sphereGeometry args={[0.02]} />
         </mesh>

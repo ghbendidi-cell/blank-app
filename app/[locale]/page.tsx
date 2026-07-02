@@ -31,7 +31,7 @@ export default async function HomePage() {
     <div className="overflow-x-hidden">
       <section className="relative min-h-[420px] overflow-hidden bg-brand-dark lg:min-h-[680px]">
         <HeroBackground />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,79,87,0.55),transparent_70%)] lg:bg-[radial-gradient(ellipse_at_center,rgba(10,79,87,0.4),transparent_65%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(78,109,104,0.55),transparent_70%)] lg:bg-[radial-gradient(ellipse_at_center,rgba(78,109,104,0.4),transparent_65%)]" />
         <div className="relative mx-auto flex h-full min-h-[420px] max-w-7xl flex-col items-center justify-center gap-6 px-4 py-24 text-center lg:min-h-[680px]">
           <h1 className="max-w-2xl text-3xl font-bold text-white drop-shadow-lg sm:text-5xl">{t("heroTitle")}</h1>
           <p className="max-w-xl text-white/90">{t("heroSubtitle")}</p>

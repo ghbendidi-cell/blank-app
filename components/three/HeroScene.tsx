@@ -8,7 +8,7 @@ import Globe from "./Globe";
 import PaperPlane from "./PaperPlane";
 import FloatingPanel from "./FloatingPanel";
 
-const DESTINATION_COLORS = ["#c9772d", "#0e9f6e", "#1a8fd1", "#3d2e6b"];
+const DESTINATION_COLORS = ["#F69F83", "#6D9891", "#AFAC9B", "#76575D"];
 
 function CameraRig({ children }: { children: React.ReactNode }) {
   const groupRef = useRef<Group>(null);
@@ -39,8 +39,8 @@ export default function HeroScene() {
       className="!absolute !inset-0"
     >
       <ambientLight intensity={0.7} />
-      <directionalLight position={[4, 4, 4]} intensity={1.2} color="#ffe8de" />
-      <pointLight position={[-4, -2, 2]} intensity={0.6} color="#0e7c86" />
+      <directionalLight position={[4, 4, 4]} intensity={1.2} color="#E0C1A5" />
+      <pointLight position={[-4, -2, 2]} intensity={0.6} color="#6D9891" />
 
       <Suspense fallback={null}>
         <CameraRig>
@@ -49,8 +49,8 @@ export default function HeroScene() {
           {panelPositions.map((position, index) => (
             <FloatingPanel key={index} position={position} color={DESTINATION_COLORS[index]} scale={0.85} />
           ))}
-          <Sparkles count={140} scale={[10, 6, 7]} size={3} speed={0.3} color="#ffe8de" opacity={0.7} />
-          <Sparkles count={40} scale={[8, 4, 6]} size={4} speed={0.15} color="#ff6b35" opacity={0.5} />
+          <Sparkles count={140} scale={[10, 6, 7]} size={3} speed={0.3} color="#E0C1A5" opacity={0.7} />
+          <Sparkles count={40} scale={[8, 4, 6]} size={4} speed={0.15} color="#F69F83" opacity={0.5} />
         </CameraRig>
       </Suspense>
     </Canvas>
