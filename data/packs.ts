@@ -8,6 +8,14 @@ const img = (altFr: string, altAr: string): Pack["images"][number] => ({
   aspectRatio: "4:3",
 });
 
+const photo = (url: string, altFr: string, altAr: string): Pack["images"][number] => ({
+  url,
+  altFr,
+  altAr,
+  isPlaceholder: false,
+  aspectRatio: "4:3",
+});
+
 export const packs: Pack[] = [
   {
     id: "pack-egypte-caire-sharm",
@@ -45,7 +53,7 @@ export const packs: Pack[] = [
       },
     ],
     images: [
-      img("Pyramides de Gizeh, Le Caire", "أهرامات الجيزة، القاهرة"),
+      photo("/images/louxor-egypte.jpg", "Avenue des sphinx, Louxor", "طريق الكباش، الأقصر"),
       img("Bord de mer à Sharm El Sheikh", "شاطئ شرم الشيخ"),
       img("Temple de Karnak, Égypte", "معبد الكرنك، مصر"),
     ],
@@ -98,7 +106,7 @@ export const packs: Pack[] = [
       },
     ],
     images: [
-      img("Baie d'Along, Vietnam", "خليج هالونغ، فيتنام"),
+      photo("/images/baie-along-vietnam.jpg", "Baie d'Along, Vietnam", "خليج هالونغ، فيتنام"),
       img("Rizières en terrasses, Vietnam", "المدرجات الأرزية، فيتنام"),
       img("Pont du Dragon, Da Nang", "جسر التنين، دا نانغ"),
     ],
@@ -154,7 +162,7 @@ export const packs: Pack[] = [
       },
     ],
     images: [
-      img("Mosquée Bleue, Istanbul", "المسجد الأزرق، إسطنبول"),
+      photo("/images/istanbul-bosphore.jpg", "Vue sur le Bosphore, Istanbul", "منظر على مضيق البوسفور، إسطنبول"),
       img("Quartier coloré de Balat, Istanbul", "حي بالات الملون، إسطنبول"),
       img("Tour de Galata, Istanbul", "برج غلطة، إسطنبول"),
     ],
@@ -230,7 +238,7 @@ export const packs: Pack[] = [
       },
     ],
     images: [
-      img("Mosquée Al-Haram, La Mecque", "المسجد الحرام، مكة المكرمة"),
+      photo("/images/mecque-omra.jpg", "La Mosquée Al-Haram et la Kaaba, La Mecque", "المسجد الحرام والكعبة المشرفة، مكة المكرمة"),
       img("Train Haramain, Arabie Saoudite", "قطار الحرمين، المملكة العربية السعودية"),
       img("Mosquée du Prophète, Médine", "المسجد النبوي، المدينة المنورة"),
     ],

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Locale } from "@/i18n/routing";
 import type { ImagePlaceholder as ImagePlaceholderType } from "@/lib/types";
 import { pick } from "@/lib/locale-content";
@@ -20,8 +21,11 @@ export default function ImagePlaceholder({
   const alt = pick(image.altFr, image.altAr, locale);
 
   if (image.url) {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={image.url} alt={alt} className={`${ratioClass[image.aspectRatio]} w-full object-cover ${className}`} />;
+    return (
+      <div className={`relative ${ratioClass[image.aspectRatio]} w-full overflow-hidden ${className}`}>
+        <Image src={image.url} alt={alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+      </div>
+    );
   }
 
   return (

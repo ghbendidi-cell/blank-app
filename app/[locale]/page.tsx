@@ -25,12 +25,19 @@ export default async function HomePage() {
   return (
     <div>
       <section className="relative overflow-hidden bg-brand-dark">
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0">
           <ImagePlaceholder
-            image={{ url: null, altFr: "Voyage Millenium Travel", altAr: "سفر مع Millenium Travel", isPlaceholder: true, aspectRatio: "16:9" }}
+            image={{
+              url: "/images/chefchaouen-maroc.jpg",
+              altFr: "Ruelle de Chefchaouen, Maroc",
+              altAr: "زقاق بشفشاون، المغرب",
+              isPlaceholder: false,
+              aspectRatio: "16:9",
+            }}
             locale={locale}
             className="h-full"
           />
+          <div className="absolute inset-0 bg-brand-dark/70" />
         </div>
         <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-20 text-center">
           <h1 className="max-w-2xl text-3xl font-bold text-white sm:text-4xl">{t("heroTitle")}</h1>

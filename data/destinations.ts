@@ -1,10 +1,10 @@
 import type { Destination } from "@/lib/types";
 
-const placeholderHero = (altFr: string, altAr: string): Destination["heroImage"] => ({
-  url: null,
+const photoHero = (url: string, altFr: string, altAr: string): Destination["heroImage"] => ({
+  url,
   altFr,
   altAr,
-  isPlaceholder: true,
+  isPlaceholder: false,
   aspectRatio: "16:9",
 });
 
@@ -22,7 +22,7 @@ export const destinations: Destination[] = [
       "القاهرة وشرم الشيخ: ثقافة، شمس ونزهة في نفس الرحلة. أهرامات الجيزة، ونيل وشواطئ البحر الأحمر.",
     bestPeriodFr: "Octobre à avril",
     bestPeriodAr: "من أكتوبر إلى أبريل",
-    heroImage: placeholderHero("Pyramides de Gizeh, Le Caire", "أهرامات الجيزة، القاهرة"),
+    heroImage: photoHero("/images/louxor-egypte.jpg", "Avenue des sphinx, Louxor", "طريق الكباش، الأقصر"),
     featured: true,
   },
   {
@@ -40,7 +40,7 @@ export const destinations: Destination[] = [
     bestPeriodAr: "من أكتوبر إلى أبريل",
     visaInfoFr: "Visa requis, formalités prises en charge par l'agence.",
     visaInfoAr: "تأشيرة مطلوبة، الوكالة تتكفل بالإجراءات.",
-    heroImage: placeholderHero("Baie d'Along, Vietnam", "خليج هالونغ، فيتنام"),
+    heroImage: photoHero("/images/baie-along-vietnam.jpg", "Baie d'Along, Vietnam", "خليج هالونغ، فيتنام"),
     featured: true,
   },
   {
@@ -58,7 +58,7 @@ export const destinations: Destination[] = [
     bestPeriodAr: "من أبريل إلى يونيو، ومن شتنبر إلى أكتوبر",
     visaInfoFr: "Exemption de visa pour les ressortissants marocains (séjour touristique).",
     visaInfoAr: "إعفاء من التأشيرة للمواطنين المغاربة (إقامة سياحية).",
-    heroImage: placeholderHero("Mosquée Bleue, Istanbul", "المسجد الأزرق، إسطنبول"),
+    heroImage: photoHero("/images/istanbul-bosphore.jpg", "Vue sur le Bosphore, Istanbul", "منظر على مضيق البوسفور، إسطنبول"),
     featured: true,
   },
   {
@@ -76,7 +76,7 @@ export const destinations: Destination[] = [
     bestPeriodAr: "فترة الحج حسب التقويم الهجري",
     visaInfoFr: "Visa Hajj géré intégralement par l'agence.",
     visaInfoAr: "تأشيرة الحج يتم تدبيرها بالكامل من طرف الوكالة.",
-    heroImage: placeholderHero("Mosquée Al-Haram, La Mecque", "المسجد الحرام، مكة المكرمة"),
+    heroImage: photoHero("/images/mecque-omra.jpg", "La Mosquée Al-Haram et la Kaaba, La Mecque", "المسجد الحرام والكعبة المشرفة، مكة المكرمة"),
     featured: true,
   },
 ];
