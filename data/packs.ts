@@ -1,13 +1,5 @@
 import type { Pack } from "@/lib/types";
 
-const img = (altFr: string, altAr: string): Pack["images"][number] => ({
-  url: null,
-  altFr,
-  altAr,
-  isPlaceholder: true,
-  aspectRatio: "4:3",
-});
-
 const photo = (url: string, altFr: string, altAr: string): Pack["images"][number] => ({
   url,
   altFr,
@@ -54,8 +46,8 @@ export const packs: Pack[] = [
     ],
     images: [
       photo("/images/louxor-egypte.jpg", "Avenue des sphinx, Louxor", "طريق الكباش، الأقصر"),
-      img("Bord de mer à Sharm El Sheikh", "شاطئ شرم الشيخ"),
-      img("Temple de Karnak, Égypte", "معبد الكرنك، مصر"),
+      photo("/images/egypte-pyramide-saqqara.jpg", "Pyramide à degrés de Saqqarah", "هرم سقارة المدرج"),
+      photo("/images/egypte-felouques-nil.jpg", "Felouques sur le Nil", "مراكب شراعية على النيل"),
     ],
     highlightsFr: ["Le Caire & Sharm El Sheikh", "9 nuits / 10 jours", "Culture et mer Rouge"],
     highlightsAr: ["القاهرة وشرم الشيخ", "9 ليالي / 10 أيام", "ثقافة وبحر أحمر"],
@@ -107,8 +99,8 @@ export const packs: Pack[] = [
     ],
     images: [
       photo("/images/baie-along-vietnam.jpg", "Baie d'Along, Vietnam", "خليج هالونغ، فيتنام"),
-      img("Rizières en terrasses, Vietnam", "المدرجات الأرزية، فيتنام"),
-      img("Pont du Dragon, Da Nang", "جسر التنين، دا نانغ"),
+      photo("/images/vietnam-hoi-an.jpg", "Front de mer de Hoi An", "واجهة هوي آن البحرية"),
+      photo("/images/vietnam-po-nagar.jpg", "Tours Po Nagar, Nha Trang", "أبراج بو ناغار، نها ترانغ"),
     ],
     highlightsFr: ["Baie d'Along en jonque", "Rizières en terrasses", "12 nuits / 14 jours"],
     highlightsAr: ["خليج هالونغ بالقارب التقليدي", "المدرجات الأرزية", "12 ليلة / 14 يوما"],
@@ -163,8 +155,8 @@ export const packs: Pack[] = [
     ],
     images: [
       photo("/images/istanbul-bosphore.jpg", "Vue sur le Bosphore, Istanbul", "منظر على مضيق البوسفور، إسطنبول"),
-      img("Quartier coloré de Balat, Istanbul", "حي بالات الملون، إسطنبول"),
-      img("Tour de Galata, Istanbul", "برج غلطة، إسطنبول"),
+      photo("/images/turquie-topkapi-bosphore.jpg", "Palais de Topkapi et Bosphore", "قصر توبكابي والبوسفور"),
+      photo("/images/turquie-oludeniz-aerien.jpg", "Vue aérienne d'Ölüdeniz", "منظر جوي لأولوديينيز"),
     ],
     highlightsFr: ["Vol + hôtel inclus", "Guide arabophone", "Sans visa pour les Marocains"],
     highlightsAr: ["الطيران والفندق مشمولان", "مرشد ناطق بالعربية", "بدون تأشيرة للمغاربة"],
@@ -239,8 +231,8 @@ export const packs: Pack[] = [
     ],
     images: [
       photo("/images/mecque-omra.jpg", "La Mosquée Al-Haram et la Kaaba, La Mecque", "المسجد الحرام والكعبة المشرفة، مكة المكرمة"),
-      img("Train Haramain, Arabie Saoudite", "قطار الحرمين، المملكة العربية السعودية"),
-      img("Mosquée du Prophète, Médine", "المسجد النبوي، المدينة المنورة"),
+      photo("/images/mecque-tour-horloge.jpg", "Tour de l'Horloge, La Mecque", "برج الساعة، مكة المكرمة"),
+      photo("/images/mecque-grande-mosquee.jpg", "Grande mosquée", "المسجد الكبير"),
     ],
     highlightsFr: ["Encadrement religieux complet", "4 nuits à Médine incluses", "Hôtels proches des lieux saints"],
     highlightsAr: ["تأطير ديني كامل", "4 ليالي بالمدينة المنورة مشمولة", "فنادق قريبة من الأماكن المقدسة"],

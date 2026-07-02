@@ -6,6 +6,7 @@ import { packs, getPackBySlug, getSimilarPacks } from "@/data/packs";
 import { destinations } from "@/data/destinations";
 import { getReviewsByPack } from "@/data/reviews";
 import { pick, formatDate } from "@/lib/locale-content";
+import { destinationTheme } from "@/lib/theme";
 import Breadcrumb from "@/components/Breadcrumb";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import PriceBadge from "@/components/PriceBadge";
@@ -19,6 +20,8 @@ import RatingSummary from "@/components/RatingSummary";
 import PackCard from "@/components/PackCard";
 import ContactRequestForm from "@/components/ContactRequestForm";
 import StickyCTA from "@/components/StickyCTA";
+import ParallaxImage from "@/components/animations/ParallaxImage";
+import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
 
 export function generateStaticParams() {
   return packs.map((pack) => ({ slug: pack.slug }));
@@ -63,6 +66,8 @@ export default async function PackDetailPage({
   const packReviews = getReviewsByPack(pack.id);
   const similarPacks = getSimilarPacks(pack);
   const title = pick(pack.titleFr, pack.titleAr, locale);
+  const theme = destinationTheme[destination?.accentColor ?? "egypt"];
+  const [mainImage, ...secondaryImages] = pack.images;
 
   const faqItems = [
     {
@@ -98,20 +103,39 @@ export default async function PackDetailPage({
         ]}
       />
 
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="grid gap-3 sm:grid-cols-3">
-          {pack.images.map((image, index) => (
-            <ImagePlaceholder key={index} image={image} locale={locale} className={index === 0 ? "sm:col-span-2 sm:row-span-2" : ""} />
-          ))}
+      <div className="relative h-[40vh] min-h-[260px] overflow-hidden">
+        {mainImage.url && (
+          <ParallaxImage src={mainImage.url} alt={pick(mainImage.altFr, mainImage.altAr, locale)} className="absolute inset-0 h-full w-full" strength={45} />
+        )}
+        <div className={`absolute inset-0 bg-gradient-to-t ${theme.gradient}`} />
+        <div className="absolute inset-0 flex items-end">
+          <div className="mx-auto w-full max-w-7xl px-4 pb-6">
+            <span className={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold ${theme.badge}`}>
+              {destination ? pick(destination.nameFr, destination.nameAr, locale) : ""} · {tTypes(pack.tripType)}
+            </span>
+            <h1 className="mt-2 text-2xl font-bold text-white drop-shadow-lg sm:text-3xl">{title}</h1>
+          </div>
         </div>
+      </div>
 
+      {secondaryImages.length > 0 && (
+        <div className="mx-auto max-w-7xl px-4 pt-3">
+          <StaggerGrid className="grid grid-cols-2 gap-3">
+            {secondaryImages.map((image, index) => (
+              <StaggerItem key={index} className="overflow-hidden rounded-xl">
+                <div className="transition-transform duration-500 hover:scale-110">
+                  <ImagePlaceholder image={image} locale={locale} className="aspect-[16/9]" />
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGrid>
+        </div>
+      )}
+
+      <div className="mx-auto max-w-7xl px-4">
         <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_340px]">
           <div className="space-y-10">
             <div>
-              <p className="text-sm font-medium text-brand">
-                {destination ? pick(destination.nameFr, destination.nameAr, locale) : ""} · {tTypes(pack.tripType)}
-              </p>
-              <h1 className="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">{title}</h1>
               {pack.ratingCount > 0 && (
                 <div className="mt-2 flex items-center gap-2">
                   <Stars rating={pack.ratingAvg} />
@@ -123,7 +147,7 @@ export default async function PackDetailPage({
 
               <ul className="mt-4 flex flex-wrap gap-2">
                 {pack.highlightsFr.map((_, index) => (
-                  <li key={index} className="rounded-full bg-brand-light px-3 py-1 text-xs font-medium text-brand">
+                  <li key={index} className={`rounded-full px-3 py-1 text-xs font-medium ${theme.bgLight} ${theme.text}`}>
                     {pick(pack.highlightsFr[index], pack.highlightsAr[index], locale)}
                   </li>
                 ))}

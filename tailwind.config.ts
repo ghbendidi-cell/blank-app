@@ -4,23 +4,72 @@ const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
+    "./data/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
         brand: {
-          DEFAULT: "#0f4c5c",
-          dark: "#0a3540",
-          light: "#e8f2f3",
+          DEFAULT: "#0e7c86",
+          dark: "#0a4f57",
+          light: "#e5f5f6",
         },
         accent: {
-          DEFAULT: "#d98e04",
-          dark: "#b8760a",
+          DEFAULT: "#ff6b35",
+          dark: "#e2501c",
+          light: "#ffe8de",
+        },
+        gold: {
+          DEFAULT: "#c9a227",
+          dark: "#9c7d1c",
+          light: "#faf3dd",
+        },
+        egypt: {
+          DEFAULT: "#c9772d",
+          dark: "#8f4e17",
+          light: "#faf0e2",
+        },
+        vietnam: {
+          DEFAULT: "#0e9f6e",
+          dark: "#046c4e",
+          light: "#e3f9f1",
+        },
+        turkey: {
+          DEFAULT: "#1a8fd1",
+          dark: "#0b5a86",
+          light: "#e5f4fc",
+        },
+        hajj: {
+          DEFAULT: "#3d2e6b",
+          dark: "#221a42",
+          light: "#f1edf9",
         },
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         arabic: ["var(--font-arabic)", "system-ui", "sans-serif"],
+      },
+      keyframes: {
+        "fly-across": {
+          "0%": { transform: "translate(-10%, 10%) rotate(3deg)", opacity: "0" },
+          "10%": { opacity: "1" },
+          "90%": { opacity: "1" },
+          "100%": { transform: "translate(110%, -15%) rotate(3deg)", opacity: "0" },
+        },
+        "drift-cloud": {
+          "0%": { transform: "translateX(-5%)" },
+          "100%": { transform: "translateX(10%)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
+      animation: {
+        "fly-across": "fly-across 18s linear infinite",
+        "drift-cloud": "drift-cloud 30s ease-in-out infinite alternate",
+        float: "float 4s ease-in-out infinite",
       },
     },
   },

@@ -32,6 +32,8 @@ export interface Destination {
   visaInfoFr?: string;
   visaInfoAr?: string;
   heroImage: ImagePlaceholder;
+  gallery: ImagePlaceholder[];
+  accentColor: "egypt" | "vietnam" | "turkey" | "hajj";
   featured: boolean;
 }
 

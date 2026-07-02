@@ -1,6 +1,6 @@
 import type { Destination } from "@/lib/types";
 
-const photoHero = (url: string, altFr: string, altAr: string): Destination["heroImage"] => ({
+const photo = (url: string, altFr: string, altAr: string): Destination["heroImage"] => ({
   url,
   altFr,
   altAr,
@@ -22,7 +22,13 @@ export const destinations: Destination[] = [
       "القاهرة وشرم الشيخ: ثقافة، شمس ونزهة في نفس الرحلة. أهرامات الجيزة، ونيل وشواطئ البحر الأحمر.",
     bestPeriodFr: "Octobre à avril",
     bestPeriodAr: "من أكتوبر إلى أبريل",
-    heroImage: photoHero("/images/louxor-egypte.jpg", "Avenue des sphinx, Louxor", "طريق الكباش، الأقصر"),
+    heroImage: photo("/images/louxor-egypte.jpg", "Avenue des sphinx, Louxor", "طريق الكباش، الأقصر"),
+    gallery: [
+      photo("/images/egypte-pyramide-saqqara.jpg", "Pyramide à degrés de Saqqarah", "هرم سقارة المدرج"),
+      photo("/images/egypte-felouques-nil.jpg", "Felouques sur le Nil", "مراكب شراعية على النيل"),
+      photo("/images/egypte-drapeau-nil.jpg", "Bord du Nil, Le Caire", "ضفاف النيل، القاهرة"),
+    ],
+    accentColor: "egypt",
     featured: true,
   },
   {
@@ -40,7 +46,13 @@ export const destinations: Destination[] = [
     bestPeriodAr: "من أكتوبر إلى أبريل",
     visaInfoFr: "Visa requis, formalités prises en charge par l'agence.",
     visaInfoAr: "تأشيرة مطلوبة، الوكالة تتكفل بالإجراءات.",
-    heroImage: photoHero("/images/baie-along-vietnam.jpg", "Baie d'Along, Vietnam", "خليج هالونغ، فيتنام"),
+    heroImage: photo("/images/baie-along-vietnam.jpg", "Baie d'Along, Vietnam", "خليج هالونغ، فيتنام"),
+    gallery: [
+      photo("/images/vietnam-hoi-an.jpg", "Front de mer de Hoi An", "واجهة هوي آن البحرية"),
+      photo("/images/vietnam-po-nagar.jpg", "Tours Po Nagar, Nha Trang", "أبراج بو ناغار، نها ترانغ"),
+      photo("/images/vietnam-village-encens.jpg", "Village de bâtons d'encens, Vietnam", "قرية أعواد البخور، فيتنام"),
+    ],
+    accentColor: "vietnam",
     featured: true,
   },
   {
@@ -58,7 +70,13 @@ export const destinations: Destination[] = [
     bestPeriodAr: "من أبريل إلى يونيو، ومن شتنبر إلى أكتوبر",
     visaInfoFr: "Exemption de visa pour les ressortissants marocains (séjour touristique).",
     visaInfoAr: "إعفاء من التأشيرة للمواطنين المغاربة (إقامة سياحية).",
-    heroImage: photoHero("/images/istanbul-bosphore.jpg", "Vue sur le Bosphore, Istanbul", "منظر على مضيق البوسفور، إسطنبول"),
+    heroImage: photo("/images/istanbul-bosphore.jpg", "Vue sur le Bosphore, Istanbul", "منظر على مضيق البوسفور، إسطنبول"),
+    gallery: [
+      photo("/images/turquie-topkapi-bosphore.jpg", "Palais de Topkapi et Bosphore", "قصر توبكابي والبوسفور"),
+      photo("/images/turquie-kekova.jpg", "Côte de Kekova, Turquie", "ساحل كيكوفا، تركيا"),
+      photo("/images/turquie-oludeniz-aerien.jpg", "Vue aérienne d'Ölüdeniz", "منظر جوي لأولوديينيز"),
+    ],
+    accentColor: "turkey",
     featured: true,
   },
   {
@@ -76,7 +94,12 @@ export const destinations: Destination[] = [
     bestPeriodAr: "فترة الحج حسب التقويم الهجري",
     visaInfoFr: "Visa Hajj géré intégralement par l'agence.",
     visaInfoAr: "تأشيرة الحج يتم تدبيرها بالكامل من طرف الوكالة.",
-    heroImage: photoHero("/images/mecque-omra.jpg", "La Mosquée Al-Haram et la Kaaba, La Mecque", "المسجد الحرام والكعبة المشرفة، مكة المكرمة"),
+    heroImage: photo("/images/mecque-omra.jpg", "La Mosquée Al-Haram et la Kaaba, La Mecque", "المسجد الحرام والكعبة المشرفة، مكة المكرمة"),
+    gallery: [
+      photo("/images/mecque-tour-horloge.jpg", "Tour de l'Horloge, La Mecque", "برج الساعة، مكة المكرمة"),
+      photo("/images/mecque-grande-mosquee.jpg", "Grande mosquée", "المسجد الكبير"),
+    ],
+    accentColor: "hajj",
     featured: true,
   },
 ];

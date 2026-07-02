@@ -11,6 +11,7 @@ import { pick } from "@/lib/locale-content";
 import PackCard from "@/components/PackCard";
 import FilterPanel, { type PackFiltersState } from "@/components/FilterPanel";
 import Breadcrumb from "@/components/Breadcrumb";
+import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
 
 function matchesDuration(days: number, range: string) {
   if (!range) return true;
@@ -113,11 +114,13 @@ function PacksPageContent() {
                 {tCommon("noResults")}
               </p>
             ) : (
-              <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              <StaggerGrid className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {filteredPacks.map((pack) => (
-                  <PackCard key={pack.id} pack={pack} locale={locale} />
+                  <StaggerItem key={pack.id}>
+                    <PackCard pack={pack} locale={locale} />
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGrid>
             )}
           </div>
         </div>

@@ -44,7 +44,12 @@
     "testimonialsTitle": "Ce que disent nos voyageurs",
     "blogTitle": "Derniers articles",
     "visitTitle": "Rendez-nous visite à Maarif",
-    "visitSubtitle": "Nos conseillers vous accueillent du lundi au samedi pour construire votre voyage."
+    "visitSubtitle": "Nos conseillers vous accueillent du lundi au samedi pour construire votre voyage.",
+    "stats": {
+      "years": "Années d'expérience",
+      "destinations": "Destinations",
+      "packs": "Packs voyage"
+    }
   },
   "packs": {
     "title": "Nos packs voyage",
