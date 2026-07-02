@@ -11,8 +11,9 @@ import TrustBadges from "@/components/TrustBadges";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import AgencyLocationCard from "@/components/AgencyLocationCard";
 import StatsStrip from "@/components/StatsStrip";
+import HeroBackground from "@/components/HeroBackground";
+import GradientBlobs from "@/components/GradientBlobs";
 import ParallaxImage from "@/components/animations/ParallaxImage";
-import FlyingPlane from "@/components/animations/FlyingPlane";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
 
@@ -28,16 +29,10 @@ export default async function HomePage() {
 
   return (
     <div className="overflow-x-hidden">
-      <section className="relative overflow-hidden bg-brand-dark">
-        <ParallaxImage
-          src="/images/chefchaouen-maroc.jpg"
-          alt="Ruelle de Chefchaouen, Maroc"
-          className="absolute inset-0 h-full w-full"
-          strength={60}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/60 to-brand-dark/90" />
-        <FlyingPlane />
-        <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-24 text-center">
+      <section className="relative min-h-[420px] overflow-hidden bg-brand-dark lg:min-h-[680px]">
+        <HeroBackground />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,79,87,0.55),transparent_70%)] lg:bg-[radial-gradient(ellipse_at_center,rgba(10,79,87,0.4),transparent_65%)]" />
+        <div className="relative mx-auto flex h-full min-h-[420px] max-w-7xl flex-col items-center justify-center gap-6 px-4 py-24 text-center lg:min-h-[680px]">
           <h1 className="max-w-2xl text-3xl font-bold text-white drop-shadow-lg sm:text-5xl">{t("heroTitle")}</h1>
           <p className="max-w-xl text-white/90">{t("heroSubtitle")}</p>
           <SearchBar />
@@ -47,7 +42,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16">
+      <section className="relative overflow-hidden px-4 py-16">
+        <GradientBlobs preset="destinations" />
+        <div className="mx-auto max-w-7xl">
         <ScrollReveal>
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-slate-900">{t("popularDestinations")}</h2>
@@ -63,9 +60,12 @@ export default async function HomePage() {
             </StaggerItem>
           ))}
         </StaggerGrid>
+        </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16">
+      <section className="relative overflow-hidden px-4 py-16">
+        <GradientBlobs preset="packs" />
+        <div className="mx-auto max-w-7xl">
         <ScrollReveal>
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-slate-900">{t("featuredPacks")}</h2>
@@ -81,6 +81,7 @@ export default async function HomePage() {
             </StaggerItem>
           ))}
         </StaggerGrid>
+        </div>
       </section>
 
       {omraPack && (
