@@ -18,7 +18,7 @@ function BentoCard({ pack, locale, className = "" }: { pack: Pack; locale: Local
   const title = pick(pack.titleFr, pack.titleAr, locale);
   const destination = destinations.find((d) => d.id === pack.destinationId);
   const theme = destinationTheme[destination?.accentColor ?? "egypt"];
-  const image = pack.images[0];
+  const image = pack.images[1] ?? pack.images[0];
   const alt = pick(image.altFr, image.altAr, locale);
 
   return (

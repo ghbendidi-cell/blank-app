@@ -45,7 +45,7 @@ export default function DestinationRouteMap() {
 
   return (
     <div>
-      <div className="relative mx-auto w-full max-w-4xl overflow-hidden rounded-3xl border border-brand/10 bg-[#eaf1ee] shadow-sm">
+      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl border border-brand/10 bg-[#eaf1ee] shadow-sm">
         <div className="relative aspect-[1010/666] w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/map/world.svg" alt="" className="absolute inset-0 h-full w-full object-contain" aria-hidden />
@@ -123,7 +123,7 @@ export default function DestinationRouteMap() {
         </div>
       </div>
 
-      <div className="mx-auto mt-1 max-w-4xl text-end">
+      <div className="mx-auto mt-1 max-w-7xl text-end">
         <a
           href="https://github.com/VictorCazanave/svg-maps"
           target="_blank"
@@ -141,7 +141,7 @@ export default function DestinationRouteMap() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.25 }}
-            className="mx-auto mt-6 max-w-4xl"
+            className="mx-auto mt-6 max-w-7xl"
           >
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-bold text-slate-900">
