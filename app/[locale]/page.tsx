@@ -31,6 +31,8 @@ export default async function HomePage() {
   const featuredPacks = packs.filter((p) => p.isFeatured).slice(0, 6);
   const omraPack = packs.find((p) => p.tripType === "omra" || p.tripType === "hajj");
   const featuredReviews = reviews.slice(0, 6);
+  const heroTitle = t("heroTitle");
+  const [heroTitleBefore, heroTitleAfter] = heroTitle.split("Millenium Travel");
 
   return (
     <div className="overflow-x-hidden">
@@ -39,7 +41,14 @@ export default async function HomePage() {
         <HeroFlightPath />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.6),transparent_70%)] lg:bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.45),transparent_65%)]" />
         <div className="relative mx-auto flex h-full min-h-[480px] max-w-7xl flex-col items-center justify-center gap-6 px-4 py-24 text-center lg:min-h-[680px]">
-          <h1 className="max-w-2xl text-3xl font-bold text-white drop-shadow-lg sm:text-5xl">{t("heroTitle")}</h1>
+          <span className="rounded-full border border-white/30 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/90">
+            {t("heroEyebrow")}
+          </span>
+          <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-lg sm:text-6xl">
+            {heroTitleBefore}
+            <span className="text-accent">Millenium Travel</span>
+            {heroTitleAfter}
+          </h1>
           <p className="max-w-xl text-white/90">{t("heroSubtitle")}</p>
           <SearchBar />
           <div className="mt-4 w-full max-w-md">
