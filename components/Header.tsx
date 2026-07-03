@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { agency } from "@/data/agency";
 import { telLink } from "@/lib/locale-content";
 import LanguageSwitcher from "./LanguageSwitcher";
+import MagneticButton from "./animations/MagneticButton";
 
 export default function Header() {
   const t = useTranslations("nav");
@@ -37,9 +38,11 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a href={telLink(agency.phone)} className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-dark">
-            {t("callCta")}
-          </a>
+          <MagneticButton>
+            <a href={telLink(agency.phone)} className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-dark">
+              {t("callCta")}
+            </a>
+          </MagneticButton>
           <LanguageSwitcher />
         </div>
 

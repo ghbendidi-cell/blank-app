@@ -19,6 +19,7 @@ import ReviewCard from "@/components/ReviewCard";
 import RatingSummary from "@/components/RatingSummary";
 import PackCard from "@/components/PackCard";
 import ContactRequestForm from "@/components/ContactRequestForm";
+import WhatsAppQuoteShortcut from "@/components/WhatsAppQuoteShortcut";
 import StickyCTA from "@/components/StickyCTA";
 import ParallaxImage from "@/components/animations/ParallaxImage";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
@@ -220,6 +221,7 @@ export default async function PackDetailPage({
                 </p>
               </div>
               <PriceTable variants={pack.priceVariants} />
+              <WhatsAppQuoteShortcut packTitle={title} priceFrom={pack.priceFrom} />
               <ContactRequestForm packId={pack.id} packTitle={title} />
             </div>
           </aside>
@@ -227,6 +229,9 @@ export default async function PackDetailPage({
 
         <div className="mt-10 lg:hidden">
           <PriceTable variants={pack.priceVariants} />
+          <div className="mt-4">
+            <WhatsAppQuoteShortcut packTitle={title} priceFrom={pack.priceFrom} />
+          </div>
           <div className="mt-6">
             <h2 className="mb-4 text-lg font-bold text-slate-900" id="devis">
               {t("requestQuoteFor")}

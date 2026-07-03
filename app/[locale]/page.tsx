@@ -6,13 +6,15 @@ import { packs } from "@/data/packs";
 import { reviews } from "@/data/reviews";
 import SearchBar from "@/components/SearchBar";
 import DestinationCard from "@/components/DestinationCard";
-import PackCard from "@/components/PackCard";
+import BentoPackGrid from "@/components/BentoPackGrid";
+import MagneticButton from "@/components/animations/MagneticButton";
 import TrustBadges from "@/components/TrustBadges";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import AgencyLocationCard from "@/components/AgencyLocationCard";
 import StatsStrip from "@/components/StatsStrip";
 import HeroBackground from "@/components/HeroBackground";
 import GradientBlobs from "@/components/GradientBlobs";
+import TravelQuiz from "@/components/TravelQuiz";
 import ParallaxImage from "@/components/animations/ParallaxImage";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
@@ -21,6 +23,7 @@ export default async function HomePage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("home");
   const tCommon = await getTranslations("common");
+  const tQuiz = await getTranslations("quiz");
 
   const featuredDestinations = destinations.filter((d) => d.featured).slice(0, 4);
   const featuredPacks = packs.filter((p) => p.isFeatured).slice(0, 6);
@@ -74,14 +77,20 @@ export default async function HomePage() {
             </Link>
           </div>
         </ScrollReveal>
-        <StaggerGrid className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredPacks.map((pack) => (
-            <StaggerItem key={pack.id}>
-              <PackCard pack={pack} locale={locale} />
-            </StaggerItem>
-          ))}
-        </StaggerGrid>
+        <ScrollReveal delay={0.1}>
+          <BentoPackGrid packs={featuredPacks} locale={locale} />
+        </ScrollReveal>
         </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-brand-light px-4 py-16">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl font-bold text-slate-900">{tQuiz("teaser")}</h2>
+          <p className="mt-2 text-sm text-slate-600">{tQuiz("cta")}</p>
+        </ScrollReveal>
+        <ScrollReveal className="mt-8">
+          <TravelQuiz />
+        </ScrollReveal>
       </section>
 
       {omraPack && (
@@ -96,9 +105,11 @@ export default async function HomePage() {
           <ScrollReveal className="relative mx-auto flex max-w-7xl flex-col items-center gap-4">
             <h2 className="text-2xl font-bold text-gold">{t("omraTitle")}</h2>
             <p className="max-w-xl text-sm text-white/90">{t("omraSubtitle")}</p>
-            <Link href="/omra-hajj" className="rounded-full bg-gold px-6 py-3 text-sm font-semibold text-hajj-dark transition hover:bg-gold-dark hover:text-white">
-              {t("omraCta")}
-            </Link>
+            <MagneticButton>
+              <Link href="/omra-hajj" className="inline-block rounded-full bg-gold px-6 py-3 text-sm font-semibold text-hajj-dark transition hover:bg-gold-dark hover:text-white">
+                {t("omraCta")}
+              </Link>
+            </MagneticButton>
           </ScrollReveal>
         </section>
       )}

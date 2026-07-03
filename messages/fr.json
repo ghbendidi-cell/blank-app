@@ -174,5 +174,45 @@
   "sticky": {
     "quote": "Devis",
     "call": "Appeler"
+  },
+  "whatsapp": {
+    "onlineNow": "En ligne maintenant",
+    "closedUntil": "Répond dès {time}",
+    "quickPrices": "Voir les prix des packs",
+    "quickAdvisor": "Parler à un conseiller",
+    "quickQuote": "Recevoir mon devis ici",
+    "openChat": "Ouvrir la discussion"
+  },
+  "quiz": {
+    "teaser": "Pas sûr du voyage qu'il vous faut ?",
+    "cta": "Trouvez votre voyage en 3 questions",
+    "step": "Question {current} sur {total}",
+    "back": "Précédent",
+    "restart": "Recommencer",
+    "budget": {
+      "question": "Quel est votre budget par personne ?",
+      "b1": "Moins de 10 000 MAD",
+      "b2": "10 000 – 20 000 MAD",
+      "b3": "20 000 – 40 000 MAD",
+      "b4": "40 000 MAD et plus"
+    },
+    "duration": {
+      "question": "Combien de temps voulez-vous partir ?",
+      "d1": "Une semaine ou moins",
+      "d2": "1 à 2 semaines",
+      "d3": "Plus de 2 semaines",
+      "d4": "Peu importe"
+    },
+    "envie": {
+      "question": "Qu'est-ce qui vous fait envie ?",
+      "e1": "Culture & histoire",
+      "e2": "Détente & mer",
+      "e3": "Nature & aventure",
+      "e4": "Voyage spirituel (Omra/Hajj)"
+    },
+    "resultTitle": "Voici ce qui vous correspond",
+    "resultSubtitle": "Selon vos réponses, ces packs devraient vous plaire.",
+    "noMatch": "Aucun pack ne correspond parfaitement, mais voici nos suggestions les plus proches.",
+    "viewAll": "Voir tous les packs"
   }
 }

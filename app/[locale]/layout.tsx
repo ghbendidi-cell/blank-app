@@ -6,6 +6,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import PageTransition from "@/components/PageTransition";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -56,7 +57,9 @@ export default async function LocaleLayout({
       <body className="flex min-h-screen flex-col bg-gold-light text-slate-900 antialiased">
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
           <WhatsAppButton />
         </NextIntlClientProvider>

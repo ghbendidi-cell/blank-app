@@ -11,7 +11,11 @@ import { pick } from "@/lib/locale-content";
 import PackCard from "@/components/PackCard";
 import FilterPanel, { type PackFiltersState } from "@/components/FilterPanel";
 import Breadcrumb from "@/components/Breadcrumb";
+import CompareBar from "@/components/CompareBar";
+import ComparisonModal from "@/components/ComparisonModal";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
+
+const MAX_COMPARE = 3;
 
 function matchesDuration(days: number, range: string) {
   if (!range) return true;
@@ -44,6 +48,17 @@ function PacksPageContent() {
   });
   const [sort, setSort] = useState(searchParams.get("sort") ?? "popularity");
   const query = searchParams.get("q") ?? "";
+  const [compareIds, setCompareIds] = useState<string[]>([]);
+  const [showComparison, setShowComparison] = useState(false);
+  const comparedPacks = packs.filter((p) => compareIds.includes(p.id));
+
+  function toggleCompare(id: string) {
+    setCompareIds((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id);
+      if (prev.length >= MAX_COMPARE) return prev;
+      return [...prev, id];
+    });
+  }
 
   const filteredPacks = useMemo(() => {
     let result = packs.filter((pack) => {
@@ -114,10 +129,18 @@ function PacksPageContent() {
                 {tCommon("noResults")}
               </p>
             ) : (
-              <StaggerGrid className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              <StaggerGrid className="grid gap-5 pb-20 sm:grid-cols-2 xl:grid-cols-3">
                 {filteredPacks.map((pack) => (
                   <StaggerItem key={pack.id}>
-                    <PackCard pack={pack} locale={locale} />
+                    <PackCard
+                      pack={pack}
+                      locale={locale}
+                      compare={{
+                        selected: compareIds.includes(pack.id),
+                        disabled: compareIds.length >= MAX_COMPARE,
+                        onToggle: () => toggleCompare(pack.id),
+                      }}
+                    />
                   </StaggerItem>
                 ))}
               </StaggerGrid>
@@ -125,6 +148,14 @@ function PacksPageContent() {
           </div>
         </div>
       </div>
+
+      <CompareBar
+        packs={comparedPacks}
+        onRemove={(id) => setCompareIds((prev) => prev.filter((x) => x !== id))}
+        onClear={() => setCompareIds([])}
+        onOpen={() => setShowComparison(true)}
+      />
+      {showComparison && <ComparisonModal packs={comparedPacks} onClose={() => setShowComparison(false)} />}
     </div>
   );
 }
