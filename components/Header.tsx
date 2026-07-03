@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { agency } from "@/data/agency";
@@ -25,8 +26,15 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="text-lg font-bold text-brand">
-          Millenium Travel
+        <Link href="/" className="shrink-0">
+          <Image
+            src="/images/logo-millenium-travel.png"
+            alt="Millenium Travel"
+            width={680}
+            height={280}
+            priority
+            className="h-10 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-5 text-sm font-medium text-slate-700 lg:flex">
