@@ -18,7 +18,6 @@ import DestinationRouteMap from "@/components/DestinationRouteMap";
 import CloudSky from "@/components/CloudSky";
 import GradientBlobs from "@/components/GradientBlobs";
 import TravelQuiz from "@/components/TravelQuiz";
-import ParallaxImage from "@/components/animations/ParallaxImage";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
 
@@ -119,11 +118,15 @@ export default async function HomePage() {
 
       {omraPack && (
         <section className="relative overflow-hidden bg-hajj px-4 py-16 text-center">
-          <ParallaxImage
-            src="/images/mecque-omra.jpg"
-            alt="La Mecque"
-            className="absolute inset-0 h-full w-full opacity-30"
-            strength={30}
+          <video
+            className="absolute inset-0 h-full w-full object-cover opacity-40"
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260704_114707_0de6c178-692d-4188-be84-30e1e577077b.mp4"
+            poster="/images/mecque-omra.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-hajj/90 to-hajj-dark/95" />
           <ScrollReveal className="relative mx-auto flex max-w-7xl flex-col items-center gap-4">
