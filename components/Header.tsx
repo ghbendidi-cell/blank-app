@@ -24,7 +24,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-white/40 bg-white/25 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
         <Link href="/" className="shrink-0">
           <Image
@@ -68,7 +68,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-slate-200 bg-white px-4 py-3 lg:hidden">
+        <nav className="border-t border-slate-200 bg-white/90 px-4 py-3 backdrop-blur-md lg:hidden">
           <ul className="flex flex-col gap-3 text-sm font-medium text-slate-700">
             {links.map((link) => (
               <li key={link.href}>

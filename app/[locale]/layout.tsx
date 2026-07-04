@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import PageTransition from "@/components/PageTransition";
+import SiteBackground from "@/components/SiteBackground";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -56,6 +57,7 @@ export default async function LocaleLayout({
     <html lang={locale} dir={dir}>
       <body className="flex min-h-screen flex-col bg-gold-light text-slate-900 antialiased">
         <NextIntlClientProvider messages={messages}>
+          <SiteBackground />
           <Header />
           <main className="flex-1">
             <PageTransition>{children}</PageTransition>

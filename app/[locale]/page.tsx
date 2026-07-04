@@ -15,7 +15,6 @@ import StatsStrip from "@/components/StatsStrip";
 import HeroBackground from "@/components/HeroBackground";
 import HeroFlightPath from "@/components/HeroFlightPath";
 import DestinationRouteMap from "@/components/DestinationRouteMap";
-import CloudSky from "@/components/CloudSky";
 import GradientBlobs from "@/components/GradientBlobs";
 import TravelQuiz from "@/components/TravelQuiz";
 import ScrollReveal from "@/components/animations/ScrollReveal";
@@ -36,7 +35,6 @@ export default async function HomePage() {
 
   return (
     <div className="relative overflow-x-hidden">
-      <CloudSky />
       <section className="relative min-h-[480px] overflow-hidden bg-brand-dark lg:min-h-[680px]">
         <HeroBackground />
         <HeroFlightPath />
@@ -106,7 +104,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-brand-light px-4 py-16">
+      <section className="relative overflow-hidden px-4 py-16">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold text-slate-900">{tQuiz("teaser")}</h2>
           <p className="mt-2 text-sm text-slate-600">{tQuiz("cta")}</p>

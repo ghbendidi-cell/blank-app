@@ -3,9 +3,9 @@ const SKY_VIDEO =
 
 export default function CloudSky() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
       <video
-        className="h-full w-full object-cover opacity-50"
+        className="h-full w-full object-cover opacity-60"
         src={SKY_VIDEO}
         autoPlay
         muted
@@ -13,7 +13,7 @@ export default function CloudSky() {
         playsInline
         preload="auto"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#eef4f2]/70 via-[#f8f5ef]/60 to-[#eef4f2]/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#eef4f2]/60 via-[#f8f5ef]/45 to-[#eef4f2]/60" />
     </div>
   );
 }
