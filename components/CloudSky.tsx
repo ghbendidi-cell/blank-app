@@ -1,5 +1,5 @@
 const SKY_VIDEO =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260704_114708_e83adc0f-a42c-428a-8c0f-d0bfe0fe2731.mp4";
+  "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260704_115952_95d371f7-9acc-44f5-bc3d-96ba654bd9cf.mp4";
 
 export default function CloudSky() {
   return (
