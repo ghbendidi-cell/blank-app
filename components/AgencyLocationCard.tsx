@@ -2,6 +2,7 @@ import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
 import { agency } from "@/data/agency";
 import { pick, telLink, whatsappLink } from "@/lib/locale-content";
+import TiltCard from "./animations/TiltCard";
 
 export default function AgencyLocationCard() {
   const locale = useLocale() as Locale;
@@ -10,7 +11,8 @@ export default function AgencyLocationCard() {
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${agency.name} ${agency.addressFr}`)}`;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200">
+    <TiltCard>
+    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-lg">
       <div className="flex aspect-video w-full items-center justify-center border-b border-slate-200 bg-slate-100 text-slate-400">
         <span className="text-sm">Google Maps — {agency.neighborhood}, {agency.city}</span>
       </div>
@@ -53,5 +55,6 @@ export default function AgencyLocationCard() {
         </div>
       </div>
     </div>
+    </TiltCard>
   );
 }

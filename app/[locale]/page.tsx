@@ -15,6 +15,7 @@ import StatsStrip from "@/components/StatsStrip";
 import HeroBackground from "@/components/HeroBackground";
 import HeroFlightPath from "@/components/HeroFlightPath";
 import DestinationRouteMap from "@/components/DestinationRouteMap";
+import CloudSky from "@/components/CloudSky";
 import GradientBlobs from "@/components/GradientBlobs";
 import TravelQuiz from "@/components/TravelQuiz";
 import ParallaxImage from "@/components/animations/ParallaxImage";
@@ -35,7 +36,8 @@ export default async function HomePage() {
   const [heroTitleBefore, heroTitleAfter] = heroTitle.split("Millenium Travel");
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="relative overflow-x-hidden">
+      <CloudSky />
       <section className="relative min-h-[480px] overflow-hidden bg-brand-dark lg:min-h-[680px]">
         <HeroBackground />
         <HeroFlightPath />
