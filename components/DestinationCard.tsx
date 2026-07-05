@@ -24,7 +24,7 @@ export default function DestinationCard({ destination, locale }: { destination: 
         <div className={`absolute inset-0 flex items-end bg-gradient-to-t p-4 ${theme.gradient}`} />
         <div className="absolute inset-0 flex items-end p-4">
           <div className="text-white">
-            <h3 className="text-lg font-bold drop-shadow group-hover:underline">{name}</h3>
+            <h3 className="font-display text-lg font-bold drop-shadow group-hover:underline">{name}</h3>
             <p className="text-xs font-medium text-white/90">{packCount} packs</p>
           </div>
         </div>

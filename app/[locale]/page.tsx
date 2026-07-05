@@ -36,7 +36,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.6),transparent_70%)] lg:bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.45),transparent_65%)]" />
         <div className="relative mx-auto flex h-full min-h-[480px] max-w-7xl flex-col items-center justify-center gap-5 px-4 pb-24 pt-24 text-center lg:min-h-[600px]">
           <span className="text-xs font-bold uppercase tracking-[0.22em] text-white/80">{t("heroEyebrow")}</span>
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-lg sm:text-6xl">
+          <h1 className="max-w-3xl font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-lg sm:text-6xl">
             {heroTitleBefore}
             <span className="text-accent">Millenium Travel</span>
             {heroTitleAfter}
@@ -55,7 +55,7 @@ export default async function HomePage() {
       <section className="mx-auto max-w-7xl px-4 py-28">
         <div className="mb-10 text-center">
           <Eyebrow>{t("routeMapEyebrow")}</Eyebrow>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("routeMapTitle")}</h2>
+          <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("routeMapTitle")}</h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-slate-600">{t("routeMapSubtitle")}</p>
         </div>
         <DestinationRouteMap />
@@ -65,7 +65,7 @@ export default async function HomePage() {
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <Eyebrow>{t("destinationsEyebrow")}</Eyebrow>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("popularDestinations")}</h2>
+            <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("popularDestinations")}</h2>
           </div>
           <PillButton href="/destinations" tone="brand" variant="outline">
             {tCommon("seeAll")}
@@ -82,7 +82,7 @@ export default async function HomePage() {
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <Eyebrow>{t("packsEyebrow")}</Eyebrow>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("featuredPacks")}</h2>
+            <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("featuredPacks")}</h2>
           </div>
           <PillButton href="/packs" tone="accent" variant="outline">
             {tCommon("seeAllPacks")}
@@ -94,7 +94,7 @@ export default async function HomePage() {
       <section className="mx-auto max-w-7xl px-4 py-28">
         <div className="mx-auto mb-8 max-w-3xl text-center">
           <Eyebrow>{t("quizEyebrow")}</Eyebrow>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{tQuiz("teaser")}</h2>
+          <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{tQuiz("teaser")}</h2>
           <p className="mt-3 text-sm text-slate-600">{tQuiz("cta")}</p>
         </div>
         <TravelQuiz />
@@ -114,7 +114,7 @@ export default async function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-hajj/90 to-hajj-dark/95" />
           <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-4">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gold sm:text-4xl">{t("omraTitle")}</h2>
+            <h2 className="text-3xl font-display font-extrabold tracking-tight text-gold sm:text-4xl">{t("omraTitle")}</h2>
             <p className="max-w-xl text-sm text-white/90">{t("omraSubtitle")}</p>
             <PillButton href="/omra-hajj" tone="gold">
               {t("omraCta")}
@@ -137,7 +137,7 @@ export default async function HomePage() {
         <section className="mx-auto max-w-7xl px-4 py-28">
           <div className="mb-8 text-center">
             <Eyebrow>{t("testimonialsEyebrow")}</Eyebrow>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("testimonialsTitle")}</h2>
+            <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("testimonialsTitle")}</h2>
           </div>
           <TestimonialCarousel reviews={featuredReviews} />
         </section>
@@ -145,7 +145,7 @@ export default async function HomePage() {
 
       <section className="mx-auto max-w-7xl px-4 py-28">
         <Eyebrow>{t("visitEyebrow")}</Eyebrow>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("visitTitle")}</h2>
+        <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("visitTitle")}</h2>
         <p className="mb-8 mt-3 text-sm text-slate-600">{t("visitSubtitle")}</p>
         <div className="max-w-lg">
           <AgencyLocationCard />

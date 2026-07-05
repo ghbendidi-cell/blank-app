@@ -6,6 +6,10 @@ html[dir="rtl"] body {
   font-family: var(--font-arabic);
 }
 
+html[dir="rtl"] {
+  --font-display: var(--font-display-arabic);
+}
+
 body {
   font-family: var(--font-sans);
 }

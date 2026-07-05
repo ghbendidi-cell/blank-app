@@ -25,7 +25,7 @@ export default function SearchBar() {
           <Link
             key={type}
             href={{ pathname: "/packs", query: { type } }}
-            className="rounded-full px-3 py-1 text-xs font-semibold text-slate-500 transition hover:bg-brand-light hover:text-brand-dark"
+            className="rounded-full px-3 py-1 font-display text-xs font-semibold text-slate-500 transition hover:-rotate-2 hover:bg-brand-light hover:text-brand-dark"
           >
             {tTypes(type)}
           </Link>
@@ -40,7 +40,7 @@ export default function SearchBar() {
         />
         <button
           type="submit"
-          className="group inline-flex shrink-0 items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-dark"
+          className="group inline-flex shrink-0 items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 font-display text-sm font-semibold text-white transition duration-200 hover:-rotate-1 hover:scale-105 hover:bg-accent-dark active:scale-95"
         >
           {t("searchButton")}
           <svg

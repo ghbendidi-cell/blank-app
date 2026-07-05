@@ -50,6 +50,12 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         arabic: ["var(--font-arabic)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],
+      },
+      borderRadius: {
+        xl: "1.1rem",
+        "2xl": "1.6rem",
+        "3xl": "2.2rem",
       },
     },
   },

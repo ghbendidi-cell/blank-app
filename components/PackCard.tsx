@@ -42,7 +42,9 @@ export default function PackCard({
           <div className="transition-transform duration-500 group-hover:scale-110">
             <ImagePlaceholder image={pack.images[0]} locale={locale} />
           </div>
-          <span className={`absolute start-3 top-3 rounded-full px-2.5 py-1 text-xs font-semibold shadow-sm ${theme.badge}`}>
+          <span
+            className={`absolute start-3 top-3 -rotate-3 rounded-full px-2.5 py-1 font-display text-xs font-semibold shadow-sm transition-transform duration-300 group-hover:rotate-0 ${theme.badge}`}
+          >
             {tTypes(pack.tripType)}
           </span>
           {compare && (
@@ -76,7 +78,7 @@ export default function PackCard({
           )}
         </div>
         <div className="flex flex-1 flex-col gap-2 p-4">
-          <h3 className="font-semibold text-slate-900 group-hover:text-brand">{title}</h3>
+          <h3 className="font-display font-semibold text-slate-900 group-hover:text-brand">{title}</h3>
           {pack.durationDays > 0 && (
             <div className="flex items-center gap-2 text-sm text-slate-500">
               <span>{t("days", { count: pack.durationDays })}</span>

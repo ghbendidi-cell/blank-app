@@ -17,7 +17,8 @@ export default function Eyebrow({
   className?: string;
 }) {
   return (
-    <span className={`block text-xs font-bold uppercase tracking-[0.2em] ${TONE_CLASSES[tone]} ${className}`}>
+    <span className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] ${TONE_CLASSES[tone]} ${className}`}>
+      <span className="h-2 w-2 rounded-full bg-current" />
       {children}
     </span>
   );

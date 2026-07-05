@@ -13,7 +13,7 @@ export default async function GroupTravelPage() {
       <Breadcrumb items={[{ label: tCommon("seeAll"), href: "/" }, { label: tNav("groupes") }]} />
 
       <div className="mx-auto max-w-7xl px-4 pb-16">
-        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{tNav("groupes")}</h1>
+        <h1 className="text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{tNav("groupes")}</h1>
         <p className="mt-2 max-w-2xl text-sm text-slate-600">
           {locale === "ar"
             ? "ننظم رحلات جماعية على المقاس (عائلات، أصدقاء، شركات) بناء على طلبكم. تواصلوا معنا لعرض سعر مخصص حسب الوجهة والعدد والميزانية."

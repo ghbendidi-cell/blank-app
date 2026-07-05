@@ -28,7 +28,7 @@ function StepContent({
 
   return (
     <motion.div style={{ opacity, y }} className="col-start-1 row-start-1">
-      <h3 className="text-3xl font-extrabold leading-tight text-white [text-wrap:balance] sm:text-5xl">
+      <h3 className="font-display text-3xl font-extrabold leading-tight text-white [text-wrap:balance] sm:text-5xl">
         {step.title}
       </h3>
       <p className="mt-4 max-w-md text-white/75 sm:text-lg">{step.text}</p>

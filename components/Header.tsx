@@ -37,9 +37,9 @@ export default function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-5 text-sm font-medium text-slate-700 lg:flex">
+        <nav className="hidden items-center gap-5 font-display text-sm font-semibold text-slate-700 lg:flex">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-brand">
+            <Link key={link.href} href={link.href} className="transition hover:-translate-y-0.5 hover:text-brand">
               {link.label}
             </Link>
           ))}
@@ -47,7 +47,10 @@ export default function Header() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <MagneticButton>
-            <a href={telLink(agency.phone)} className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-dark">
+            <a
+              href={telLink(agency.phone)}
+              className="inline-block rounded-full bg-brand px-4 py-2 font-display text-sm font-semibold text-white transition duration-200 hover:-rotate-1 hover:scale-105 hover:bg-brand-dark active:scale-95"
+            >
               {t("callCta")}
             </a>
           </MagneticButton>
@@ -69,7 +72,7 @@ export default function Header() {
 
       {open && (
         <nav className="border-t border-slate-200 bg-white/90 px-4 py-3 backdrop-blur-md lg:hidden">
-          <ul className="flex flex-col gap-3 text-sm font-medium text-slate-700">
+          <ul className="flex flex-col gap-3 font-display text-sm font-semibold text-slate-700">
             {links.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} onClick={() => setOpen(false)}>
@@ -79,7 +82,7 @@ export default function Header() {
             ))}
           </ul>
           <div className="mt-4 flex items-center justify-between">
-            <a href={telLink(agency.phone)} className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white">
+            <a href={telLink(agency.phone)} className="rounded-full bg-brand px-4 py-2 font-display text-sm font-semibold text-white">
               {t("callCta")}
             </a>
             <LanguageSwitcher />

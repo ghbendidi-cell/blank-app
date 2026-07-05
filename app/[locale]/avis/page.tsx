@@ -39,7 +39,7 @@ export default function AvisPage() {
       <Breadcrumb items={[{ label: tCommon("seeAll"), href: "/" }, { label: tNav("avis") }]} />
 
       <div className="mx-auto max-w-7xl px-4 pb-16">
-        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("title")}</h1>
+        <h1 className="text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("title")}</h1>
         <p className="mt-2 text-sm text-slate-600">{t("subtitle")}</p>
 
         <div className="mt-6 max-w-md">
