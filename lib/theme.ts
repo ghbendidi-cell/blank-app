@@ -26,10 +26,10 @@ export const destinationTheme: Record<
     ring: "ring-turkey",
   },
   hajj: {
-    badge: "bg-hajj text-gold-light",
+    badge: "bg-gold text-hajj-dark",
     text: "text-hajj-dark",
-    bgLight: "bg-hajj-light",
-    gradient: "from-hajj/90 via-hajj-dark/70 to-transparent",
-    ring: "ring-hajj",
+    bgLight: "bg-gold-light",
+    gradient: "from-slate-900/80 via-slate-900/45 to-transparent",
+    ring: "ring-gold",
   },
 };
