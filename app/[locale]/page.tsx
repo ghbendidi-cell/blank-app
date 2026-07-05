@@ -7,18 +7,13 @@ import { reviews } from "@/data/reviews";
 import SearchBar from "@/components/SearchBar";
 import DestinationCard from "@/components/DestinationCard";
 import BentoPackGrid from "@/components/BentoPackGrid";
-import MagneticButton from "@/components/animations/MagneticButton";
 import TrustBadges from "@/components/TrustBadges";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import AgencyLocationCard from "@/components/AgencyLocationCard";
 import StatsStrip from "@/components/StatsStrip";
 import HeroBackground from "@/components/HeroBackground";
-import HeroFlightPath from "@/components/HeroFlightPath";
 import DestinationRouteMap from "@/components/DestinationRouteMap";
-import GradientBlobs from "@/components/GradientBlobs";
 import TravelQuiz from "@/components/TravelQuiz";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
 
 export default async function HomePage() {
   const locale = (await getLocale()) as Locale;
@@ -37,7 +32,6 @@ export default async function HomePage() {
     <div className="relative overflow-x-hidden">
       <section className="relative min-h-[480px] overflow-hidden bg-brand-dark lg:min-h-[680px]">
         <HeroBackground />
-        <HeroFlightPath />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.6),transparent_70%)] lg:bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.45),transparent_65%)]" />
         <div className="relative mx-auto flex h-full min-h-[480px] max-w-7xl flex-col items-center justify-center gap-6 px-4 py-24 text-center lg:min-h-[680px]">
           <span className="rounded-full border border-white/30 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/90">
@@ -56,62 +50,44 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16">
-        <ScrollReveal className="mb-10 text-center">
+      <section className="mx-auto max-w-7xl px-4 py-28">
+        <div className="mb-10 text-center">
           <h2 className="text-2xl font-bold text-slate-900">{t("routeMapTitle")}</h2>
           <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600">{t("routeMapSubtitle")}</p>
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <DestinationRouteMap />
-        </ScrollReveal>
+        </div>
+        <DestinationRouteMap />
       </section>
 
-      <section className="relative overflow-hidden px-4 py-16">
-        <GradientBlobs preset="destinations" />
-        <div className="mx-auto max-w-7xl">
-        <ScrollReveal>
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-slate-900">{t("popularDestinations")}</h2>
-            <Link href="/destinations" className="text-sm font-medium text-brand hover:underline">
-              {tCommon("seeAll")}
-            </Link>
-          </div>
-        </ScrollReveal>
-        <StaggerGrid className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="mx-auto max-w-7xl px-4 py-28">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-slate-900">{t("popularDestinations")}</h2>
+          <Link href="/destinations" className="text-sm font-medium text-brand hover:underline">
+            {tCommon("seeAll")}
+          </Link>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {featuredDestinations.map((destination) => (
-            <StaggerItem key={destination.id}>
-              <DestinationCard destination={destination} locale={locale} />
-            </StaggerItem>
+            <DestinationCard key={destination.id} destination={destination} locale={locale} />
           ))}
-        </StaggerGrid>
         </div>
       </section>
 
-      <section className="relative overflow-hidden px-4 py-16">
-        <GradientBlobs preset="packs" />
-        <div className="mx-auto max-w-7xl">
-        <ScrollReveal>
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-slate-900">{t("featuredPacks")}</h2>
-            <Link href="/packs" className="text-sm font-medium text-brand hover:underline">
-              {tCommon("seeAllPacks")}
-            </Link>
-          </div>
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <BentoPackGrid packs={featuredPacks} locale={locale} />
-        </ScrollReveal>
+      <section className="mx-auto max-w-7xl px-4 py-28">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-slate-900">{t("featuredPacks")}</h2>
+          <Link href="/packs" className="text-sm font-medium text-brand hover:underline">
+            {tCommon("seeAllPacks")}
+          </Link>
         </div>
+        <BentoPackGrid packs={featuredPacks} locale={locale} />
       </section>
 
-      <section className="relative overflow-hidden px-4 py-16">
-        <ScrollReveal className="mx-auto max-w-3xl text-center">
+      <section className="mx-auto max-w-7xl px-4 py-28">
+        <div className="mx-auto mb-8 max-w-3xl text-center">
           <h2 className="text-2xl font-bold text-slate-900">{tQuiz("teaser")}</h2>
           <p className="mt-2 text-sm text-slate-600">{tQuiz("cta")}</p>
-        </ScrollReveal>
-        <ScrollReveal className="mt-8">
-          <TravelQuiz />
-        </ScrollReveal>
+        </div>
+        <TravelQuiz />
       </section>
 
       {omraPack && (
@@ -127,42 +103,34 @@ export default async function HomePage() {
             preload="auto"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-hajj/90 to-hajj-dark/95" />
-          <ScrollReveal className="relative mx-auto flex max-w-7xl flex-col items-center gap-4">
+          <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-4">
             <h2 className="text-2xl font-bold text-gold">{t("omraTitle")}</h2>
             <p className="max-w-xl text-sm text-white/90">{t("omraSubtitle")}</p>
-            <MagneticButton>
-              <Link href="/omra-hajj" className="inline-block rounded-full bg-gold px-6 py-3 text-sm font-semibold text-hajj-dark transition hover:bg-gold-dark hover:text-white">
-                {t("omraCta")}
-              </Link>
-            </MagneticButton>
-          </ScrollReveal>
+            <Link href="/omra-hajj" className="inline-block rounded-full bg-gold px-6 py-3 text-sm font-semibold text-hajj-dark transition hover:bg-gold-dark hover:text-white">
+              {t("omraCta")}
+            </Link>
+          </div>
         </section>
       )}
 
-      <section className="mx-auto max-w-7xl px-4 py-16">
-        <ScrollReveal>
-          <h2 className="mb-6 text-2xl font-bold text-slate-900">{t("whyUsTitle")}</h2>
-        </ScrollReveal>
+      <section className="mx-auto max-w-7xl px-4 py-28">
+        <h2 className="mb-8 text-2xl font-bold text-slate-900">{t("whyUsTitle")}</h2>
         <TrustBadges />
       </section>
 
       {featuredReviews.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 py-16">
-          <ScrollReveal>
-            <h2 className="mb-6 text-2xl font-bold text-slate-900">{t("testimonialsTitle")}</h2>
-          </ScrollReveal>
+        <section className="mx-auto max-w-7xl px-4 py-28">
+          <h2 className="mb-8 text-2xl font-bold text-slate-900">{t("testimonialsTitle")}</h2>
           <TestimonialCarousel reviews={featuredReviews} />
         </section>
       )}
 
-      <section className="mx-auto max-w-7xl px-4 py-16">
-        <ScrollReveal>
-          <h2 className="mb-2 text-2xl font-bold text-slate-900">{t("visitTitle")}</h2>
-          <p className="mb-6 text-sm text-slate-600">{t("visitSubtitle")}</p>
-          <div className="max-w-lg">
-            <AgencyLocationCard />
-          </div>
-        </ScrollReveal>
+      <section className="mx-auto max-w-7xl px-4 py-28">
+        <h2 className="mb-2 text-2xl font-bold text-slate-900">{t("visitTitle")}</h2>
+        <p className="mb-8 text-sm text-slate-600">{t("visitSubtitle")}</p>
+        <div className="max-w-lg">
+          <AgencyLocationCard />
+        </div>
       </section>
     </div>
   );

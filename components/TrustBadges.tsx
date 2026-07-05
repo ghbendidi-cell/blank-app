@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { StaggerGrid, StaggerItem } from "./animations/StaggerGrid";
 import TiltCard from "./animations/TiltCard";
 
 const ICONS = [
@@ -33,20 +32,18 @@ export default function TrustBadges() {
   ];
 
   return (
-    <StaggerGrid className="grid gap-6 sm:grid-cols-3">
+    <div className="grid gap-6 sm:grid-cols-3">
       {items.map((item, index) => (
-        <StaggerItem key={item.title}>
-          <TiltCard className="h-full">
-            <div className="group flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 p-6 text-center shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-lg">
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-light text-brand transition group-hover:bg-brand group-hover:text-white">
-                {ICONS[index]}
-              </span>
-              <p className="font-semibold text-slate-900">{item.title}</p>
-              <p className="text-sm text-slate-600">{item.text}</p>
-            </div>
-          </TiltCard>
-        </StaggerItem>
+        <TiltCard key={item.title} className="h-full">
+          <div className="group flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 p-6 text-center shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-lg">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-light text-brand transition group-hover:bg-brand group-hover:text-white">
+              {ICONS[index]}
+            </span>
+            <p className="font-semibold text-slate-900">{item.title}</p>
+            <p className="text-sm text-slate-600">{item.text}</p>
+          </div>
+        </TiltCard>
       ))}
-    </StaggerGrid>
+    </div>
   );
 }
