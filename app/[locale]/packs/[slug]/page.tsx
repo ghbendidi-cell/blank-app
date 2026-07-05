@@ -114,7 +114,7 @@ export default async function PackDetailPage({
             <span className={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold ${theme.badge}`}>
               {destination ? pick(destination.nameFr, destination.nameAr, locale) : ""} · {tTypes(pack.tripType)}
             </span>
-            <h1 className="mt-2 text-2xl font-bold text-white drop-shadow-lg sm:text-3xl">{title}</h1>
+            <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-white drop-shadow-lg sm:text-3xl">{title}</h1>
           </div>
         </div>
       </div>

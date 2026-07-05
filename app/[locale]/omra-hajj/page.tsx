@@ -21,10 +21,10 @@ export default async function OmraHajjPage() {
 
       <div className="relative h-[32vh] min-h-[220px] overflow-hidden">
         <ParallaxImage src="/images/mecque-tour-horloge.jpg" alt="La Mecque" className="absolute inset-0 h-full w-full" strength={35} />
-        <div className="absolute inset-0 bg-gradient-to-t from-hajj/95 via-hajj-dark/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent" />
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-7xl px-4 pb-6">
-            <h1 className="text-2xl font-bold text-gold drop-shadow-lg sm:text-3xl">{t("omraTitle")}</h1>
+            <h1 className="text-2xl font-extrabold tracking-tight text-gold drop-shadow-lg sm:text-3xl">{t("omraTitle")}</h1>
             <p className="mt-1 max-w-xl text-sm text-white/90">{t("omraSubtitle")}</p>
           </div>
         </div>

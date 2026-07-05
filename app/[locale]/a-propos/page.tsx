@@ -23,14 +23,14 @@ export default async function AboutPage() {
 
       <div className="mx-auto max-w-7xl px-4 pb-16">
         <ScrollReveal>
-          <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
-          <p className="mt-2 max-w-2xl text-sm text-slate-600">{t("intro")}</p>
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("title")}</h1>
+          <p className="mt-3 max-w-2xl text-sm text-slate-600">{t("intro")}</p>
         </ScrollReveal>
 
-        <h2 className="mb-4 mt-10 text-lg font-bold text-slate-900">{t("certificationsTitle")}</h2>
+        <h2 className="mb-4 mt-10 text-xl font-bold tracking-tight text-slate-900">{t("certificationsTitle")}</h2>
         <TrustBadges />
 
-        <h2 className="mb-4 mt-10 text-lg font-bold text-slate-900">{t("teamTitle")}</h2>
+        <h2 className="mb-4 mt-10 text-xl font-bold tracking-tight text-slate-900">{t("teamTitle")}</h2>
         <StaggerGrid className="grid gap-5 sm:grid-cols-3">
           {agents.map((agent) => (
             <StaggerItem key={agent.id}>

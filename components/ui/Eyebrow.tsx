@@ -1,0 +1,24 @@
+import type { ReactNode } from "react";
+
+const TONE_CLASSES = {
+  brand: "text-brand-dark",
+  accent: "text-accent-dark",
+  gold: "text-gold-dark",
+  white: "text-white/85",
+} as const;
+
+export default function Eyebrow({
+  children,
+  tone = "accent",
+  className = "",
+}: {
+  children: ReactNode;
+  tone?: keyof typeof TONE_CLASSES;
+  className?: string;
+}) {
+  return (
+    <span className={`block text-xs font-bold uppercase tracking-[0.2em] ${TONE_CLASSES[tone]} ${className}`}>
+      {children}
+    </span>
+  );
+}

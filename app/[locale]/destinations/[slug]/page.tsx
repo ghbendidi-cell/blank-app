@@ -70,7 +70,7 @@ export default async function DestinationDetailPage({
         )}
         <div className={`absolute inset-0 bg-gradient-to-t ${theme.gradient}`} />
         <div className="absolute inset-0 flex items-end">
-          <h1 className="mx-auto max-w-7xl px-4 pb-6 text-3xl font-bold text-white drop-shadow-lg sm:text-4xl">{name}</h1>
+          <h1 className="mx-auto max-w-7xl px-4 pb-6 text-3xl font-extrabold tracking-tight text-white drop-shadow-lg sm:text-4xl">{name}</h1>
         </div>
       </div>
 
