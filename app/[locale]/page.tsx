@@ -31,7 +31,7 @@ export default async function HomePage() {
 
   return (
     <div className="relative overflow-x-clip">
-      <section className="relative min-h-[480px] overflow-hidden bg-brand-dark lg:min-h-[600px]">
+      <section className="relative min-h-[480px] overflow-hidden lg:min-h-[600px]">
         <HeroBackground />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.6),transparent_70%)] lg:bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.45),transparent_65%)]" />
         <div className="relative mx-auto flex h-full min-h-[480px] max-w-7xl flex-col items-center justify-center gap-5 px-4 pb-24 pt-24 text-center lg:min-h-[600px]">
