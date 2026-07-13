@@ -33,6 +33,10 @@ const DESTINATION_IMAGES: Record<string, string> = {
   "dest-arabie-saoudite": "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_023911_5d00e8b4-34a6-4230-9118-ac6a616dffe9.png",
 };
 
+// Some generated images come back with a faint white margin baked in by the
+// model; these destinations get their card image scaled up so the crop hides it.
+const DESTINATIONS_NEEDING_ZOOM = new Set(["dest-egypte"]);
+
 export default async function HomePage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("home");
@@ -92,13 +96,15 @@ export default async function HomePage() {
           </Button>
         </div>
         <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2">
-          {destinationsWithPrice.map(({ destination, minPrice }, index) => (
+          {destinationsWithPrice.map(({ destination, minPrice }, index) => {
+            const isZoomed = DESTINATIONS_NEEDING_ZOOM.has(destination.id);
+            return (
             <Link key={destination.id} href={`/destinations/${destination.slug}`} className="group block">
               <div className="overflow-hidden">
                 <ImagePlaceholder
                   image={{ ...destination.heroImage, url: DESTINATION_IMAGES[destination.id] ?? destination.heroImage.url }}
                   locale={locale}
-                  className="transition-transform duration-700 group-hover:scale-105"
+                  className={`transition-transform duration-700 ${isZoomed ? "scale-[1.18] group-hover:scale-[1.24]" : "group-hover:scale-105"}`}
                 />
               </div>
               <div className="mt-4 flex items-start justify-between gap-4 border-t border-ink/15 pt-4">
@@ -118,7 +124,8 @@ export default async function HomePage() {
                 )}
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
       </section>
 
