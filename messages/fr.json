@@ -8,7 +8,9 @@
     "aPropos": "À propos",
     "contact": "Contact",
     "callCta": "Appeler",
-    "whatsappCta": "WhatsApp"
+    "whatsappCta": "WhatsApp",
+    "menu": "Menu",
+    "close": "Fermer"
   },
   "common": {
     "from": "dès",
