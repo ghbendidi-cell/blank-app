@@ -8,7 +8,6 @@ import { destinationTheme } from "@/lib/theme";
 import ImagePlaceholder from "./ImagePlaceholder";
 import PriceBadge from "./PriceBadge";
 import Stars from "./Stars";
-import TiltCard from "./animations/TiltCard";
 
 export interface PackCompareControl {
   selected: boolean;
@@ -33,72 +32,70 @@ export default function PackCard({
   const theme = destinationTheme[destination?.accentColor ?? "egypt"];
 
   return (
-    <TiltCard>
-      <Link
-        href={`/packs/${pack.slug}`}
-        className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:shadow-xl"
-      >
-        <div className="relative overflow-hidden">
-          <div className="transition-transform duration-500 group-hover:scale-110">
-            <ImagePlaceholder image={pack.images[0]} locale={locale} />
-          </div>
-          <span
-            className={`absolute start-3 top-3 -rotate-3 rounded-full px-2.5 py-1 font-display text-xs font-semibold shadow-sm transition-transform duration-300 group-hover:rotate-0 ${theme.badge}`}
+    <Link
+      href={`/packs/${pack.slug}`}
+      className="group flex flex-col overflow-hidden border border-ink/10 bg-white transition duration-300 hover:shadow-lg"
+    >
+      <div className="relative overflow-hidden">
+        <div className="transition-transform duration-500 group-hover:scale-105">
+          <ImagePlaceholder image={pack.images[0]} locale={locale} />
+        </div>
+        <span
+          className={`absolute start-3 top-3 px-2.5 py-1 font-sans text-[11px] font-semibold uppercase tracking-[0.1em] shadow-sm ${theme.badge}`}
+        >
+          {tTypes(pack.tripType)}
+        </span>
+        {compare && (
+          <button
+            type="button"
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              compare.onToggle();
+            }}
+            disabled={compare.disabled && !compare.selected}
+            className={`absolute end-3 top-3 flex items-center gap-1.5 px-2.5 py-1 font-sans text-[11px] font-semibold shadow-sm transition ${
+              compare.selected
+                ? "bg-ink text-ivory"
+                : "bg-white/90 text-ink/70 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+            }`}
           >
-            {tTypes(pack.tripType)}
-          </span>
-          {compare && (
-            <button
-              type="button"
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                compare.onToggle();
-              }}
-              disabled={compare.disabled && !compare.selected}
-              className={`absolute end-3 top-3 flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold shadow-sm transition ${
-                compare.selected
-                  ? "bg-brand text-white"
-                  : "bg-white/90 text-slate-600 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+            <span
+              className={`flex h-3.5 w-3.5 items-center justify-center border ${
+                compare.selected ? "border-ivory bg-ivory/20" : "border-ink/40"
               }`}
             >
-              <span
-                className={`flex h-3.5 w-3.5 items-center justify-center rounded border ${
-                  compare.selected ? "border-white bg-white/20" : "border-slate-400"
-                }`}
-              >
-                {compare.selected && (
-                  <svg width="10" height="10" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="3">
-                    <path d="M4 10l4 4 8-8" />
-                  </svg>
-                )}
-              </span>
-              {tPacks("compare")}
-            </button>
-          )}
-        </div>
-        <div className="flex flex-1 flex-col gap-2 p-4">
-          <h3 className="font-display font-semibold text-slate-900 group-hover:text-brand">{title}</h3>
-          {pack.durationDays > 0 && (
-            <div className="flex items-center gap-2 text-sm text-slate-500">
-              <span>{t("days", { count: pack.durationDays })}</span>
-              <span aria-hidden>·</span>
-              <span>{t("nights", { count: pack.durationNights })}</span>
-            </div>
-          )}
-          {pack.ratingCount > 0 && (
-            <div className="flex items-center gap-1.5">
-              <Stars rating={pack.ratingAvg} size={14} />
-              <span className="text-xs text-slate-500">
-                {pack.ratingAvg} ({t("reviews", { count: pack.ratingCount })})
-              </span>
-            </div>
-          )}
-          <div className="mt-auto pt-2">
-            <PriceBadge amount={pack.priceFrom} locale={locale} />
+              {compare.selected && (
+                <svg width="10" height="10" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="3">
+                  <path d="M4 10l4 4 8-8" />
+                </svg>
+              )}
+            </span>
+            {tPacks("compare")}
+          </button>
+        )}
+      </div>
+      <div className="flex flex-1 flex-col gap-2 p-5">
+        <h3 className="font-display text-lg italic text-ink group-hover:underline">{title}</h3>
+        {pack.durationDays > 0 && (
+          <div className="flex items-center gap-2 font-sans text-sm text-ink/55">
+            <span>{t("days", { count: pack.durationDays })}</span>
+            <span aria-hidden>·</span>
+            <span>{t("nights", { count: pack.durationNights })}</span>
           </div>
+        )}
+        {pack.ratingCount > 0 && (
+          <div className="flex items-center gap-1.5">
+            <Stars rating={pack.ratingAvg} size={14} />
+            <span className="font-sans text-xs text-ink/55">
+              {pack.ratingAvg} ({t("reviews", { count: pack.ratingCount })})
+            </span>
+          </div>
+        )}
+        <div className="mt-auto pt-2">
+          <PriceBadge amount={pack.priceFrom} locale={locale} />
         </div>
-      </Link>
-    </TiltCard>
+      </div>
+    </Link>
   );
 }

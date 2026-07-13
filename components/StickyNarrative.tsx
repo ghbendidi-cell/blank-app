@@ -28,10 +28,10 @@ function StepContent({
 
   return (
     <motion.div style={{ opacity, y }} className="col-start-1 row-start-1">
-      <h3 className="font-display text-3xl font-extrabold leading-tight text-white [text-wrap:balance] sm:text-5xl">
+      <h3 className="font-display text-3xl italic leading-tight text-ivory [text-wrap:balance] sm:text-5xl">
         {step.title}
       </h3>
-      <p className="mt-4 max-w-md text-white/75 sm:text-lg">{step.text}</p>
+      <p className="mt-4 max-w-md font-sans font-light text-ivory/75 sm:text-lg">{step.text}</p>
     </motion.div>
   );
 }
@@ -53,10 +53,10 @@ export default function StickyNarrative({
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-brand-dark/20" />
-        <div className="relative mx-auto flex h-full max-w-7xl items-center px-4">
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-ink/20" />
+        <div className="relative mx-auto flex h-full max-w-7xl items-center px-6 lg:px-10">
           <div className="w-full max-w-lg">
-            <Eyebrow tone="white" className="mb-4">
+            <Eyebrow tone="ivory" className="mb-4">
               {eyebrow}
             </Eyebrow>
             <div className="grid">

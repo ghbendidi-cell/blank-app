@@ -3,6 +3,9 @@
 import { useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
+const fieldClass = "w-full border border-ink/20 bg-ivory px-3 py-2.5 font-sans text-sm text-ink outline-none transition-colors focus:border-ink";
+const labelClass = "mb-1.5 block font-sans text-xs font-semibold uppercase tracking-[0.1em] text-ink/60";
+
 export default function ContactRequestForm({
   packId,
   packTitle,
@@ -49,46 +52,44 @@ export default function ContactRequestForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-green-200 bg-green-50 p-6 text-center text-sm text-green-800">
+      <div className="border border-brand/30 bg-brand-light p-6 text-center font-sans text-sm text-brand-dark">
         {t("success")}
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-slate-200 p-6">
-      {packTitle && (
-        <p className="rounded-lg bg-brand-light px-3 py-2 text-sm text-brand">{packTitle}</p>
-      )}
+    <form onSubmit={handleSubmit} className="space-y-5 border border-ink/15 p-6 lg:p-8">
+      {packTitle && <p className="border border-ink/15 px-3 py-2 font-sans text-sm text-ink/70">{packTitle}</p>}
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm">
-          <span className="mb-1 block font-medium text-slate-700">{t("name")}</span>
-          <input name="fullName" required className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+        <label className="block">
+          <span className={labelClass}>{t("name")}</span>
+          <input name="fullName" required className={fieldClass} />
         </label>
-        <label className="block text-sm">
-          <span className="mb-1 block font-medium text-slate-700">{t("phone")}</span>
-          <input name="phone" type="tel" required className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+        <label className="block">
+          <span className={labelClass}>{t("phone")}</span>
+          <input name="phone" type="tel" required className={fieldClass} />
         </label>
       </div>
 
-      <label className="block text-sm">
-        <span className="mb-1 block font-medium text-slate-700">{t("email")}</span>
-        <input name="email" type="email" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+      <label className="block">
+        <span className={labelClass}>{t("email")}</span>
+        <input name="email" type="email" className={fieldClass} />
       </label>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm">
-          <span className="mb-1 block font-medium text-slate-700">{t("type")}</span>
-          <select name="type" defaultValue="devis" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+        <label className="block">
+          <span className={labelClass}>{t("type")}</span>
+          <select name="type" defaultValue="devis" className={fieldClass}>
             <option value="devis">{t("typeDevis")}</option>
             <option value="rappel">{t("typeRappel")}</option>
             <option value="info_generale">{t("typeInfo")}</option>
           </select>
         </label>
-        <label className="block text-sm">
-          <span className="mb-1 block font-medium text-slate-700">{t("preferredContact")}</span>
-          <select name="preferredContact" defaultValue="telephone" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+        <label className="block">
+          <span className={labelClass}>{t("preferredContact")}</span>
+          <select name="preferredContact" defaultValue="telephone" className={fieldClass}>
             <option value="telephone">{t("contactPhone")}</option>
             <option value="whatsapp">{t("contactWhatsapp")}</option>
             <option value="email">{t("contactEmail")}</option>
@@ -97,27 +98,27 @@ export default function ContactRequestForm({
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm">
-          <span className="mb-1 block font-medium text-slate-700">{t("budget")}</span>
-          <input name="budgetRange" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+        <label className="block">
+          <span className={labelClass}>{t("budget")}</span>
+          <input name="budgetRange" className={fieldClass} />
         </label>
-        <label className="block text-sm">
-          <span className="mb-1 block font-medium text-slate-700">{t("dates")}</span>
-          <input name="travelDatesHint" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+        <label className="block">
+          <span className={labelClass}>{t("dates")}</span>
+          <input name="travelDatesHint" className={fieldClass} />
         </label>
       </div>
 
-      <label className="block text-sm">
-        <span className="mb-1 block font-medium text-slate-700">{t("message")}</span>
-        <textarea name="message" rows={4} className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+      <label className="block">
+        <span className={labelClass}>{t("message")}</span>
+        <textarea name="message" rows={4} className={fieldClass} />
       </label>
 
-      {status === "error" && <p className="text-sm text-red-600">{t("error")}</p>}
+      {status === "error" && <p className="font-sans text-sm text-red-700">{t("error")}</p>}
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full rounded-lg bg-brand py-3 text-sm font-semibold text-white disabled:opacity-60"
+        className="w-full border border-ink bg-ink py-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-ivory transition-colors hover:bg-ink/85 disabled:opacity-60"
       >
         {status === "sending" ? t("sending") : t("submit")}
       </button>

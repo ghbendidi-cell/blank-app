@@ -23,7 +23,7 @@ export default async function AboutPage() {
 
       <div className="mx-auto max-w-7xl px-4 pb-16">
         <ScrollReveal>
-          <h1 className="text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("title")}</h1>
+          <h1 className="font-display text-4xl italic text-ink sm:text-5xl">{t("title")}</h1>
           <p className="mt-3 max-w-2xl text-sm text-slate-600">{t("intro")}</p>
         </ScrollReveal>
 

@@ -29,7 +29,7 @@ export const destinationTheme: Record<
     badge: "bg-gold text-hajj-dark",
     text: "text-hajj-dark",
     bgLight: "bg-gold-light",
-    gradient: "from-slate-900/80 via-slate-900/45 to-transparent",
+    gradient: "from-ink/85 via-ink/45 to-transparent",
     ring: "ring-gold",
   },
 };

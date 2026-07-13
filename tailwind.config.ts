@@ -10,41 +10,49 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Palette : Juniper, Napa, Cameo, Geraldine, Russett
+        // Old Money Editorial palette: ivory, ink, terracotta, bottle green, navy
+        ivory: {
+          DEFAULT: "#F7F3EC",
+          dark: "#EDE6D8",
+        },
+        ink: {
+          DEFAULT: "#1A1A18",
+          soft: "#3A3934",
+        },
         brand: {
-          DEFAULT: "#6D9891",
-          dark: "#4e6d68",
-          light: "#e5eceb",
+          DEFAULT: "#2E4638",
+          dark: "#1E2E24",
+          light: "#E6EAE3",
         },
         accent: {
-          DEFAULT: "#F69F83",
-          dark: "#b1725e",
-          light: "#fdeee9",
+          DEFAULT: "#A65E2E",
+          dark: "#7C4620",
+          light: "#F1E3D6",
         },
         gold: {
-          DEFAULT: "#E0C1A5",
-          dark: "#a18b77",
-          light: "#f9f4ef",
+          DEFAULT: "#C9B48C",
+          dark: "#A18B5F",
+          light: "#F7F3EC",
         },
         egypt: {
-          DEFAULT: "#F69F83",
-          dark: "#b1725e",
-          light: "#fdeee9",
+          DEFAULT: "#A65E2E",
+          dark: "#7C4620",
+          light: "#F1E3D6",
         },
         vietnam: {
-          DEFAULT: "#6D9891",
-          dark: "#4e6d68",
-          light: "#e5eceb",
+          DEFAULT: "#2E4638",
+          dark: "#1E2E24",
+          light: "#E6EAE3",
         },
         turkey: {
-          DEFAULT: "#AFAC9B",
-          dark: "#7e7c70",
-          light: "#f1f0ed",
+          DEFAULT: "#1F3864",
+          dark: "#152747",
+          light: "#E4E9F0",
         },
         hajj: {
-          DEFAULT: "#76575D",
-          dark: "#553f43",
-          light: "#e6e1e2",
+          DEFAULT: "#3B3226",
+          dark: "#241F19",
+          light: "#E8E1D3",
         },
       },
       fontFamily: {
@@ -53,9 +61,9 @@ const config: Config = {
         display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],
       },
       borderRadius: {
-        xl: "1.1rem",
-        "2xl": "1.6rem",
-        "3xl": "2.2rem",
+        xl: "0.4rem",
+        "2xl": "0.6rem",
+        "3xl": "0.85rem",
       },
     },
   },

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Sans_Arabic, Baloo_2, Baloo_Bhaijaan_2 } from "next/font/google";
+import { Inter, IBM_Plex_Sans_Arabic, Fraunces, Amiri } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -8,33 +8,34 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import PageTransition from "@/components/PageTransition";
-import SiteBackground from "@/components/SiteBackground";
 import "../globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
 
 const plexArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-arabic",
   display: "swap",
 });
 
-const baloo = Baloo_2({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
 });
 
-const balooArabic = Baloo_Bhaijaan_2({
+const amiri = Amiri({
   subsets: ["arabic"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
   variable: "--font-display-arabic",
   display: "swap",
 });
@@ -86,11 +87,10 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${inter.variable} ${plexArabic.variable} ${baloo.variable} ${balooArabic.variable}`}
+      className={`${inter.variable} ${plexArabic.variable} ${fraunces.variable} ${amiri.variable}`}
     >
-      <body className="flex min-h-screen flex-col bg-gold-light text-slate-900 antialiased">
+      <body className="flex min-h-screen flex-col bg-ivory text-ink antialiased">
         <NextIntlClientProvider messages={messages}>
-          <SiteBackground />
           <Header />
           <main className="flex-1">
             <PageTransition>{children}</PageTransition>

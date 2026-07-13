@@ -1,24 +1,25 @@
 import type { ReactNode } from "react";
 
 const TONE_CLASSES = {
-  brand: "text-brand-dark",
-  accent: "text-accent-dark",
-  gold: "text-gold-dark",
-  white: "text-white/85",
+  ink: "text-ink/70",
+  accent: "text-accent",
+  ivory: "text-ivory/80",
 } as const;
 
 export default function Eyebrow({
   children,
-  tone = "accent",
+  number,
+  tone = "ink",
   className = "",
 }: {
   children: ReactNode;
+  number?: string;
   tone?: keyof typeof TONE_CLASSES;
   className?: string;
 }) {
   return (
-    <span className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] ${TONE_CLASSES[tone]} ${className}`}>
-      <span className="h-2 w-2 rounded-full bg-current" />
+    <span className={`inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.28em] ${TONE_CLASSES[tone]} ${className}`}>
+      {number && <span className="tabular-nums">{number} —</span>}
       {children}
     </span>
   );

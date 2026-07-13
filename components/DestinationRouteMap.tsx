@@ -45,10 +45,10 @@ export default function DestinationRouteMap() {
 
   return (
     <div>
-      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl border border-brand/10 bg-[#eaf1ee] shadow-sm">
+      <div className="relative mx-auto w-full max-w-7xl overflow-hidden border border-ink/10 bg-ivory-dark">
         <div className="relative aspect-[1010/666] w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/map/world.svg" alt="" className="absolute inset-0 h-full w-full object-contain" aria-hidden />
+          <img src="/map/world.svg" alt="" className="absolute inset-0 h-full w-full object-contain opacity-90" aria-hidden />
 
           <svg viewBox={`0 0 ${MAP_VIEWBOX.width} ${MAP_VIEWBOX.height}`} className="absolute inset-0 h-full w-full">
             <defs>
@@ -61,14 +61,14 @@ export default function DestinationRouteMap() {
                   <path
                     d={path}
                     fill="none"
-                    stroke="#76575D"
-                    strokeOpacity={0.4}
+                    stroke="#1A1A18"
+                    strokeOpacity={0.3}
                     strokeWidth={1.6}
                     strokeDasharray="1.5 8"
                     strokeLinecap="round"
                   />
                   <path id={`rm-path-${slug}`} d={path} fill="none" stroke="none" />
-                  <path d="M-6 -3 L6 0 L-6 3 L-2 0 Z" fill="#F69F83">
+                  <path d="M-6 -3 L6 0 L-6 3 L-2 0 Z" fill="#A65E2E">
                     <animateMotion dur="6s" begin={`${Object.keys(PIN_COORDS).indexOf(slug) * 1.4}s`} repeatCount="indefinite" rotate="auto">
                       <mpath href={`#rm-path-${slug}`} />
                     </animateMotion>
@@ -76,15 +76,15 @@ export default function DestinationRouteMap() {
                 </g>
               );
             })}
-            <circle cx={ORIGIN.x} cy={ORIGIN.y} r={5} fill="#4e6d68" />
-            <circle cx={ORIGIN.x} cy={ORIGIN.y} r={10} fill="none" stroke="#4e6d68" strokeOpacity={0.4} strokeWidth={1.5} />
+            <circle cx={ORIGIN.x} cy={ORIGIN.y} r={5} fill="#2E4638" />
+            <circle cx={ORIGIN.x} cy={ORIGIN.y} r={10} fill="none" stroke="#2E4638" strokeOpacity={0.4} strokeWidth={1.5} />
           </svg>
 
           <div
             className="absolute flex -translate-x-1/2 -translate-y-full flex-col items-center pb-2"
             style={toPercent(ORIGIN.x, ORIGIN.y)}
           >
-            <span className="whitespace-nowrap rounded-full bg-brand-dark px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm">
+            <span className="whitespace-nowrap bg-ink px-2.5 py-1 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] text-ivory shadow-sm">
               Casablanca
             </span>
           </div>
@@ -105,14 +105,14 @@ export default function DestinationRouteMap() {
                 <span className="relative flex h-4 w-4 items-center justify-center">
                   {isActive && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />}
                   <span
-                    className={`relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-white shadow-md transition ${
-                      isActive ? "bg-accent scale-125" : "bg-brand hover:scale-110"
+                    className={`relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-ivory shadow-md transition ${
+                      isActive ? "scale-125 bg-accent" : "bg-brand hover:scale-110"
                     }`}
                   />
                 </span>
                 <span
-                  className={`absolute start-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-0.5 text-[11px] font-semibold shadow-sm transition ${
-                    isActive ? "flex bg-accent text-white" : "hidden sm:flex sm:bg-white sm:text-brand-dark"
+                  className={`absolute start-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 font-sans text-[11px] font-semibold shadow-sm transition ${
+                    isActive ? "flex bg-accent text-ivory" : "hidden sm:flex sm:bg-white sm:text-ink"
                   }`}
                 >
                   {pick(destination.nameFr, destination.nameAr, locale)}
@@ -144,7 +144,7 @@ export default function DestinationRouteMap() {
             className="mx-auto mt-6 max-w-7xl"
           >
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-slate-900">
+              <h3 className="font-display text-xl italic text-ink">
                 {tDest("packsIn", { destination: pick(activeDestination.nameFr, activeDestination.nameAr, locale) })}
               </h3>
               <button
@@ -163,16 +163,16 @@ export default function DestinationRouteMap() {
                   <Link
                     key={pack.id}
                     href={`/packs/${pack.slug}`}
-                    className="group flex gap-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition hover:shadow-md"
+                    className="group flex gap-4 overflow-hidden border border-ink/10 bg-white p-3 transition hover:shadow-md"
                   >
-                    <div className="w-28 shrink-0 overflow-hidden rounded-xl">
+                    <div className="w-28 shrink-0 overflow-hidden">
                       <ImagePlaceholder image={pack.images[0]} locale={locale} className="aspect-square" />
                     </div>
                     <div className="flex flex-1 flex-col gap-1 py-0.5">
-                      <span className={`w-fit rounded-full px-2 py-0.5 text-[11px] font-semibold ${theme.badge}`}>
+                      <span className={`w-fit px-2 py-0.5 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] ${theme.badge}`}>
                         {tTypes(pack.tripType)}
                       </span>
-                      <h4 className="font-semibold text-slate-900 group-hover:text-brand">
+                      <h4 className="font-display italic text-ink group-hover:underline">
                         {pick(pack.titleFr, pack.titleAr, locale)}
                       </h4>
                       {pack.ratingCount > 0 && <Stars rating={pack.ratingAvg} size={13} />}

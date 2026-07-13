@@ -1,20 +1,30 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import { destinations } from "@/data/destinations";
 import { packs } from "@/data/packs";
 import { reviews } from "@/data/reviews";
+import { pick, formatMad } from "@/lib/locale-content";
 import SearchBar from "@/components/SearchBar";
-import DestinationCard from "@/components/DestinationCard";
+import ImagePlaceholder from "@/components/ImagePlaceholder";
 import BentoPackGrid from "@/components/BentoPackGrid";
 import StickyNarrative from "@/components/StickyNarrative";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import AgencyLocationCard from "@/components/AgencyLocationCard";
+import ContactRequestForm from "@/components/ContactRequestForm";
 import StatsStrip from "@/components/StatsStrip";
 import HeroBackground from "@/components/HeroBackground";
 import DestinationRouteMap from "@/components/DestinationRouteMap";
 import TravelQuiz from "@/components/TravelQuiz";
 import Eyebrow from "@/components/ui/Eyebrow";
-import PillButton from "@/components/ui/PillButton";
+import Button from "@/components/ui/Button";
+
+const HERO_IMAGE =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_021157_1e1d06a4-5d7d-44c4-bebc-10531068b70c.png";
+const OMRA_IMAGE =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_021203_c259a2f2-4b7d-495f-abfc-fe3cd296c467.png";
+const AGENCY_IMAGE =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_021208_d53af3a7-bd04-40ac-8375-e0d7af7469d1.png";
 
 export default async function HomePage() {
   const locale = (await getLocale()) as Locale;
@@ -26,106 +36,165 @@ export default async function HomePage() {
   const featuredPacks = packs.filter((p) => p.isFeatured).slice(0, 6);
   const omraPack = packs.find((p) => p.tripType === "omra" || p.tripType === "hajj");
   const featuredReviews = reviews.slice(0, 6);
-  const heroTitle = t("heroTitle");
-  const [heroTitleBefore, heroTitleAfter] = heroTitle.split("Millenium Travel");
+
+  const destinationsWithPrice = featuredDestinations.map((destination) => {
+    const destPacks = packs.filter((p) => p.destinationId === destination.id);
+    const minPrice = destPacks.length > 0 ? Math.min(...destPacks.map((p) => p.priceFrom)) : null;
+    return { destination, minPrice };
+  });
+
+  const omraHighlights = omraPack ? (locale === "ar" ? omraPack.highlightsAr : omraPack.highlightsFr) : [];
 
   return (
     <div className="relative overflow-x-clip">
-      <section className="relative min-h-[480px] overflow-hidden lg:min-h-[600px]">
-        <HeroBackground />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.6),transparent_70%)] lg:bg-[radial-gradient(ellipse_at_center,rgba(20,28,26,0.45),transparent_65%)]" />
-        <div className="relative mx-auto flex h-full min-h-[480px] max-w-7xl flex-col items-center justify-center gap-5 px-4 pb-24 pt-24 text-center lg:min-h-[600px]">
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-white/80">{t("heroEyebrow")}</span>
-          <h1 className="max-w-3xl font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-lg sm:text-6xl">
-            {heroTitleBefore}
-            <span className="text-accent">Millenium Travel</span>
-            {heroTitleAfter}
-          </h1>
-          <p className="max-w-xl text-white/90">{t("heroSubtitle")}</p>
+      {/* Hero */}
+      <section className="relative min-h-[620px] overflow-hidden lg:min-h-[760px]">
+        <HeroBackground src={HERO_IMAGE} alt="" />
+        <div className="relative mx-auto flex h-full min-h-[620px] max-w-7xl flex-col justify-end gap-6 px-6 pb-16 pt-32 lg:min-h-[760px] lg:px-10 lg:pb-20">
+          <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-ivory/85">{t("heroEyebrow")}</span>
+          <h1 className="max-w-2xl font-display text-5xl italic leading-[1.05] text-ivory sm:text-7xl">{t("heroTitle")}</h1>
+          <p className="max-w-md font-sans text-sm font-light text-ivory/85 sm:text-base">{t("heroSubtitle")}</p>
+          <div className="mt-2 flex flex-col gap-4 sm:flex-row sm:items-start">
+            <SearchBar />
+            <Button href="/contact" tone="light" className="shrink-0">
+              {t("heroCta")}
+            </Button>
+          </div>
         </div>
       </section>
 
-      <div className="relative z-10 mx-auto -mt-12 flex max-w-2xl flex-col items-center gap-6 px-4 sm:-mt-16">
-        <SearchBar />
-        <div className="w-full max-w-md">
-          <StatsStrip destinationsCount={destinations.length} packsCount={packs.length} />
-        </div>
+      {/* Manifeste */}
+      <section className="mx-auto max-w-3xl px-6 py-24 text-center lg:px-10">
+        <Eyebrow className="justify-center">{t("manifestoEyebrow")}</Eyebrow>
+        <p className="mt-6 font-display text-2xl italic leading-relaxed text-ink sm:text-3xl">{t("manifestoText")}</p>
+      </section>
+
+      <div className="mx-auto max-w-4xl px-6 lg:px-10">
+        <StatsStrip destinationsCount={destinations.length} packsCount={packs.length} />
       </div>
 
-      <section className="mx-auto max-w-7xl px-4 py-28">
-        <div className="mb-10 text-center">
-          <Eyebrow>{t("routeMapEyebrow")}</Eyebrow>
-          <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("routeMapTitle")}</h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-slate-600">{t("routeMapSubtitle")}</p>
-        </div>
-        <DestinationRouteMap />
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-28">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+      {/* Destinations signature */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
           <div>
             <Eyebrow>{t("destinationsEyebrow")}</Eyebrow>
-            <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("popularDestinations")}</h2>
+            <h2 className="mt-3 font-display text-4xl italic text-ink sm:text-5xl">{t("popularDestinations")}</h2>
           </div>
-          <PillButton href="/destinations" tone="brand" variant="outline">
+          <Button href="/destinations" tone="dark">
             {tCommon("seeAll")}
-          </PillButton>
+          </Button>
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featuredDestinations.map((destination) => (
-            <DestinationCard key={destination.id} destination={destination} locale={locale} />
+        <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2">
+          {destinationsWithPrice.map(({ destination, minPrice }, index) => (
+            <Link key={destination.id} href={`/destinations/${destination.slug}`} className="group block">
+              <div className="overflow-hidden">
+                <ImagePlaceholder
+                  image={destination.heroImage}
+                  locale={locale}
+                  className="transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="mt-4 flex items-start justify-between gap-4 border-t border-ink/15 pt-4">
+                <div>
+                  <span className="font-sans text-xs text-ink/40">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-1 font-display text-2xl italic text-ink group-hover:underline">
+                    {pick(destination.nameFr, destination.nameAr, locale)}
+                  </h3>
+                  <p className="mt-1 max-w-sm font-sans text-sm font-light text-ink/60">
+                    {pick(destination.descriptionFr, destination.descriptionAr, locale)}
+                  </p>
+                </div>
+                {minPrice !== null && (
+                  <span className="shrink-0 whitespace-nowrap font-sans text-sm text-ink/70">
+                    {tCommon("from")} {formatMad(minPrice, locale)}
+                  </span>
+                )}
+              </div>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-28">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+      {/* Route map */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="mb-10 text-center">
+          <Eyebrow className="justify-center">{t("routeMapEyebrow")}</Eyebrow>
+          <h2 className="mt-3 font-display text-4xl italic text-ink sm:text-5xl">{t("routeMapTitle")}</h2>
+          <p className="mx-auto mt-3 max-w-xl font-sans text-sm font-light text-ink/60">{t("routeMapSubtitle")}</p>
+        </div>
+        <DestinationRouteMap />
+      </section>
+
+      {/* Packs à la une */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
             <Eyebrow>{t("packsEyebrow")}</Eyebrow>
-            <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("featuredPacks")}</h2>
+            <h2 className="mt-3 font-display text-4xl italic text-ink sm:text-5xl">{t("featuredPacks")}</h2>
           </div>
-          <PillButton href="/packs" tone="accent" variant="outline">
+          <Button href="/packs" tone="dark">
             {tCommon("seeAllPacks")}
-          </PillButton>
+          </Button>
         </div>
         <BentoPackGrid packs={featuredPacks} locale={locale} />
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-28">
-        <div className="mx-auto mb-8 max-w-3xl text-center">
-          <Eyebrow>{t("quizEyebrow")}</Eyebrow>
-          <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{tQuiz("teaser")}</h2>
-          <p className="mt-3 text-sm text-slate-600">{tQuiz("cta")}</p>
-        </div>
-        <TravelQuiz />
-      </section>
-
+      {/* Omra Premium */}
       {omraPack && (
-        <section className="relative overflow-hidden bg-hajj px-4 py-16 text-center">
-          <video
-            className="absolute inset-0 h-full w-full object-cover opacity-40"
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260704_114707_0de6c178-692d-4188-be84-30e1e577077b.mp4"
-            poster="/images/mecque-omra.jpg"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-hajj/90 to-hajj-dark/95" />
-          <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-4">
-            <h2 className="text-3xl font-display font-extrabold tracking-tight text-gold sm:text-4xl">{t("omraTitle")}</h2>
-            <p className="max-w-xl text-sm text-white/90">{t("omraSubtitle")}</p>
-            <PillButton href="/omra-hajj" tone="gold">
-              {t("omraCta")}
-            </PillButton>
+        <section className="relative overflow-hidden bg-ink px-6 py-28 text-center text-ivory lg:px-10">
+          <div className="absolute inset-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={OMRA_IMAGE} alt="" className="h-full w-full object-cover opacity-45" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/50" />
+          </div>
+          <div className="relative mx-auto max-w-2xl">
+            <Eyebrow tone="ivory" className="justify-center">
+              {t("omraEyebrow")}
+            </Eyebrow>
+            <h2 className="mt-4 font-display text-4xl italic text-gold sm:text-5xl">{t("omraTitle")}</h2>
+            <p className="mx-auto mt-4 max-w-xl font-sans font-light text-ivory/85">{t("omraSubtitle")}</p>
+            {omraHighlights.length > 0 && (
+              <ul className="mx-auto mt-8 flex max-w-lg flex-col gap-2 font-sans text-sm text-ivory/80 sm:flex-row sm:justify-center sm:gap-8">
+                {omraHighlights.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            )}
+            <p className="mt-8 font-display text-2xl italic text-gold">
+              {tCommon("from")} {formatMad(omraPack.priceFrom, locale)}
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Button href="/omra-hajj" tone="light">
+                {t("omraCta")}
+              </Button>
+            </div>
           </div>
         </section>
       )}
 
+      {/* Processus sur-mesure */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="mb-12 max-w-xl">
+          <Eyebrow>{t("processEyebrow")}</Eyebrow>
+          <h2 className="mt-3 font-display text-4xl italic text-ink sm:text-5xl">{t("processTitle")}</h2>
+        </div>
+        <div className="grid gap-10 border-t border-ink/15 pt-10 sm:grid-cols-3">
+          {[1, 2, 3].map((n) => (
+            <div key={n}>
+              <span className="font-display text-3xl italic text-accent">{String(n).padStart(2, "0")}</span>
+              <h3 className="mt-3 font-sans text-sm font-semibold uppercase tracking-[0.1em] text-ink">
+                {t(`process${n}Title` as "process1Title")}
+              </h3>
+              <p className="mt-2 font-sans text-sm font-light text-ink/60">{t(`process${n}Text` as "process1Text")}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Pourquoi nous : narration au scroll */}
       <StickyNarrative
-        image="/images/turquie-oludeniz-aerien.jpg"
-        eyebrow={t("whyUsTitle")}
+        image={AGENCY_IMAGE}
+        eyebrow={t("narrativeEyebrow")}
         steps={[
           { title: t("whyUs1Title"), text: t("whyUs1Text") },
           { title: t("whyUs2Title"), text: t("whyUs2Text") },
@@ -133,22 +202,63 @@ export default async function HomePage() {
         ]}
       />
 
+      {/* Le Journal — repères pratiques réels */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="mb-12 max-w-xl">
+          <Eyebrow>{t("journalEyebrow")}</Eyebrow>
+          <h2 className="mt-3 font-display text-4xl italic text-ink sm:text-5xl">{t("journalTitle")}</h2>
+          <p className="mt-3 font-sans text-sm font-light text-ink/60">{t("journalSubtitle")}</p>
+        </div>
+        <div className="grid gap-8 border-t border-ink/15 pt-10 sm:grid-cols-2 lg:grid-cols-4">
+          {destinations.map((destination) => (
+            <div key={destination.id}>
+              <p className="font-sans text-xs font-semibold uppercase tracking-[0.1em] text-accent">
+                {pick(destination.nameFr, destination.nameAr, locale)}
+              </p>
+              <p className="mt-3 font-display text-lg italic text-ink">
+                {pick(destination.bestPeriodFr, destination.bestPeriodAr, locale)}
+              </p>
+              {destination.visaInfoFr && (
+                <p className="mt-2 font-sans text-sm font-light text-ink/60">
+                  {pick(destination.visaInfoFr, destination.visaInfoAr, locale)}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Quiz */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="mx-auto mb-10 max-w-2xl text-center">
+          <Eyebrow className="justify-center">{t("quizEyebrow")}</Eyebrow>
+          <h2 className="mt-3 font-display text-4xl italic text-ink sm:text-5xl">{tQuiz("teaser")}</h2>
+          <p className="mt-3 font-sans text-sm font-light text-ink/60">{tQuiz("cta")}</p>
+        </div>
+        <TravelQuiz />
+      </section>
+
+      {/* Preuve sociale */}
       {featuredReviews.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 py-28">
-          <div className="mb-8 text-center">
-            <Eyebrow>{t("testimonialsEyebrow")}</Eyebrow>
-            <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("testimonialsTitle")}</h2>
+        <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+          <div className="mb-10 text-center">
+            <Eyebrow className="justify-center">{t("testimonialsEyebrow")}</Eyebrow>
+            <h2 className="mt-3 font-display text-4xl italic text-ink sm:text-5xl">{t("testimonialsTitle")}</h2>
           </div>
           <TestimonialCarousel reviews={featuredReviews} />
         </section>
       )}
 
-      <section className="mx-auto max-w-7xl px-4 py-28">
-        <Eyebrow>{t("visitEyebrow")}</Eyebrow>
-        <h2 className="mt-2 text-3xl font-display font-extrabold tracking-tight text-slate-900 sm:text-4xl">{t("visitTitle")}</h2>
-        <p className="mb-8 mt-3 text-sm text-slate-600">{t("visitSubtitle")}</p>
-        <div className="max-w-lg">
+      {/* Contact / lead capture */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="mb-12 max-w-xl">
+          <Eyebrow>{t("visitEyebrow")}</Eyebrow>
+          <h2 className="mt-3 font-display text-4xl italic text-ink sm:text-5xl">{t("visitTitle")}</h2>
+          <p className="mt-3 font-sans text-sm font-light text-ink/60">{t("visitSubtitle")}</p>
+        </div>
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
           <AgencyLocationCard />
+          <ContactRequestForm />
         </div>
       </section>
     </div>

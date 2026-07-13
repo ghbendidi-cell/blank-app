@@ -2,7 +2,6 @@ import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
 import { agency } from "@/data/agency";
 import { pick, telLink, whatsappLink } from "@/lib/locale-content";
-import TiltCard from "./animations/TiltCard";
 
 export default function AgencyLocationCard() {
   const locale = useLocale() as Locale;
@@ -11,19 +10,18 @@ export default function AgencyLocationCard() {
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${agency.name} ${agency.addressFr}`)}`;
 
   return (
-    <TiltCard>
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-lg">
-      <div className="flex aspect-video w-full items-center justify-center border-b border-slate-200 bg-slate-100 text-slate-400">
-        <span className="text-sm">Google Maps — {agency.neighborhood}, {agency.city}</span>
+    <div className="overflow-hidden border border-ink/15 bg-white">
+      <div className="flex aspect-video w-full items-center justify-center border-b border-ink/15 bg-ivory-dark text-ink/40">
+        <span className="font-sans text-sm">Google Maps — {agency.neighborhood}, {agency.city}</span>
       </div>
-      <div className="space-y-4 p-5">
+      <div className="space-y-4 p-6">
         <div>
-          <p className="text-sm font-semibold text-slate-900">{t("address")}</p>
-          <p className="text-sm text-slate-600">{address}</p>
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/50">{t("address")}</p>
+          <p className="mt-1 font-sans text-sm text-ink/80">{address}</p>
         </div>
         <div>
-          <p className="text-sm font-semibold text-slate-900">{t("hours")}</p>
-          <ul className="mt-1 space-y-0.5 text-sm text-slate-600">
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink/50">{t("hours")}</p>
+          <ul className="mt-1 space-y-0.5 font-sans text-sm text-ink/80">
             {agency.openingHours.map((oh) => (
               <li key={oh.dayFr} className="flex justify-between gap-4">
                 <span>{pick(oh.dayFr, oh.dayAr, locale)}</span>
@@ -32,15 +30,15 @@ export default function AgencyLocationCard() {
             ))}
           </ul>
         </div>
-        <div className="flex flex-wrap gap-2 pt-1">
-          <a href={telLink(agency.phone)} className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white">
+        <div className="flex flex-wrap gap-2 pt-2">
+          <a href={telLink(agency.phone)} className="border border-ink px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.1em] text-ink transition-colors hover:bg-ink hover:text-ivory">
             {agency.phone}
           </a>
           <a
             href={whatsappLink(agency.whatsapp, "")}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-[#25D366] px-4 py-2 text-sm font-semibold text-white"
+            className="border border-[#25D366] px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.1em] text-[#128C7E] transition-colors hover:bg-[#25D366] hover:text-white"
           >
             WhatsApp
           </a>
@@ -48,13 +46,12 @@ export default function AgencyLocationCard() {
             href={directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-brand px-4 py-2 text-sm font-semibold text-brand"
+            className="border border-ink/30 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.1em] text-ink/70 transition-colors hover:border-ink hover:text-ink"
           >
             {t("directions")}
           </a>
         </div>
       </div>
     </div>
-    </TiltCard>
   );
 }
