@@ -11,6 +11,13 @@ import { destinationTheme } from "@/lib/theme";
 import { formatMad } from "@/lib/locale-content";
 import Stars from "./Stars";
 
+const PACK_IMAGES: Record<string, string> = {
+  "pack-egypte-caire-sharm": "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_023917_71925604-401a-4fac-9ec9-84f99edda11d.png",
+  "pack-vietnam": "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_023925_03f1c356-3f69-49a7-9362-7c422df9b22e.png",
+  "pack-istanbul": "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_023932_9cbcdab5-0b6b-4fe1-a25c-f7c913cd71e0.png",
+  "pack-hajj-2027": "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_023938_8a6f12bb-b3b4-4015-92fd-168d407ef5f5.png",
+};
+
 function BentoCard({ pack, locale, className = "" }: { pack: Pack; locale: Locale; className?: string }) {
   const t = useTranslations("common");
   const tTypes = useTranslations("packs.types");
@@ -18,6 +25,7 @@ function BentoCard({ pack, locale, className = "" }: { pack: Pack; locale: Local
   const destination = destinations.find((d) => d.id === pack.destinationId);
   const theme = destinationTheme[destination?.accentColor ?? "egypt"];
   const image = pack.images[1] ?? pack.images[0];
+  const imageUrl = PACK_IMAGES[pack.id] ?? image.url;
   const alt = pick(image.altFr, image.altAr, locale);
 
   return (
@@ -26,9 +34,9 @@ function BentoCard({ pack, locale, className = "" }: { pack: Pack; locale: Local
       className={`group relative flex h-full w-full flex-col overflow-hidden border border-ink/10 transition duration-300 hover:shadow-lg ${className}`}
     >
       <div className="absolute inset-0">
-        {image.url ? (
+        {imageUrl ? (
           <Image
-            src={image.url}
+            src={imageUrl}
             alt={alt}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"

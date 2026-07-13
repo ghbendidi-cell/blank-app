@@ -26,6 +26,13 @@ const OMRA_IMAGE =
 const AGENCY_IMAGE =
   "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_021208_d53af3a7-bd04-40ac-8375-e0d7af7469d1.png";
 
+const DESTINATION_IMAGES: Record<string, string> = {
+  "dest-egypte": "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_023854_769aba17-c3fe-4934-907b-90e16e3e1c8e.png",
+  "dest-vietnam": "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_023858_c3303bb7-5de9-444c-82d2-3bbd1133502c.png",
+  "dest-turquie": "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_023903_3640f9a5-208d-45ed-8f9e-91442378492a.png",
+  "dest-arabie-saoudite": "https://d8j0ntlcm91z4.cloudfront.net/user_3FzLTlt28p4tBZh58xHOYeBE65G/hf_20260713_023911_5d00e8b4-34a6-4230-9118-ac6a616dffe9.png",
+};
+
 export default async function HomePage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("home");
@@ -89,7 +96,7 @@ export default async function HomePage() {
             <Link key={destination.id} href={`/destinations/${destination.slug}`} className="group block">
               <div className="overflow-hidden">
                 <ImagePlaceholder
-                  image={destination.heroImage}
+                  image={{ ...destination.heroImage, url: DESTINATION_IMAGES[destination.id] ?? destination.heroImage.url }}
                   locale={locale}
                   className="transition-transform duration-700 group-hover:scale-105"
                 />
