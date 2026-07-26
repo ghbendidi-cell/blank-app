@@ -3,16 +3,21 @@
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
+import { usePathname } from "@/i18n/navigation";
 import { agency } from "@/data/agency";
 import { whatsappLink } from "@/lib/locale-content";
 import { getAgencyOpenStatus, type AgencyOpenStatus } from "@/lib/agency-status";
 
+const PAGES_WITH_CONTACT_BAR = ["/packs", "/omra-hajj", "/voyages-groupes", "/avis"];
+
 export default function WhatsAppButton({ message }: { message?: string }) {
   const locale = useLocale() as Locale;
+  const pathname = usePathname();
   const t = useTranslations("nav");
   const tw = useTranslations("whatsapp");
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<AgencyOpenStatus | null>(null);
+  const liftedForContactBar = PAGES_WITH_CONTACT_BAR.includes(pathname);
 
   useEffect(() => {
     setStatus(getAgencyOpenStatus());
@@ -43,7 +48,11 @@ export default function WhatsAppButton({ message }: { message?: string }) {
   ];
 
   return (
-    <div className="fixed bottom-20 end-4 z-50 flex flex-col items-end gap-3 lg:bottom-6">
+    <div
+      className={`fixed end-4 z-50 flex flex-col items-end gap-3 ${
+        liftedForContactBar ? "bottom-[9rem] lg:bottom-[5.5rem]" : "bottom-20 lg:bottom-6"
+      }`}
+    >
       {open && (
         <div className="w-64 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
           <div className="flex items-center gap-2 bg-[#25D366] px-4 py-3 text-white">

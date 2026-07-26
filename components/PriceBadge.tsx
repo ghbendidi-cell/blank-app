@@ -15,8 +15,8 @@ export default function PriceBadge({
   const sizeClass = { sm: "text-sm", md: "text-lg", lg: "text-2xl" }[size];
 
   return (
-    <span className={`font-bold text-brand ${sizeClass}`}>
-      <span className="me-1 text-xs font-normal text-slate-500">{t("from")}</span>
+    <span className={`font-bold text-ink ${sizeClass}`}>
+      <span className="me-1 text-xs font-normal text-ink/50">{t("from")}</span>
       {formatMad(amount, locale)}
     </span>
   );

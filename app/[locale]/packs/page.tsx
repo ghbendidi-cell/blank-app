@@ -1,161 +1,118 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useMemo, useState } from "react";
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
-import { useRouter } from "@/i18n/navigation";
-import { destinations } from "@/data/destinations";
 import { packs } from "@/data/packs";
-import { pick } from "@/lib/locale-content";
 import PackCard from "@/components/PackCard";
-import FilterPanel, { type PackFiltersState } from "@/components/FilterPanel";
 import Breadcrumb from "@/components/Breadcrumb";
-import CompareBar from "@/components/CompareBar";
-import ComparisonModal from "@/components/ComparisonModal";
+import StickyContactBar from "@/components/StickyContactBar";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
 
-const MAX_COMPARE = 3;
+type QuickFilter = "all" | "maroc" | "international" | "omraHajj";
 
-function matchesDuration(days: number, range: string) {
-  if (!range) return true;
-  if (range === "11+") return days >= 11;
-  const [min, max] = range.split("-").map(Number);
-  return days >= min && days <= max;
+function matchesFilter(tripType: string, filter: QuickFilter) {
+  if (filter === "all") return true;
+  if (filter === "omraHajj") return tripType === "omra" || tripType === "hajj";
+  return tripType === filter;
 }
 
 export default function PacksPage() {
-  return (
-    <Suspense fallback={null}>
-      <PacksPageContent />
-    </Suspense>
-  );
-}
-
-function PacksPageContent() {
   const locale = useLocale() as Locale;
   const t = useTranslations("packs");
   const tCommon = useTranslations("common");
   const tNav = useTranslations("nav");
-  const searchParams = useSearchParams();
-  const router = useRouter();
 
-  const [filters, setFilters] = useState<PackFiltersState>({
-    destination: searchParams.get("destination") ?? "",
-    budgetMax: searchParams.get("budget_max") ?? "",
-    duration: searchParams.get("duration") ?? "",
-    type: searchParams.get("type") ?? "",
-  });
-  const [sort, setSort] = useState(searchParams.get("sort") ?? "popularity");
-  const query = searchParams.get("q") ?? "";
-  const [compareIds, setCompareIds] = useState<string[]>([]);
-  const [showComparison, setShowComparison] = useState(false);
-  const comparedPacks = packs.filter((p) => compareIds.includes(p.id));
+  const [filter, setFilter] = useState<QuickFilter>("all");
 
-  function toggleCompare(id: string) {
-    setCompareIds((prev) => {
-      if (prev.includes(id)) return prev.filter((x) => x !== id);
-      if (prev.length >= MAX_COMPARE) return prev;
-      return [...prev, id];
-    });
-  }
+  const filteredPacks = useMemo(() => packs.filter((pack) => matchesFilter(pack.tripType, filter)), [filter]);
 
-  const filteredPacks = useMemo(() => {
-    let result = packs.filter((pack) => {
-      if (filters.destination && pack.destinationId !== filters.destination) return false;
-      if (filters.budgetMax && pack.priceFrom > Number(filters.budgetMax)) return false;
-      if (filters.duration && !matchesDuration(pack.durationDays, filters.duration)) return false;
-      if (filters.type && pack.tripType !== filters.type) return false;
-      if (query) {
-        const title = pick(pack.titleFr, pack.titleAr, locale).toLowerCase();
-        if (!title.includes(query.toLowerCase())) return false;
-      }
-      return true;
-    });
-
-    if (sort === "priceAsc") result = [...result].sort((a, b) => a.priceFrom - b.priceFrom);
-    if (sort === "priceDesc") result = [...result].sort((a, b) => b.priceFrom - a.priceFrom);
-    if (sort === "popularity") result = [...result].sort((a, b) => b.ratingCount - a.ratingCount);
-
-    return result;
-  }, [filters, sort, query, locale]);
-
-  function handleFilterChange(next: Partial<PackFiltersState>) {
-    setFilters((prev) => ({ ...prev, ...next }));
-  }
-
-  function handleReset() {
-    setFilters({ destination: "", budgetMax: "", duration: "", type: "" });
-    router.replace({ pathname: "/packs" });
-  }
+  const filters: QuickFilter[] = ["all", "maroc", "international", "omraHajj"];
 
   return (
-    <div>
+    <div className="bg-ivory pb-24">
       <Breadcrumb items={[{ label: tCommon("seeAll"), href: "/" }, { label: tNav("packs") }]} />
 
-      <div className="mx-auto max-w-7xl px-4 pb-16">
-        <h1 className="font-display text-4xl italic text-ink sm:text-5xl">{t("title")}</h1>
-        <p className="mt-1 text-sm text-slate-600">{t("subtitle")}</p>
+      <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-10">
+        <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-accent">{t("eyebrow")}</p>
+        <h1 className="mt-3 max-w-2xl font-display text-4xl text-ink sm:text-5xl">
+          {t.rich("richTitle", { i: (chunks) => <em className="italic">{chunks}</em> })}
+        </h1>
+        <p className="mt-4 max-w-md font-sans text-base text-ink/60">{t("subtitle")}</p>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[280px_1fr]">
-          <aside>
-            <FilterPanel
-              destinations={destinations}
-              filters={filters}
-              onChange={handleFilterChange}
-              onReset={handleReset}
-            />
-          </aside>
-
-          <div>
-            <div className="mb-4 flex items-center justify-between">
-              <p className="text-sm text-slate-500">{t("resultsCount", { count: filteredPacks.length })}</p>
-              <label className="flex items-center gap-2 text-sm">
-                <span className="text-slate-500">{t("sort.label")}</span>
-                <select
-                  value={sort}
-                  onChange={(e) => setSort(e.target.value)}
-                  className="rounded-lg border border-slate-300 px-2 py-1.5 text-sm"
-                >
-                  <option value="popularity">{t("sort.popularity")}</option>
-                  <option value="priceAsc">{t("sort.priceAsc")}</option>
-                  <option value="priceDesc">{t("sort.priceDesc")}</option>
-                </select>
-              </label>
-            </div>
-
-            {filteredPacks.length === 0 ? (
-              <p className="rounded-xl border border-dashed border-slate-300 p-10 text-center text-sm text-slate-500">
-                {tCommon("noResults")}
-              </p>
-            ) : (
-              <StaggerGrid className="grid gap-5 pb-20 sm:grid-cols-2 xl:grid-cols-3">
-                {filteredPacks.map((pack) => (
-                  <StaggerItem key={pack.id}>
-                    <PackCard
-                      pack={pack}
-                      locale={locale}
-                      compare={{
-                        selected: compareIds.includes(pack.id),
-                        disabled: compareIds.length >= MAX_COMPARE,
-                        onToggle: () => toggleCompare(pack.id),
-                      }}
-                    />
-                  </StaggerItem>
-                ))}
-              </StaggerGrid>
-            )}
-          </div>
+        <div className="mt-8 flex flex-wrap gap-2">
+          {filters.map((f) => (
+            <button
+              key={f}
+              type="button"
+              onClick={() => setFilter(f)}
+              className={`rounded-full border px-5 py-2 font-sans text-xs font-semibold uppercase tracking-[0.1em] transition-colors ${
+                filter === f
+                  ? "border-accent bg-accent text-ivory"
+                  : "border-ink/15 bg-transparent text-ink/70 hover:border-ink/40"
+              }`}
+            >
+              {t(`quickFilter.${f}`)}
+            </button>
+          ))}
         </div>
+
+        {filteredPacks.length === 0 ? (
+          <p className="mt-10 rounded-2xl border border-dashed border-ink/20 p-10 text-center font-sans text-sm text-ink/50">
+            {tCommon("noResults")}
+          </p>
+        ) : (
+          <StaggerGrid className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredPacks.map((pack, index) => (
+              <StaggerItem key={pack.id} className={index === 0 ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""}>
+                <PackCard pack={pack} locale={locale} />
+              </StaggerItem>
+            ))}
+          </StaggerGrid>
+        )}
       </div>
 
-      <CompareBar
-        packs={comparedPacks}
-        onRemove={(id) => setCompareIds((prev) => prev.filter((x) => x !== id))}
-        onClear={() => setCompareIds([])}
-        onOpen={() => setShowComparison(true)}
-      />
-      {showComparison && <ComparisonModal packs={comparedPacks} onClose={() => setShowComparison(false)} />}
+      <section className="border-t border-ink/10 bg-ivory-dark">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-10">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[20px]">
+            <Image
+              src="/images/istanbul-bosphore.jpg"
+              alt="Conseiller Millenium Travel préparant un voyage"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="rounded-[20px] bg-ivory p-8 lg:p-10">
+            <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-accent">{t("whyUsEyebrow")}</p>
+            <h2 className="mt-3 font-display text-2xl italic text-ink sm:text-3xl">{t("whyUsTitle")}</h2>
+            <WhyUsList />
+          </div>
+        </div>
+      </section>
+
+      <StickyContactBar />
     </div>
+  );
+}
+
+function WhyUsList() {
+  const tHome = useTranslations("home");
+  const items = [
+    { title: tHome("whyUs1Title"), text: tHome("whyUs1Text") },
+    { title: tHome("whyUs2Title"), text: tHome("whyUs2Text") },
+    { title: tHome("whyUs3Title"), text: tHome("whyUs3Text") },
+  ];
+
+  return (
+    <ul className="mt-6 space-y-5">
+      {items.map((item) => (
+        <li key={item.title} className="border-t border-ink/10 pt-4">
+          <p className="font-display text-base italic text-ink">{item.title}</p>
+          <p className="mt-1 font-sans text-sm text-ink/60">{item.text}</p>
+        </li>
+      ))}
+    </ul>
   );
 }

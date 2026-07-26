@@ -79,19 +79,15 @@
     }
   },
   "packs": {
+    "eyebrow": "Nos itinéraires",
+    "richTitle": "Nos <i>itinéraires</i> — 100% sur-mesure",
+    "subtitle": "Laissez-vous inspirer, puis affinons ensemble.",
     "title": "Nos packs voyage",
-    "subtitle": "Filtrez par destination, budget, durée et type de voyage pour trouver votre pack idéal.",
-    "filters": {
-      "title": "Filtres",
-      "destination": "Destination",
-      "allDestinations": "Toutes les destinations",
-      "budget": "Budget (MAD)",
-      "duration": "Durée",
-      "allDurations": "Toutes durées",
-      "type": "Type de voyage",
-      "allTypes": "Tous les types",
-      "reset": "Réinitialiser",
-      "apply": "Appliquer"
+    "quickFilter": {
+      "all": "Tous",
+      "maroc": "Maroc",
+      "international": "International",
+      "omraHajj": "Omra & Hajj"
     },
     "types": {
       "maroc": "Maroc",
@@ -101,16 +97,8 @@
       "groupe": "Groupe",
       "sur-mesure": "Sur-mesure"
     },
-    "sort": {
-      "label": "Trier par",
-      "priceAsc": "Prix croissant",
-      "priceDesc": "Prix décroissant",
-      "popularity": "Popularité"
-    },
-    "resultsCount": "{count, plural, one {# pack trouvé} other {# packs trouvés}}",
-    "compare": "Comparer",
-    "compareBarTitle": "Comparer les packs sélectionnés",
-    "compareClear": "Vider la sélection"
+    "whyUsEyebrow": "L'agence",
+    "whyUsTitle": "Pourquoi voyager avec Millenium"
   },
   "packDetail": {
     "highlights": "Points forts",
@@ -201,6 +189,10 @@
   "sticky": {
     "quote": "Devis",
     "call": "Appeler"
+  },
+  "contactBar": {
+    "label": "Parlez à un conseiller Millenium",
+    "cta": "Composer mon voyage"
   },
   "whatsapp": {
     "onlineNow": "En ligne maintenant",

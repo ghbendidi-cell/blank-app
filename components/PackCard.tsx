@@ -3,8 +3,6 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import type { Pack } from "@/lib/types";
 import { pick } from "@/lib/locale-content";
-import { destinations } from "@/data/destinations";
-import { destinationTheme } from "@/lib/theme";
 import ImagePlaceholder from "./ImagePlaceholder";
 import PriceBadge from "./PriceBadge";
 import Stars from "./Stars";
@@ -28,21 +26,17 @@ export default function PackCard({
   const tPacks = useTranslations("packs");
   const tTypes = useTranslations("packs.types");
   const title = pick(pack.titleFr, pack.titleAr, locale);
-  const destination = destinations.find((d) => d.id === pack.destinationId);
-  const theme = destinationTheme[destination?.accentColor ?? "egypt"];
 
   return (
     <Link
       href={`/packs/${pack.slug}`}
-      className="group flex flex-col overflow-hidden border border-ink/10 bg-white transition duration-300 hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-[20px] border border-ink/10 bg-white transition duration-300 hover:shadow-lg"
     >
       <div className="relative overflow-hidden">
         <div className="transition-transform duration-500 group-hover:scale-105">
           <ImagePlaceholder image={pack.images[0]} locale={locale} />
         </div>
-        <span
-          className={`absolute start-3 top-3 px-2.5 py-1 font-sans text-[11px] font-semibold uppercase tracking-[0.1em] shadow-sm ${theme.badge}`}
-        >
+        <span className="absolute start-3 top-3 rounded-full bg-accent/90 px-2.5 py-1 font-sans text-[11px] font-semibold uppercase tracking-[0.1em] text-ivory shadow-sm">
           {tTypes(pack.tripType)}
         </span>
         {compare && (

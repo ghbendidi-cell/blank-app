@@ -79,19 +79,15 @@
     }
   },
   "packs": {
+    "eyebrow": "برامجنا",
+    "richTitle": "برامجنا <i>المصممة</i> خصيصا لكم",
+    "subtitle": "دعوا خيالكم يقودكم، ثم نضبط التفاصيل معا.",
     "title": "عروض السفر",
-    "subtitle": "صفِّ حسب الوجهة والميزانية والمدة ونوع الرحلة لإيجاد العرض المناسب لك.",
-    "filters": {
-      "title": "التصفية",
-      "destination": "الوجهة",
-      "allDestinations": "جميع الوجهات",
-      "budget": "الميزانية (درهم)",
-      "duration": "المدة",
-      "allDurations": "جميع المدد",
-      "type": "نوع الرحلة",
-      "allTypes": "جميع الأنواع",
-      "reset": "إعادة تعيين",
-      "apply": "تطبيق"
+    "quickFilter": {
+      "all": "الكل",
+      "maroc": "المغرب",
+      "international": "دولي",
+      "omraHajj": "العمرة والحج"
     },
     "types": {
       "maroc": "المغرب",
@@ -101,16 +97,8 @@
       "groupe": "جماعي",
       "sur-mesure": "حسب الطلب"
     },
-    "sort": {
-      "label": "الترتيب حسب",
-      "priceAsc": "السعر تصاعديا",
-      "priceDesc": "السعر تنازليا",
-      "popularity": "الأكثر طلبا"
-    },
-    "resultsCount": "{count, plural, one {# عرض موجود} other {# عروض موجودة}}",
-    "compare": "مقارنة",
-    "compareBarTitle": "مقارنة العروض المختارة",
-    "compareClear": "إفراغ الاختيار"
+    "whyUsEyebrow": "الوكالة",
+    "whyUsTitle": "لماذا تسافرون مع ميلينيوم"
   },
   "packDetail": {
     "highlights": "أبرز المميزات",
@@ -201,6 +189,10 @@
   "sticky": {
     "quote": "عرض سعر",
     "call": "اتصال"
+  },
+  "contactBar": {
+    "label": "تحدثوا مع مستشار ميلينيوم",
+    "cta": "صمّم رحلتي"
   },
   "whatsapp": {
     "onlineNow": "متصل الآن",
