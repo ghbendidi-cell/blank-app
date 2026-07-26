@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Sans_Arabic, Fraunces, Amiri } from "next/font/google";
+import { Instrument_Sans, IBM_Plex_Sans_Arabic, Fraunces, Amiri } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -10,9 +10,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import PageTransition from "@/components/PageTransition";
 import "../globals.css";
 
-const inter = Inter({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -87,12 +87,12 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${inter.variable} ${plexArabic.variable} ${fraunces.variable} ${amiri.variable}`}
+      className={`${instrumentSans.variable} ${plexArabic.variable} ${fraunces.variable} ${amiri.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-ivory text-ink antialiased">
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <main className="flex-1">
+          <main className="flex-1 pt-[var(--header-h)]">
             <PageTransition>{children}</PageTransition>
           </main>
           <Footer />

@@ -34,6 +34,11 @@ const config: Config = {
           dark: "#A18B5F",
           light: "#F7F3EC",
         },
+        salmon: {
+          DEFAULT: "#D79683",
+          dark: "#BD7562",
+          light: "#F6E7E1",
+        },
         egypt: {
           DEFAULT: "#A65E2E",
           dark: "#7C4620",

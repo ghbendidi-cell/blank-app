@@ -10,6 +10,10 @@ html[dir="rtl"] {
   --font-display: var(--font-display-arabic);
 }
 
+:root {
+  --header-h: 5.5rem;
+}
+
 body {
   font-family: var(--font-sans);
 }

@@ -5,15 +5,23 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { agency } from "@/data/agency";
-import { telLink, whatsappLink } from "@/lib/locale-content";
+import { destinations } from "@/data/destinations";
+import { telLink, whatsappLink, pick } from "@/lib/locale-content";
 import LanguageSwitcher from "./LanguageSwitcher";
+
+const TRANSPARENT_THRESHOLD = 480;
 
 export default function Header() {
   const t = useTranslations("nav");
   const locale = useLocale() as Locale;
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const isHome = pathname === "/";
+  const onDark = isHome && !scrolled;
 
   const links = [
     { href: "/destinations", label: t("destinations") },
@@ -27,6 +35,19 @@ export default function Header() {
 
   const waMessage =
     locale === "ar" ? "مرحبا، أرغب في الحصول على معلومات حول عروض السفر." : "Bonjour, je souhaite avoir des informations sur vos voyages.";
+
+  useEffect(() => {
+    if (!isHome) {
+      setScrolled(false);
+      return;
+    }
+    function handleScroll() {
+      setScrolled(window.scrollY > TRANSPARENT_THRESHOLD);
+    }
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHome]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -44,18 +65,26 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40">
-      <div className="border-b border-ink/10 bg-ivory/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-5 lg:px-10">
+    <header className="fixed inset-x-0 top-0 z-40">
+      <div
+        className={`flex min-h-[var(--header-h)] items-center transition-colors duration-500 ${
+          onDark ? "bg-transparent" : "border-b border-ink/10 bg-ivory/95 backdrop-blur-sm"
+        }`}
+      >
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 lg:px-10">
           <Link href="/" className="shrink-0">
-            <Image
-              src="/images/logo-millenium-travel.png"
-              alt="Millenium Travel"
-              width={680}
-              height={280}
-              priority
-              className="h-9 w-auto"
-            />
+            {onDark ? (
+              <span className="font-display text-xl italic text-ivory">Millenium Travel</span>
+            ) : (
+              <Image
+                src="/images/logo-millenium-travel.png"
+                alt="Millenium Travel"
+                width={680}
+                height={280}
+                priority
+                className="h-9 w-auto"
+              />
+            )}
           </Link>
 
           <div className="flex items-center gap-5">
@@ -64,7 +93,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="hidden text-ink/60 transition-colors duration-300 hover:text-brand sm:block"
+              className={`hidden transition-colors duration-300 hover:text-brand sm:block ${onDark ? "text-ivory/80" : "text-ink/60"}`}
             >
               <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.9 7.9 0 01-4.03-1.1l-.29-.17-2.99.79.8-2.92-.19-.3A7.93 7.93 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.36-5.86c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z" />
@@ -73,16 +102,16 @@ export default function Header() {
 
             <button
               type="button"
-              className="flex items-center gap-3 text-ink"
+              className={`flex items-center gap-3 transition-colors duration-300 ${onDark ? "text-ivory" : "text-ink"}`}
               onClick={() => setOpen(true)}
               aria-label={t("menu")}
               aria-expanded={open}
             >
               <span className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.14em] sm:inline">{t("menu")}</span>
               <span className="flex flex-col items-end gap-[5px]">
-                <span className="block h-px w-6 bg-ink" />
-                <span className="block h-px w-6 bg-ink" />
-                <span className="block h-px w-4 bg-ink" />
+                <span className={`block h-px w-6 ${onDark ? "bg-ivory" : "bg-ink"}`} />
+                <span className={`block h-px w-6 ${onDark ? "bg-ivory" : "bg-ink"}`} />
+                <span className={`block h-px w-4 ${onDark ? "bg-ivory" : "bg-ink"}`} />
               </span>
             </button>
           </div>
@@ -107,7 +136,7 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: locale === "ar" ? "-100%" : "100%" }}
               transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
-              className="fixed inset-y-0 end-0 z-50 flex w-full max-w-sm flex-col justify-between border-s border-ink/10 bg-ivory px-8 py-8"
+              className="fixed inset-y-0 end-0 z-50 flex w-full max-w-sm flex-col justify-between overflow-y-auto border-s border-ink/10 bg-ivory px-8 py-8"
             >
               <div>
                 <div className="flex items-center justify-between">
@@ -137,6 +166,23 @@ export default function Header() {
                     </li>
                   ))}
                 </ul>
+
+                <div className="mt-10 border-t border-ink/10 pt-6">
+                  <p className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-ink/50">{t("destinations")}</p>
+                  <ul className="mt-3 flex flex-col gap-2">
+                    {destinations.map((destination) => (
+                      <li key={destination.id}>
+                        <Link
+                          href={`/destinations/${destination.slug}`}
+                          onClick={() => setOpen(false)}
+                          className="font-sans text-sm text-ink/70 transition-colors hover:text-ink"
+                        >
+                          {pick(destination.nameFr, destination.nameAr, locale)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
               <div className="border-t border-ink/10 pt-6">

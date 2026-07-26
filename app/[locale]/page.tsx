@@ -58,8 +58,8 @@ export default async function HomePage() {
 
   return (
     <div className="relative overflow-x-clip">
-      {/* Hero */}
-      <section className="relative min-h-[620px] overflow-hidden lg:min-h-[760px]">
+      {/* Hero: pulled up by -mt to bleed under the fixed, transparent-on-hero header (see Header.tsx) */}
+      <section className="relative -mt-[var(--header-h)] min-h-[620px] overflow-hidden lg:min-h-[760px]">
         <HeroBackground src={HERO_IMAGE} alt="" />
         <div className="relative mx-auto flex h-full min-h-[620px] max-w-7xl flex-col justify-end gap-6 px-6 pb-16 pt-32 lg:min-h-[760px] lg:px-10 lg:pb-20">
           <span className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-ivory/85">{t("heroEyebrow")}</span>
