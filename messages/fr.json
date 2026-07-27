@@ -114,6 +114,32 @@
     "requestQuoteFor": "Demander un devis pour ce pack",
     "day": "Jour {number}"
   },
+  "omra": {
+    "eyebrow": "Omra & Hajj",
+    "trustBandeau": ["Agence agréée", "Membre IATA", "Partenaire ONMT", "+15 ans d'expérience"],
+    "whyEyebrow": "Pourquoi nous choisir",
+    "whyTitle": "Pourquoi partir en Omra & Hajj avec Millenium",
+    "why1Title": "Encadrement religieux complet",
+    "why1Text": "Un accompagnement religieux assuré tout au long du séjour, du départ au retour.",
+    "why2Title": "Hébergement proche des lieux saints",
+    "why2Text": "Hôtels sélectionnés à proximité de la Mosquée du Prophète et des lieux saints.",
+    "why3Title": "4 nuits à Médine incluses",
+    "why3Text": "Un séjour dédié à Médine avant la Mecque, visites et prières à la Mosquée du Prophète.",
+    "why4Title": "Départ direct de Casablanca",
+    "why4Text": "Vols aller-retour directs, sans escale, au départ de Casablanca.",
+    "programEyebrow": "Le voyage",
+    "programTitle": "Le programme en détail",
+    "programSubtitle": "Hajj 1448H — 2027, au départ de Casablanca.",
+    "inclusionsNote": "Le programme complet, les dates de départ et les modalités de réservation sont détaillés sur la fiche du pack.",
+    "seeFullProgram": "Voir la fiche complète du programme",
+    "conversionEyebrow": "Parler à un conseiller",
+    "conversionTitle": "Une question ? Un conseiller vous répond",
+    "conversionSubtitle": "Au Maroc, WhatsApp reste le moyen le plus rapide pour échanger avec un conseiller. Écrivez-nous, ou laissez vos coordonnées ci-dessous.",
+    "whatsappCta": "Écrire sur WhatsApp",
+    "form": {
+      "title": "Être rappelé par un conseiller"
+    }
+  },
   "destinations": {
     "title": "Destinations",
     "subtitle": "Maroc, international, Moyen-Orient, Europe, Asie — découvrez toutes nos destinations.",
