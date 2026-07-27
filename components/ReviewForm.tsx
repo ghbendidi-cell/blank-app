@@ -34,22 +34,22 @@ export default function ReviewForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-green-200 bg-green-50 p-6 text-center text-sm text-green-800">
+      <div className="rounded-[20px] border border-accent/30 bg-accent-light p-6 text-center font-sans text-sm text-accent-dark">
         {t("success")}
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-slate-200 p-6">
-      <label className="block text-sm">
-        <span className="mb-1 block font-medium text-slate-700">{t("name")}</span>
-        <input name="authorName" required className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+    <form onSubmit={handleSubmit} className="space-y-4 rounded-[20px] border border-ink/15 bg-white p-6">
+      <label className="block">
+        <span className="mb-1.5 block font-sans text-xs font-semibold uppercase tracking-[0.1em] text-ink/60">{t("name")}</span>
+        <input name="authorName" required className="w-full border border-ink/20 bg-ivory px-3 py-2.5 font-sans text-sm text-ink outline-none transition-colors focus:border-ink" />
       </label>
 
-      <label className="block text-sm">
-        <span className="mb-1 block font-medium text-slate-700">{t("rating")}</span>
-        <select name="rating" defaultValue="5" className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+      <label className="block">
+        <span className="mb-1.5 block font-sans text-xs font-semibold uppercase tracking-[0.1em] text-ink/60">{t("rating")}</span>
+        <select name="rating" defaultValue="5" className="w-full border border-ink/20 bg-ivory px-3 py-2.5 font-sans text-sm text-ink outline-none transition-colors focus:border-ink">
           {[5, 4, 3, 2, 1].map((value) => (
             <option key={value} value={value}>
               {"★".repeat(value)}
@@ -58,17 +58,17 @@ export default function ReviewForm() {
         </select>
       </label>
 
-      <label className="block text-sm">
-        <span className="mb-1 block font-medium text-slate-700">{t("comment")}</span>
-        <textarea name="comment" rows={4} required className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
+      <label className="block">
+        <span className="mb-1.5 block font-sans text-xs font-semibold uppercase tracking-[0.1em] text-ink/60">{t("comment")}</span>
+        <textarea name="comment" rows={4} required className="w-full border border-ink/20 bg-ivory px-3 py-2.5 font-sans text-sm text-ink outline-none transition-colors focus:border-ink" />
       </label>
 
-      {status === "error" && <p className="text-sm text-red-600">Erreur, réessayez.</p>}
+      {status === "error" && <p className="font-sans text-sm text-red-700">Erreur, réessayez.</p>}
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full rounded-lg bg-brand py-3 text-sm font-semibold text-white disabled:opacity-60"
+        className="w-full rounded-full bg-accent py-3 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-ivory transition-colors hover:bg-accent-dark disabled:opacity-60"
       >
         {t("submit")}
       </button>

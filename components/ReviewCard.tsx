@@ -10,17 +10,17 @@ export default function ReviewCard({ review }: { review: Review }) {
   const comment = pick(review.commentFr ?? "", review.commentAr, locale);
 
   return (
-    <div className="rounded-xl border border-slate-200 p-5">
+    <div className="rounded-[20px] border border-ink/10 bg-white p-6">
       <div className="flex items-center justify-between">
         <div>
-          <p className="font-semibold text-slate-900">{review.authorName}</p>
-          <p className="text-xs text-slate-400">{formatDate(review.createdAt, locale)}</p>
+          <p className="font-display italic text-ink">{review.authorName}</p>
+          <p className="font-sans text-xs text-ink/40">{formatDate(review.createdAt, locale)}</p>
         </div>
         <Stars rating={review.rating} size={14} />
       </div>
-      <p className="mt-3 text-sm text-slate-600">{comment}</p>
+      <p className="mt-3 font-sans text-sm text-ink/65">{comment}</p>
       {review.verifiedClient && (
-        <span className="mt-3 inline-flex items-center gap-1 rounded-full bg-brand-light px-2.5 py-1 text-xs font-medium text-brand">
+        <span className="mt-3 inline-flex items-center gap-1 rounded-full bg-accent-light px-2.5 py-1 font-sans text-xs font-medium text-accent-dark">
           {t("verifiedClient")}
         </span>
       )}

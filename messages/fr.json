@@ -149,6 +149,8 @@
     "packsCount": "{count, plural, one {# pack} other {# packs}}"
   },
   "avis": {
+    "eyebrow": "Témoignages",
+    "richTitle": "Ils ont <i>voyagé</i> avec nous",
     "title": "Avis de nos voyageurs",
     "subtitle": "Découvrez les expériences de nos clients partis avec Millenium Travel.",
     "overallRating": "Note globale",
@@ -164,7 +166,9 @@
       "submit": "Envoyer mon avis",
       "success": "Merci ! Votre avis a été envoyé et sera publié après modération."
     },
-    "visitCta": "Visitez-nous à Maarif"
+    "visitCta": "Visitez-nous à Maarif",
+    "ctaTitle": "Envie d'écrire le prochain avis ?",
+    "cta": "Composer mon voyage"
   },
   "contact": {
     "title": "Contactez-nous",
