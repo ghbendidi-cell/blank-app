@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="Riad patio, morning light">
+  <rect width="1600" height="1000" fill="#F1EAD9"/>
+  <rect x="16" y="16" width="1568" height="968" fill="none" stroke="#BE5B33" stroke-opacity="0.35" stroke-width="1.5"/>
+  <g fill="#9C4826" font-family="Georgia, 'Times New Roman', serif" text-anchor="middle">
+    <text x="800" y="492" font-size="22" letter-spacing="2">Riad patio, morning light</text>
+    <text x="800" y="522" font-size="13" fill="#5C5548" font-family="Helvetica, Arial, sans-serif" letter-spacing="1">public/videos/hero-riad-patio.mp4</text>
+  </g>
+</svg>
