@@ -63,12 +63,12 @@ fichier) ; le choix de langue du visiteur est mémorisé dans le navigateur
 - `WHATSAPP_NUMBER` — numéro WhatsApp au format international, chiffres
   uniquement (ex. `212600000000`).
 - `CONTACT_EMAIL` — email affiché en pied de page.
-- `BRAND_NAME` — remplace le texte `[NAME]` / `[NOM]` utilisé en attendant
-  le nom de marque définitif et le logo. Le nom de marque dans la barre de
-  navigation (lettrage espacé) se modifie séparément dans
-  `src/i18n/translations.ts` (`nav.brand`, pour chaque langue) si vous
-  voulez un rendu différent (espacement, majuscules) de celui du pied de
-  page.
+- `BRAND_NAME` — actuellement `Dar Amana` (« maison de confiance » en
+  arabe). Le nom de marque dans la barre de navigation (lettrage espacé)
+  se modifie séparément dans `src/i18n/translations.ts` (`nav.brand`,
+  pour chaque langue) si vous voulez un rendu différent de celui du pied
+  de page. Il n'y a pas encore de logo — le mot-symbole texte fait office
+  de logo en attendant.
 
 ## Formulaire de contact
 

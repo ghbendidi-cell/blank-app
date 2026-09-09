@@ -69,12 +69,12 @@ export interface TranslationStrings {
 export const translations: Record<Language, TranslationStrings> = {
   en: {
     meta: {
-      title: "[NAME] — Riad & Property Concierge, Marrakech",
+      title: "Dar Amana — Riad & Property Concierge, Marrakech",
       description:
         "Full-service concierge for riad and short-term rental owners in Marrakech. On the ground, on your behalf.",
     },
     nav: {
-      brand: "[ N A M E ]",
+      brand: "DAR AMANA",
       services: "Services",
       contact: "Contact",
     },
@@ -198,12 +198,12 @@ export const translations: Record<Language, TranslationStrings> = {
   },
   fr: {
     meta: {
-      title: "[NOM] — Conciergerie de riad et de biens, Marrakech",
+      title: "Dar Amana — Conciergerie de riad et de biens, Marrakech",
       description:
         "Conciergerie complète pour propriétaires de riads et locations courte durée à Marrakech. Sur place, en votre nom.",
     },
     nav: {
-      brand: "[ N O M ]",
+      brand: "DAR AMANA",
       services: "Services",
       contact: "Contact",
     },

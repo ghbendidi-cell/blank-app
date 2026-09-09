@@ -13,10 +13,10 @@ const config: Config = {
           DEFAULT: "#2B2620",
           light: "#5C5548",
         },
-        terracotta: {
-          DEFAULT: "#BE5B33",
-          dark: "#9C4826",
-          light: "#E8C8B4",
+        olive: {
+          DEFAULT: "#6B6E39",
+          dark: "#52542C",
+          light: "#DEDFC4",
         },
       },
       fontFamily: {

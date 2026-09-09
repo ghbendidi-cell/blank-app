@@ -15,14 +15,14 @@ export function Header() {
           <button
             type="button"
             onClick={() => scrollToId("services")}
-            className="tracking-wide transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
+            className="tracking-wide transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive"
           >
             {t.nav.services}
           </button>
           <button
             type="button"
             onClick={() => scrollToId("contact")}
-            className="tracking-wide transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
+            className="tracking-wide transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive"
           >
             {t.nav.contact}
           </button>
@@ -31,7 +31,7 @@ export function Header() {
         <button
           type="button"
           onClick={() => scrollToId("top")}
-          className="font-serif text-sm tracking-widest2 text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta md:absolute md:left-1/2 md:-translate-x-1/2"
+          className="font-serif text-sm tracking-widest2 text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive md:absolute md:left-1/2 md:-translate-x-1/2"
         >
           {t.nav.brand}
         </button>

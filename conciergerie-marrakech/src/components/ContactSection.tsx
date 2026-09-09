@@ -33,7 +33,7 @@ export function ContactSection() {
   }
 
   const inputClasses =
-    "w-full rounded-soft border border-ink/15 bg-cream px-4 py-2.5 text-sm text-ink placeholder:text-ink-light/60 focus:border-terracotta focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta";
+    "w-full rounded-soft border border-ink/15 bg-cream px-4 py-2.5 text-sm text-ink placeholder:text-ink-light/60 focus:border-olive focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive";
   const labelClasses = "text-xs uppercase tracking-wide text-ink-light";
 
   return (
@@ -49,7 +49,7 @@ export function ContactSection() {
         {status === "success" ? (
           <p
             role="status"
-            className="rounded-soft border border-terracotta/30 bg-terracotta/5 px-6 py-8 text-center font-serif text-lg text-ink"
+            className="rounded-soft border border-olive/30 bg-olive/5 px-6 py-8 text-center font-serif text-lg text-ink"
           >
             {t.contact.form.success}
           </p>
@@ -121,12 +121,12 @@ export function ContactSection() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="w-full rounded-soft bg-terracotta px-7 py-3 text-sm tracking-wide text-cream transition-colors hover:bg-terracotta-dark disabled:opacity-60 sm:w-auto"
+                className="w-full rounded-soft bg-olive px-7 py-3 text-sm tracking-wide text-cream transition-colors hover:bg-olive-dark disabled:opacity-60 sm:w-auto"
               >
                 {t.contact.form.submit}
               </button>
               {status === "error" && (
-                <p className="mt-3 text-sm text-terracotta-dark" role="alert">
+                <p className="mt-3 text-sm text-olive-dark" role="alert">
                   {t.contact.whatsapp.label}
                 </p>
               )}

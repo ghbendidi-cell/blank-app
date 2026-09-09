@@ -7,7 +7,7 @@ export const WHATSAPP_NUMBER = "212600000000";
 /** Contact email shown in the footer. */
 export const CONTACT_EMAIL = "hello@example.com";
 
-export const BRAND_NAME = "[NAME]";
+export const BRAND_NAME = "Dar Amana";
 
 /**
  * Netlify Forms handles submission when this site is deployed on Netlify —

@@ -29,7 +29,7 @@ export function Hero() {
         <button
           type="button"
           onClick={scrollToContact}
-          className="mt-9 inline-block rounded-soft bg-terracotta px-7 py-3 text-sm tracking-wide text-cream transition-colors hover:bg-terracotta-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
+          className="mt-9 inline-block rounded-soft bg-olive px-7 py-3 text-sm tracking-wide text-cream transition-colors hover:bg-olive-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
         >
           {t.hero.cta}
         </button>

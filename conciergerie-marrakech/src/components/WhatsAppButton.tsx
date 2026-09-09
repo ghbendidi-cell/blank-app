@@ -12,7 +12,7 @@ export function WhatsAppButton({ className = "" }: { className?: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-soft border border-terracotta px-7 py-3 text-sm tracking-wide text-terracotta transition-colors hover:bg-terracotta hover:text-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-soft border border-olive px-7 py-3 text-sm tracking-wide text-olive transition-colors hover:bg-olive hover:text-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive ${className}`}
     >
       <svg
         viewBox="0 0 24 24"

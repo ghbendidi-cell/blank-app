@@ -13,7 +13,7 @@ export function HowItWorks() {
         <ol className="mt-14 grid gap-12 sm:grid-cols-3">
           {t.howItWorks.steps.map((step, index) => (
             <li key={step.title}>
-              <span className="font-serif text-3xl text-terracotta">
+              <span className="font-serif text-3xl text-olive">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-3 font-serif text-lg text-ink">

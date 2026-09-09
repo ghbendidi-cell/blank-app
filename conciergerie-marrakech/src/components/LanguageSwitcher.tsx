@@ -12,7 +12,7 @@ export function LanguageSwitcher() {
             type="button"
             onClick={() => setLanguage(lang)}
             aria-pressed={language === lang}
-            className={`rounded-soft px-1.5 py-1 uppercase transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta ${
+            className={`rounded-soft px-1.5 py-1 uppercase transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive ${
               language === lang
                 ? "text-ink font-medium"
                 : "text-ink-light hover:text-ink"
