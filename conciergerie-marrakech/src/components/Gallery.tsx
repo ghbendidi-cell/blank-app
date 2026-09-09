@@ -33,8 +33,8 @@ export function Gallery() {
                 className="relative aspect-[4/5] overflow-hidden rounded-soft"
               >
                 <VideoBackground
-                  videoSrc={`/videos/${slug}.mp4`}
-                  poster={`/images/${slug}-poster.${posterExt}`}
+                  videoSrc={`videos/${slug}.mp4`}
+                  poster={`images/${slug}-poster.${posterExt}`}
                   alt={item.name}
                   stillOnMobile
                   className="h-full w-full"

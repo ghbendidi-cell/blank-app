@@ -12,8 +12,8 @@ export function Hero() {
     <section id="top" className="relative flex h-[100svh] min-h-[560px] items-center justify-center text-cream">
       <div className="absolute inset-0">
         <VideoBackground
-          videoSrc="/videos/hero-riad-patio.mp4"
-          poster="/images/hero-riad-patio-poster.jpg"
+          videoSrc="videos/hero-riad-patio.mp4"
+          poster="images/hero-riad-patio-poster.jpg"
           alt=""
           priority
           className="h-full w-full"

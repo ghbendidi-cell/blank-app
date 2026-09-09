@@ -7,7 +7,7 @@ export function About() {
     <section className="px-6 py-24 sm:py-28">
       <div className="mx-auto grid max-w-5xl items-center gap-12 sm:grid-cols-[minmax(0,280px)_1fr]">
         <img
-          src="/images/about-portrait-placeholder.svg"
+          src="images/about-portrait-placeholder.svg"
           alt={t.about.photoAlt}
           className="aspect-[4/5] w-full max-w-xs rounded-soft object-cover sm:max-w-none"
         />
