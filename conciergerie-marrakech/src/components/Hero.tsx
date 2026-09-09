@@ -10,14 +10,16 @@ export function Hero() {
 
   return (
     <section id="top" className="relative flex h-[100svh] min-h-[560px] items-center justify-center text-cream">
-      <VideoBackground
-        videoSrc="/videos/hero-riad-patio.mp4"
-        poster="/images/hero-riad-patio-poster.svg"
-        alt=""
-        priority
-        className="absolute inset-0"
-      />
-      <div className="absolute inset-0 bg-ink/45" aria-hidden="true" />
+      <div className="absolute inset-0">
+        <VideoBackground
+          videoSrc="/videos/hero-riad-patio.mp4"
+          poster="/images/hero-riad-patio-poster.jpg"
+          alt=""
+          priority
+          className="h-full w-full"
+        />
+      </div>
+      <div className="absolute inset-0 bg-ink/55" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <h1 className="font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">

@@ -1,13 +1,15 @@
 import { useLanguage } from "../i18n/LanguageContext";
 import { VideoBackground } from "./VideoBackground";
 
-const slugs = [
-  "gallery-souk",
-  "gallery-medina",
-  "gallery-terrace-sunset",
-  "gallery-riad-patio",
-  "gallery-alley",
-  "gallery-artisan",
+// posterExt is "svg" for the shipped illustrative placeholders, or the real
+// file extension once a photo has been dropped in for that slot.
+const items = [
+  { slug: "gallery-souk", posterExt: "svg" },
+  { slug: "gallery-medina", posterExt: "jpg" },
+  { slug: "gallery-terrace-sunset", posterExt: "svg" },
+  { slug: "gallery-riad-patio", posterExt: "svg" },
+  { slug: "gallery-alley", posterExt: "svg" },
+  { slug: "gallery-artisan", posterExt: "webp" },
 ] as const;
 
 export function Gallery() {
@@ -22,7 +24,7 @@ export function Gallery() {
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {t.gallery.items.map((item, index) => {
-            const slug = slugs[index];
+            const { slug, posterExt } = items[index];
             return (
               <div
                 key={slug}
@@ -30,7 +32,7 @@ export function Gallery() {
               >
                 <VideoBackground
                   videoSrc={`/videos/${slug}.mp4`}
-                  poster={`/images/${slug}-poster.svg`}
+                  poster={`/images/${slug}-poster.${posterExt}`}
                   alt={item.name}
                   stillOnMobile
                   className="h-full w-full"
