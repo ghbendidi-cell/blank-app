@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { CONTACT_FORM_NAME } from "../config";
+import { useSelection } from "../context/SelectionContext";
 import { useLanguage } from "../i18n/LanguageContext";
+import { formatTemplate } from "../lib/format";
 import { WhatsAppButton } from "./WhatsAppButton";
 
 function encodeFormData(form: HTMLFormElement): string {
@@ -9,11 +11,20 @@ function encodeFormData(form: HTMLFormElement): string {
   ).toString();
 }
 
-export function ContactSection() {
+export function ContactSection({
+  headingLevel = "h2",
+}: {
+  /** Use "h1" when this section is the page's own heading (dedicated /contact page). */
+  headingLevel?: "h1" | "h2";
+}) {
+  const Heading = headingLevel;
   const { t } = useLanguage();
+  const { selected, remove } = useSelection();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle"
   );
+
+  const selectedNames = selected.map((slug) => t.servicesDetail[slug].name);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -39,13 +50,39 @@ export function ContactSection() {
   return (
     <section id="contact" className="px-6 py-24 sm:py-28">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="font-serif text-3xl text-ink sm:text-4xl">
+        <Heading className="font-serif text-3xl text-ink sm:text-4xl">
           {t.contact.heading}
-        </h2>
+        </Heading>
         <p className="mt-3 text-ink-light">{t.contact.subheading}</p>
       </div>
 
       <div className="mx-auto mt-12 max-w-2xl">
+        {selectedNames.length > 0 && (
+          <div className="mb-8 rounded-soft border border-olive/25 bg-olive/5 px-5 py-4">
+            <p className="text-xs uppercase tracking-wide text-ink-light">
+              {t.contact.selectionSummaryHeading}
+            </p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {selected.map((slug) => (
+                <li key={slug}>
+                  <button
+                    type="button"
+                    onClick={() => remove(slug)}
+                    aria-label={formatTemplate(t.contact.removeSelectionAria, {
+                      name: t.servicesDetail[slug].name,
+                    })}
+                    className="inline-flex items-center gap-1.5 rounded-soft border border-olive/40 bg-cream px-3 py-1 text-sm text-ink transition-colors hover:border-olive focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive"
+                  >
+                    {t.servicesDetail[slug].name}
+                    <span aria-hidden="true" className="text-ink-light">
+                      &times;
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         {status === "success" ? (
           <p
             role="status"
@@ -63,6 +100,13 @@ export function ContactSection() {
             className="grid gap-5 sm:grid-cols-2"
           >
             <input type="hidden" name="form-name" value={CONTACT_FORM_NAME} />
+            {selectedNames.length > 0 && (
+              <input
+                type="hidden"
+                name="selected_services"
+                value={selectedNames.join(", ")}
+              />
+            )}
             <p className="hidden">
               <label>
                 Company
@@ -141,7 +185,7 @@ export function ContactSection() {
         </div>
 
         <div className="mt-6 flex justify-center">
-          <WhatsAppButton />
+          <WhatsAppButton extraContext={selectedNames} />
         </div>
       </div>
     </section>

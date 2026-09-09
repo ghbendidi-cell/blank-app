@@ -1,11 +1,16 @@
-import { asset } from "../lib/asset";
+import { useEffect } from "react";
 import { useLanguage } from "../i18n/LanguageContext";
+import { asset } from "../lib/asset";
 
 export function About() {
   const { t } = useLanguage();
 
+  useEffect(() => {
+    document.title = `${t.about.heading} — ${t.nav.brand}`;
+  }, [t]);
+
   return (
-    <section className="px-6 py-24 sm:py-28">
+    <section className="px-6 py-28 sm:py-32">
       <div className="mx-auto grid max-w-5xl items-center gap-12 sm:grid-cols-[minmax(0,280px)_1fr]">
         <img
           src={asset("images/about-portrait-placeholder.svg")}
@@ -14,9 +19,9 @@ export function About() {
         />
 
         <div>
-          <h2 className="font-serif text-3xl text-ink sm:text-4xl">
+          <h1 className="font-serif text-3xl text-ink sm:text-4xl">
             {t.about.heading}
-          </h2>
+          </h1>
           <div className="mt-6 space-y-4">
             {t.about.paragraphs.map((paragraph) => (
               <p

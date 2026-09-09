@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { SERVICE_SLUGS } from "../data/services";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export function Services() {
@@ -11,9 +13,16 @@ export function Services() {
         </h2>
 
         <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {t.services.items.map((item) => (
+          {t.services.items.map((item, index) => (
             <div key={item.title}>
-              <h3 className="font-serif text-lg text-ink">{item.title}</h3>
+              <h3 className="font-serif text-lg text-ink">
+                <Link
+                  to={`/services/${SERVICE_SLUGS[index]}`}
+                  className="transition-colors hover:text-olive focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive"
+                >
+                  {item.title}
+                </Link>
+              </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-light">
                 {item.description}
               </p>

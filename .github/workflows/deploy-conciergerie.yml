@@ -37,6 +37,13 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      # SPA fallback: GitHub Pages serves 404.html for any unmatched path.
+      # Making it a copy of index.html lets React Router handle deep links
+      # (e.g. /blank-app/services/menage-linge) and page refreshes — the
+      # browser keeps the requested URL, React Router just reads it once the
+      # app mounts.
+      - run: cp dist/index.html dist/404.html
+
       - uses: actions/configure-pages@v5
         with:
           enablement: true

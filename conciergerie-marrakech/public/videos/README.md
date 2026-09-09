@@ -1,7 +1,8 @@
 # Drop your videos here
 
-Filenames the site already expects (see `src/components/Hero.tsx` and
-`src/components/Gallery.tsx`). Keep these exact names and the site picks
+Filenames the site already expects (see `src/components/Hero.tsx`,
+`src/components/Gallery.tsx`, `src/components/ServiceCard.tsx` and
+`src/pages/ServiceDetail.tsx`). Keep these exact names and the site picks
 them up automatically — no code changes needed.
 
 | File | Used for | Suggested length | Target size |
@@ -15,6 +16,16 @@ them up automatically — no code changes needed.
 | `gallery-artisan.mp4` | Gallery — "Craft, made by hand" | 5–10s loop | under 3 MB |
 | `gallery-riad-balconies.mp4` | Gallery — "A gallery overlooking the courtyard" | 5–10s loop | under 3 MB |
 | `gallery-riad-lounge.mp4` | Gallery — "A quiet sitting room" | 5–10s loop | under 3 MB |
+| `service-menage-linge.mp4` | Service page + listing card — "Housekeeping & linen, every stay" | 5–10s loop | under 3 MB |
+| `service-reporting.mp4` | Service page + listing card — "Detailed monthly reporting" | 5–10s loop | under 3 MB |
+| `service-interlocuteur-unique.mp4` | Service page + listing card — "One point of contact, always reachable" | 5–10s loop | under 3 MB |
+| `service-photos-videos.mp4` | Service page + listing card — "Professional photography & video updates" | 5–10s loop | under 3 MB |
+| `service-tarification-dynamique.mp4` | Service page + listing card — "Pricing adjusted continuously" | 5–10s loop | under 3 MB |
+| `service-transferts-experiences.mp4` | Service page + listing card — "Airport transfers & local experiences" | 5–10s loop | under 3 MB |
+
+Each `service-*.mp4` is reused in two places: the small card on
+`/services` and the wider banner at the top of that service's own page —
+one file covers both, no need for a separate version of each.
 
 ## Notes
 

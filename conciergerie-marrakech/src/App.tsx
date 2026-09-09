@@ -1,37 +1,34 @@
-import { About } from "./components/About";
-import { ContactSection } from "./components/ContactSection";
-import { Footer } from "./components/Footer";
-import { Gallery } from "./components/Gallery";
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { HowItWorks } from "./components/HowItWorks";
-import { Promise } from "./components/Promise";
-import { Services } from "./components/Services";
-import { useLanguage } from "./i18n/LanguageContext";
 import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import { Layout } from "./layouts/Layout";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
+import { Home } from "./pages/Home";
+import { Pricing } from "./pages/Pricing";
+import { ServiceDetail } from "./pages/ServiceDetail";
+import { ServicesList } from "./pages/ServicesList";
+import { useLanguage } from "./i18n/LanguageContext";
 
 export default function App() {
   const { t } = useLanguage();
 
   useEffect(() => {
-    document.title = t.meta.title;
+    // Per-page routes set their own document.title; this just covers the
+    // default (home) case and keeps the meta description in sync everywhere.
     const description = document.querySelector('meta[name="description"]');
     if (description) description.setAttribute("content", t.meta.description);
   }, [t]);
 
   return (
-    <div className="bg-cream text-ink">
-      <Header />
-      <main>
-        <Hero />
-        <Promise />
-        <Services />
-        <Gallery />
-        <HowItWorks />
-        <About />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="services" element={<ServicesList />} />
+        <Route path="services/:slug" element={<ServiceDetail />} />
+        <Route path="tarifs" element={<Pricing />} />
+        <Route path="a-propos" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+      </Route>
+    </Routes>
   );
 }

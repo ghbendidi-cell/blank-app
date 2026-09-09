@@ -1,11 +1,20 @@
 import { WHATSAPP_NUMBER } from "../config";
 import { useLanguage } from "../i18n/LanguageContext";
 
-export function WhatsAppButton({ className = "" }: { className?: string }) {
+export function WhatsAppButton({
+  className = "",
+  extraContext = [],
+}: {
+  className?: string;
+  /** Selected service names, appended to the pre-filled message if any are set. */
+  extraContext?: string[];
+}) {
   const { t } = useLanguage();
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    t.contact.whatsapp.message
-  )}`;
+  const message =
+    extraContext.length > 0
+      ? `${t.contact.whatsapp.message} ${t.contact.selectionSummaryHeading} ${extraContext.join(", ")}.`
+      : t.contact.whatsapp.message;
+  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
   return (
     <a

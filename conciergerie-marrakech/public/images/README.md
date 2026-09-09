@@ -19,16 +19,22 @@ mislabeling them as souk/derb shots they aren't.
 | `gallery-riad-lounge-poster.jpg` | Gallery — "A quiet sitting room" | **Real photo** — courtyard seating area with a carved wooden door. Source is 549×364. |
 | `about-portrait-placeholder.svg` | "Who I am" section portrait | Placeholder — must be a real photo of you, never AI-generated |
 | `favicon.svg` | Browser tab icon (monogram "D" — replace with your real logo mark) | Placeholder |
+| `service-menage-linge-poster.svg` | Service card + page banner — "Housekeeping & linen, every stay" | Placeholder |
+| `service-reporting-poster.svg` | Service card + page banner — "Detailed monthly reporting" | Placeholder |
+| `service-interlocuteur-unique-poster.svg` | Service card + page banner — "One point of contact, always reachable" | Placeholder |
+| `service-photos-videos-poster.svg` | Service card + page banner — "Professional photography & video updates" | Placeholder |
+| `service-tarification-dynamique-poster.svg` | Service card + page banner — "Pricing adjusted continuously" | Placeholder |
+| `service-transferts-experiences-poster.svg` | Service card + page banner — "Airport transfers & local experiences" | Placeholder |
 
 All of the real photos so far are quite low-resolution (under 700px
 wide) since they came in as web-sized images. They read fine at gallery
 card size but will look soft if you ever need a larger crop — ask for
 the originals if you have them.
 
-Poster filenames don't all share the same extension — `Gallery.tsx` and
-`Hero.tsx` reference each one explicitly, so when you replace a
-placeholder, update the extension in that component if it changes (e.g.
-`.svg` → `.jpg`).
+Poster filenames don't all share the same extension — `Gallery.tsx`,
+`Hero.tsx`, `ServiceCard.tsx` and `ServiceDetail.tsx` reference each one
+explicitly, so when you replace a placeholder, update the extension in
+that component if it changes (e.g. `.svg` → `.jpg`).
 
 Recommended aspect ratios: hero poster 16:10 landscape, gallery posters
 and the portrait 4:5 portrait (source photos are auto-cropped to fit via

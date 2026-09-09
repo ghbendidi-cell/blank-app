@@ -1,3 +1,4 @@
+import { asset } from "../lib/asset";
 import { useLanguage } from "../i18n/LanguageContext";
 import { VideoBackground } from "./VideoBackground";
 
@@ -33,8 +34,8 @@ export function Gallery() {
                 className="relative aspect-[4/5] overflow-hidden rounded-soft"
               >
                 <VideoBackground
-                  videoSrc={`videos/${slug}.mp4`}
-                  poster={`images/${slug}-poster.${posterExt}`}
+                  videoSrc={asset(`videos/${slug}.mp4`)}
+                  poster={asset(`images/${slug}-poster.${posterExt}`)}
                   alt={item.name}
                   stillOnMobile
                   className="h-full w-full"
