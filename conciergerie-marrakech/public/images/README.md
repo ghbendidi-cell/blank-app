@@ -1,8 +1,10 @@
 # Images
 
-Five slots now use real photos; two are still placeholder SVG cards
+Seven slots now use real photos; two are still placeholder SVG cards
 (plain cream cards naming the file they stand in for) so the site never
-looks broken while you gather the real thing.
+looks broken while you gather the real thing. The gallery grid grew from
+6 to 8 items to fit two more real photos in honestly, rather than
+mislabeling them as souk/derb shots they aren't.
 
 | File | Used for | Status |
 |---|---|---|
@@ -13,16 +15,15 @@ looks broken while you gather the real thing.
 | `gallery-riad-patio-poster.jpg` | Gallery — "A riad patio at rest" | **Real photo** — courtyard with a star-shaped fountain. Source is 599×333. |
 | `gallery-alley-poster.svg` | Gallery — "A quiet derb" | Placeholder |
 | `gallery-artisan-poster.webp` | Gallery — "Craft, made by hand" | **Real photo** — note: this shot's blue-painted walls read as Chefchaouen, not Marrakech; swap it if strict geographic accuracy matters to you. |
+| `gallery-riad-balconies-poster.jpg` | Gallery — "A gallery overlooking the courtyard" | **Real photo** — two-story arched courtyard with string lights. Source is 547×365. |
+| `gallery-riad-lounge-poster.jpg` | Gallery — "A quiet sitting room" | **Real photo** — courtyard seating area with a carved wooden door. Source is 549×364. |
 | `about-portrait-placeholder.svg` | "Who I am" section portrait | Placeholder — must be a real photo of you, never AI-generated |
 | `favicon.svg` | Browser tab icon (monogram "D" — replace with your real logo mark) | Placeholder |
 
-Two more riad courtyard photos you sent (two-story arched courtyard with
-string lights, and a courtyard with a carved wooden door and red sofas)
-aren't wired into the site — there was no honest slot left for them
-without duplicating "riad patio" or mislabeling them as something they're
-not. Ask if you'd like the gallery expanded past 6 items to fit them in,
-or want to swap them in for the still-placeholder souk/derb slots (they'd
-be captioned generically rather than as an actual souk or alley).
+All of the real photos so far are quite low-resolution (under 700px
+wide) since they came in as web-sized images. They read fine at gallery
+card size but will look soft if you ever need a larger crop — ask for
+the originals if you have them.
 
 Poster filenames don't all share the same extension — `Gallery.tsx` and
 `Hero.tsx` reference each one explicitly, so when you replace a

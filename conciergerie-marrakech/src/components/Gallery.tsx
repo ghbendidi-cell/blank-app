@@ -10,6 +10,8 @@ const items = [
   { slug: "gallery-riad-patio", posterExt: "jpg" },
   { slug: "gallery-alley", posterExt: "svg" },
   { slug: "gallery-artisan", posterExt: "webp" },
+  { slug: "gallery-riad-balconies", posterExt: "jpg" },
+  { slug: "gallery-riad-lounge", posterExt: "jpg" },
 ] as const;
 
 export function Gallery() {

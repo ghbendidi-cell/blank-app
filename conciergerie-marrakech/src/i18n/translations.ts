@@ -132,6 +132,8 @@ export const translations: Record<Language, TranslationStrings> = {
         { name: "A riad patio at rest" },
         { name: "A quiet derb" },
         { name: "Craft, still made by hand" },
+        { name: "A gallery overlooking the courtyard" },
+        { name: "A quiet sitting room" },
       ],
     },
     howItWorks: {
@@ -261,6 +263,8 @@ export const translations: Record<Language, TranslationStrings> = {
         { name: "Un patio de riad au calme" },
         { name: "Un derb tranquille" },
         { name: "L'artisanat, encore fait à la main" },
+        { name: "Une galerie donnant sur le patio" },
+        { name: "Un coin salon tranquille" },
       ],
     },
     howItWorks: {

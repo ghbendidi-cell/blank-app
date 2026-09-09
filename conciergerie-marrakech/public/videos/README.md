@@ -9,10 +9,12 @@ them up automatically — no code changes needed.
 | `hero-riad-patio.mp4` | Full-screen hero background | 10–20s loop | under 6 MB (above the fold, keep it light) |
 | `gallery-souk.mp4` | Gallery — "The souk at dusk" | 5–10s loop | under 3 MB |
 | `gallery-medina.mp4` | Gallery — "Medina, early morning" | 5–10s loop | under 3 MB |
-| `gallery-terrace-sunset.mp4` | Gallery — "Sunset from the terrace" | 5–10s loop | under 3 MB |
+| `gallery-terrace-sunset.mp4` | Gallery — "A rooftop terrace, medina in view" | 5–10s loop | under 3 MB |
 | `gallery-riad-patio.mp4` | Gallery — "A riad patio at rest" | 5–10s loop | under 3 MB |
 | `gallery-alley.mp4` | Gallery — "A quiet derb" | 5–10s loop | under 3 MB |
 | `gallery-artisan.mp4` | Gallery — "Craft, made by hand" | 5–10s loop | under 3 MB |
+| `gallery-riad-balconies.mp4` | Gallery — "A gallery overlooking the courtyard" | 5–10s loop | under 3 MB |
+| `gallery-riad-lounge.mp4` | Gallery — "A quiet sitting room" | 5–10s loop | under 3 MB |
 
 ## Notes
 
