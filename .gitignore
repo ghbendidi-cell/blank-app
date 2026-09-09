@@ -25,6 +25,9 @@ downloads/
 eggs/
 .eggs/
 lib/
+# The Python "lib/" rule above also matches conciergerie-marrakech/src/lib/,
+# a legitimate TypeScript source folder — re-include it explicitly.
+!conciergerie-marrakech/src/lib/
 lib64/
 parts/
 sdist/
