@@ -6,8 +6,8 @@ import { VideoBackground } from "./VideoBackground";
 const items = [
   { slug: "gallery-souk", posterExt: "svg" },
   { slug: "gallery-medina", posterExt: "jpg" },
-  { slug: "gallery-terrace-sunset", posterExt: "svg" },
-  { slug: "gallery-riad-patio", posterExt: "svg" },
+  { slug: "gallery-terrace-sunset", posterExt: "jpg" },
+  { slug: "gallery-riad-patio", posterExt: "jpg" },
   { slug: "gallery-alley", posterExt: "svg" },
   { slug: "gallery-artisan", posterExt: "webp" },
 ] as const;

@@ -128,7 +128,7 @@ export const translations: Record<Language, TranslationStrings> = {
       items: [
         { name: "The souk at dusk" },
         { name: "Medina, early morning" },
-        { name: "Sunset from the terrace" },
+        { name: "A rooftop terrace, medina in view" },
         { name: "A riad patio at rest" },
         { name: "A quiet derb" },
         { name: "Craft, still made by hand" },
@@ -257,7 +257,7 @@ export const translations: Record<Language, TranslationStrings> = {
       items: [
         { name: "Le souk à la tombée du jour" },
         { name: "La médina, tôt le matin" },
-        { name: "Coucher de soleil depuis la terrasse" },
+        { name: "Une terrasse sur les toits, vue sur la médina" },
         { name: "Un patio de riad au calme" },
         { name: "Un derb tranquille" },
         { name: "L'artisanat, encore fait à la main" },
