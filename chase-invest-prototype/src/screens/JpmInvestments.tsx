@@ -59,7 +59,7 @@ export function JpmInvestments() {
 
             {/* The new feature, presented like the existing product cards. */}
             <ProductCard
-              icon={<div className="flex h-12 w-12 items-center justify-center rounded-xl bg-chase-sky"><ShieldIcon className="h-7 w-7 text-chase-blue" /></div>}
+              icon={<div className="flex h-12 w-12 items-center justify-center rounded-xl bg-chase-accent-soft"><ShieldIcon className="h-7 w-7 text-chase-accent-strong" /></div>}
               title={<span className="flex items-center gap-2">Safety Buffer + Invest <Tag tone="blue">New</Tag></span>}
               text={
                 state.onboarded
@@ -80,7 +80,7 @@ export function JpmInvestments() {
                   <p className="mt-2 text-[15px] leading-relaxed text-[#5B6675]">
                     Speak to J.P. Morgan Personal Investing's expert team to discuss your investment strategy and options, and see if you're making the most of your money.
                   </p>
-                  <button className="mt-3 text-[15px] font-semibold text-chase-blue" onClick={() => toast('Booking isn’t part of this prototype')}>
+                  <button className="mt-3 text-[15px] font-semibold text-chase-accent-strong" onClick={() => toast('Booking isn’t part of this prototype')}>
                     Book a call
                   </button>
                 </div>
@@ -101,7 +101,7 @@ function ProductCard({ icon, title, text, onClick, highlight = false }: { icon: 
   return (
     <button
       onClick={onClick}
-      className={`flex w-full items-center gap-4 rounded-3xl bg-white px-5 py-6 text-left ${highlight ? 'ring-2 ring-chase-blue' : ''}`}
+      className={`flex w-full items-center gap-4 rounded-3xl bg-white px-5 py-6 text-left ${highlight ? 'ring-2 ring-chase-accent' : ''}`}
     >
       <span className="w-16 shrink-0">{icon}</span>
       <span className="flex-1">

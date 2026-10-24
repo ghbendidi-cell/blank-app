@@ -42,7 +42,7 @@ State is saved in `localStorage`. Use **Reset demo** before presenting.
 ## "What you could have earned" pop-up
 
 Opens automatically when the app opens (unless hidden for 30 days from the Save tab card); also from **Save** tab → *Show me*.
-Accent colour `#D0805C` (token `growth`), with `#B0603E` for small text and the button to keep WCAG AA contrast. Scrolling moves time from year 0 to year 10: the two lines draw themselves, the numbers count up,
+The whole app uses the accent `#D0805C` (tokens `chase-accent`, `growth`), with the darker `#B0603E` (`chase-accent-strong`) for text and for backgrounds behind white text, to keep WCAG AA contrast. Scrolling moves time from year 0 to year 10: the two lines draw themselves, the numbers count up,
 captions change at years 0 / 3 / 7 / 10, and at the end the gap is bracketed (+£4,840) with *Learn about investing* /
 *Maybe later* and the disclaimer. Scrolling back rewinds it. With reduced motion turned on, the final state is shown at once.
 

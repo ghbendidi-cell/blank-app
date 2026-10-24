@@ -89,7 +89,7 @@ export function BottomTabBar() {
         return (
           <button
             key={t.label}
-            className={`flex w-20 flex-col items-center gap-0.5 text-[12px] ${active ? 'text-chase-blue' : 'text-chase-muted'} `}
+            className={`flex w-20 flex-col items-center gap-0.5 text-[12px] ${active ? 'text-chase-accent-strong' : 'text-chase-muted'} `}
             onClick={() =>
               t.screen
                 ? dispatch({ type: 'NAVIGATE', screen: t.screen })

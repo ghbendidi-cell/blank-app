@@ -61,7 +61,7 @@ export function MonthlySummary() {
 
           <BucketRow
             icon={<WalletIcon className="h-5 w-5" />}
-            color="bg-[#0B2A5B]"
+            color="bg-[#5C2D1B]"
             title="Living money"
             sub={`About ${fmtMonths(b.livingMonthsUsed)} of spending${b.dependantsCounted ? ', adjusted for dependants' : ''}`}
             amount={b.livingMoney}
@@ -69,7 +69,7 @@ export function MonthlySummary() {
           />
           <BucketRow
             icon={<ShieldIcon className="h-5 w-5" />}
-            color="bg-[#117ACA]"
+            color="bg-[#9A5234]"
             title="Safety buffer"
             sub={`${fmtMonths(b.bufferMonthsUsed)} of spending${b.dependantsCounted ? ` (${state.assumptions.bufferBaseMonths} + ${b.dependantsCounted} for dependants)` : ''}`}
             amount={b.safetyBuffer}
@@ -88,7 +88,7 @@ export function MonthlySummary() {
             <Card className="p-4">
               <div className="flex items-start justify-between">
                 <div className="flex gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-chase-sky text-chase-blue">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-chase-accent-soft text-chase-accent-strong">
                     <GrowthIcon className="h-5 w-5" />
                   </div>
                   <div>
@@ -99,9 +99,9 @@ export function MonthlySummary() {
                 <div className="whitespace-nowrap text-right text-[16px] font-semibold text-chase-ink">{approx(b.spareMoney)}</div>
               </div>
               <div className="mt-3 grid grid-cols-2 gap-2">
-                <div className="rounded-xl bg-chase-sky p-3">
-                  <div className="text-[12px] text-chase-navy">Invest ({state.answers.investPct}% target)</div>
-                  <div className="text-[17px] font-semibold text-chase-blue">{approx(b.suggestedInvest)}</div>
+                <div className="rounded-xl bg-chase-accent-soft p-3">
+                  <div className="text-[12px] text-chase-accent-strong">Invest ({state.answers.investPct}% target)</div>
+                  <div className="text-[17px] font-semibold text-chase-accent-strong">{approx(b.suggestedInvest)}</div>
                 </div>
                 <div className="rounded-xl bg-chase-bg p-3">
                   <div className="text-[12px] text-chase-muted">Keep in cash</div>
@@ -164,11 +164,11 @@ function SplitBar({ b, cash }: { b: BucketResult; cash: number }) {
   if (cash <= 0) return null;
   const other = Math.max(0, cash - b.livingMoney - b.safetyBuffer - b.spareMoney);
   const segs = [
-    { v: Math.min(b.livingMoney, cash), c: 'bg-[#0B2A5B]', l: 'Living' },
-    { v: Math.min(b.safetyBuffer, Math.max(0, cash - b.livingMoney)), c: 'bg-[#117ACA]', l: 'Buffer' },
+    { v: Math.min(b.livingMoney, cash), c: 'bg-[#5C2D1B]', l: 'Living' },
+    { v: Math.min(b.safetyBuffer, Math.max(0, cash - b.livingMoney)), c: 'bg-[#9A5234]', l: 'Buffer' },
     { v: other, c: 'bg-[#C9D0DA]', l: 'Other cash' },
-    { v: b.keepInCash, c: 'bg-[#9CC3F5]', l: 'Keep' },
-    { v: b.suggestedInvest, c: 'bg-chase-blue', l: 'Invest' },
+    { v: b.keepInCash, c: 'bg-[#EBC3AF]', l: 'Keep' },
+    { v: b.suggestedInvest, c: 'bg-chase-accent', l: 'Invest' },
   ].filter((s) => s.v > 0);
   return (
     <>
@@ -202,7 +202,7 @@ function BucketRow({ icon, color, title, sub, amount, badge, action }: {
         <div className="text-[12px] text-chase-muted">
           {sub}
           {action && (
-            <button className="ml-1 font-semibold text-chase-blue" onClick={action.onClick}>
+            <button className="ml-1 font-semibold text-chase-accent-strong" onClick={action.onClick}>
               · {action.label}
             </button>
           )}
@@ -273,7 +273,7 @@ function AssumptionsSheet({ open, onClose }: { open: boolean; onClose: () => voi
 }
 
 function Stepper({ label, value, min, max, onChange }: { label: string; value: number; min: number; max: number; onChange: (v: number) => void }) {
-  const btn = 'h-10 w-10 rounded-full bg-chase-sky text-[20px] font-semibold text-chase-blue disabled:opacity-40';
+  const btn = 'h-10 w-10 rounded-full bg-chase-accent-soft text-[20px] font-semibold text-chase-accent-strong disabled:opacity-40';
   return (
     <div className="mt-5 flex items-center justify-between">
       <span className="text-[15px] text-chase-ink">{label}</span>

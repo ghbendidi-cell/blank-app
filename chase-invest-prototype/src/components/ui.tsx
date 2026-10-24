@@ -9,13 +9,13 @@ export function Button({
   ...rest
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant }) {
   const styles: Record<Variant, string> = {
-    primary: 'bg-chase-blue text-white hover:bg-[#0052cc] disabled:bg-[#9db9e6]',
-    secondary: 'bg-chase-sky text-chase-blue hover:bg-[#d6e8fc] disabled:opacity-50',
-    ghost: 'bg-transparent text-chase-blue hover:bg-chase-sky disabled:opacity-50',
+    primary: 'bg-chase-accent-strong text-white hover:bg-chase-accent-hover disabled:bg-[#E7C2B1]',
+    secondary: 'bg-chase-accent-soft text-chase-accent-strong hover:bg-[#F6DDD1] disabled:opacity-50',
+    ghost: 'bg-transparent text-chase-accent-strong hover:bg-chase-accent-soft disabled:opacity-50',
   };
   return (
     <button
-      className={`w-full rounded-full px-5 py-3.5 text-[16px] font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-chase-blue focus-visible:ring-offset-2 disabled:cursor-not-allowed ${styles[variant]} ${className}`}
+      className={`w-full rounded-full px-5 py-3.5 text-[16px] font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-chase-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed ${styles[variant]} ${className}`}
       {...rest}
     >
       {children}
@@ -32,7 +32,7 @@ export function Tag({ children, tone = 'grey' }: { children: ReactNode; tone?: '
   const tones = {
     grey: 'bg-chase-bg text-chase-muted',
     amber: 'bg-amber-50 text-amber-800',
-    blue: 'bg-chase-sky text-chase-blue',
+    blue: 'bg-chase-accent-soft text-chase-accent-strong',
   };
   return (
     <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium ${tones[tone]}`}>
@@ -65,7 +65,7 @@ export function Disclosure({ title, children, defaultOpen = false }: { title: st
   return (
     <div className="rounded-2xl border border-chase-line bg-white">
       <button
-        className="flex w-full items-center justify-between px-4 py-3.5 text-left text-[15px] font-semibold text-chase-blue"
+        className="flex w-full items-center justify-between px-4 py-3.5 text-left text-[15px] font-semibold text-chase-accent-strong"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
       >
@@ -81,7 +81,7 @@ export function ProgressBar({ step, total }: { step: number; total: number }) {
   return (
     <div className="flex gap-1.5" role="progressbar" aria-valuemin={1} aria-valuemax={total} aria-valuenow={step}>
       {Array.from({ length: total }, (_, i) => (
-        <div key={i} className={`h-1.5 flex-1 rounded-full ${i < step ? 'bg-chase-blue' : 'bg-chase-line'}`} />
+        <div key={i} className={`h-1.5 flex-1 rounded-full ${i < step ? 'bg-chase-accent' : 'bg-chase-line'}`} />
       ))}
     </div>
   );
@@ -94,7 +94,7 @@ export function Toggle({ checked, onChange, label }: { checked: boolean; onChang
       aria-checked={checked}
       aria-label={label}
       onClick={() => onChange(!checked)}
-      className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${checked ? 'bg-chase-blue' : 'bg-[#C9D0DA]'}`}
+      className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${checked ? 'bg-chase-accent' : 'bg-[#C9D0DA]'}`}
     >
       <span
         className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-transform ${checked ? 'translate-x-[22px]' : 'translate-x-0.5'}`}
@@ -107,7 +107,7 @@ export function Toggle({ checked, onChange, label }: { checked: boolean; onChang
 export function PlaceholderLogo({ size = 28 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" aria-label="Bank logo placeholder">
-      <rect x="2" y="2" width="28" height="28" rx="9" fill="#0060F0" />
+      <rect x="2" y="2" width="28" height="28" rx="9" fill="#D0805C" />
       <circle cx="16" cy="16" r="6.5" fill="none" stroke="white" strokeWidth="3" />
     </svg>
   );

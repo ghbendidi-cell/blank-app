@@ -23,17 +23,17 @@ export function Home() {
       <div className="flex-1 overflow-y-auto">
         <StatusBar time="15:19" />
         <header className="relative flex items-center justify-center px-5 pb-1 pt-3">
-          <span className="absolute left-6 text-chase-navy">
+          <span className="absolute left-6 text-chase-accent-strong">
             <ProfileIcon />
           </span>
-          <h1 className="text-[19px] text-chase-navy">Good afternoon, {MOCK_USER.firstName}</h1>
+          <h1 className="text-[19px] text-chase-accent-strong">Good afternoon, {MOCK_USER.firstName}</h1>
         </header>
         <nav className="flex justify-center gap-7 pb-5 pt-5">
           {TABS.map((t) => (
             <button
               key={t.id}
               onClick={() => dispatch({ type: 'SET_HOME_TAB', tab: t.id })}
-              className={`border-b-2 pb-1 text-[18px] ${state.homeTab === t.id ? 'border-chase-blue text-chase-blue' : 'border-transparent text-[#5B6675]'}`}
+              className={`border-b-2 pb-1 text-[18px] ${state.homeTab === t.id ? 'border-chase-accent text-chase-accent-strong' : 'border-transparent text-[#5B6675]'}`}
             >
               {t.label}
             </button>
@@ -70,8 +70,8 @@ function AccountIcon() {
   return (
     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-chase-line bg-white">
       <svg width="30" height="22" viewBox="0 0 30 22">
-        <ellipse cx="15" cy="14" rx="13" ry="6" fill="#7FB2F0" />
-        <ellipse cx="15" cy="9" rx="13" ry="6.5" fill="#0060F0" />
+        <ellipse cx="15" cy="14" rx="13" ry="6" fill="#E8B49C" />
+        <ellipse cx="15" cy="9" rx="13" ry="6.5" fill="#D0805C" />
         <path d="M15 5.5 19 9l-4 3.5L11 9Z" fill="white" />
       </svg>
     </span>
@@ -95,7 +95,7 @@ function SpendTab() {
     <>
       {/* Debit card + current accounts, as in the real app */}
       <div className="overflow-hidden rounded-[22px] shadow-card">
-        <div className="bg-chase-navy px-5 pb-9 pt-5 text-white">
+        <div className="bg-chase-accent-strong px-5 pb-9 pt-5 text-white">
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-3 text-[17px]">
               <PlaceholderLogo size={30} /> Debit
@@ -105,7 +105,7 @@ function SpendTab() {
             </button>
           </div>
           {cardOpen && (
-            <div className="mx-auto mt-5 aspect-[1.586] w-[85%] animate-fadeIn rounded-2xl bg-gradient-to-br from-[#1E5BD8] to-[#0B2A5B] p-4 shadow-lg">
+            <div className="mx-auto mt-5 aspect-[1.586] w-[85%] animate-fadeIn rounded-2xl bg-gradient-to-br from-[#D0805C] to-[#8F4A2E] p-4 shadow-lg">
               <div className="flex h-full flex-col justify-between">
                 <PlaceholderLogo size={26} />
                 <div className="font-mono text-[15px] tracking-widest">•••• •••• •••• 4821</div>
@@ -121,7 +121,7 @@ function SpendTab() {
               <div className="text-[15px] text-chase-muted">Balance: {gbp(balance, 2)}</div>
             </div>
             <button
-              className="rounded-full bg-[#E8F2FE] px-5 py-2.5 text-[17px] font-medium text-chase-blue"
+              className="rounded-full bg-chase-accent-soft px-5 py-2.5 text-[17px] font-medium text-chase-accent-strong"
               onClick={() => toast('Adding accounts isn’t part of this prototype')}
             >
               Add account
@@ -158,7 +158,7 @@ function SpendTab() {
           <div className="px-5 py-4 text-[14px] text-chase-muted">No credit card yet.</div>
         ) : (
           <div className="p-4">
-            <div className="relative overflow-hidden rounded-2xl border border-[#D6E8FC] p-5 pr-2">
+            <div className="relative overflow-hidden rounded-2xl border border-[#F2D5C8] p-5 pr-2">
               <button
                 className="absolute right-3 top-3 rounded-full p-1 text-chase-ink"
                 aria-label="Dismiss"
@@ -173,7 +173,7 @@ function SpendTab() {
                     Find out more and check if you're eligible to apply – without impacting your credit score.
                   </p>
                   <button
-                    className="mt-4 rounded-full bg-[#0060C8] px-6 py-2.5 text-[17px] font-medium text-white"
+                    className="mt-4 rounded-full bg-chase-accent-strong px-6 py-2.5 text-[17px] font-medium text-white"
                     onClick={() => toast('Credit cards aren’t part of this prototype')}
                   >
                     Let's go →
@@ -195,8 +195,8 @@ function PhoneInHand() {
     <svg className="mt-4 w-[38%]" viewBox="0 0 120 150" aria-hidden>
       <path d="M10 10 C30 6 40 20 46 30 L40 40 Z" fill="#E8B9A0" />
       <rect x="32" y="16" width="42" height="74" rx="7" transform="rotate(18 53 53)" fill="#555" />
-      <rect x="36" y="21" width="34" height="62" rx="4" transform="rotate(18 53 53)" fill="#CFE3FA" />
-      <rect x="52" y="52" width="40" height="26" rx="4" transform="rotate(58 72 65)" fill="#0B5CD7" />
+      <rect x="36" y="21" width="34" height="62" rx="4" transform="rotate(18 53 53)" fill="#F6DDD1" />
+      <rect x="52" y="52" width="40" height="26" rx="4" transform="rotate(58 72 65)" fill="#D0805C" />
       <rect x="60" y="56" width="6" height="5" rx="1" transform="rotate(58 72 65)" fill="#F4C542" />
       <path d="M78 70 C90 80 96 96 100 118 L112 140 L84 146 L70 112 C66 100 70 84 78 70 Z" fill="#9C5A2E" />
       <path d="M84 132 C90 128 98 128 104 132" stroke="#F28C28" strokeWidth="4" fill="none" />
@@ -247,8 +247,8 @@ export function BufferCard() {
     return (
       <Card className="p-5">
         <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-chase-sky">
-            <ShieldIcon className="h-5 w-5 text-chase-blue" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-chase-accent-soft">
+            <ShieldIcon className="h-5 w-5 text-chase-accent-strong" />
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
@@ -276,7 +276,7 @@ export function BufferCard() {
     <Card className="p-5">
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-2 text-[14px] font-medium text-chase-muted">
-          <ShieldIcon className="h-4 w-4 text-chase-blue" /> Safety buffer
+          <ShieldIcon className="h-4 w-4 text-chase-accent-strong" /> Safety buffer
         </span>
         <Tag>Estimate</Tag>
       </div>
@@ -288,7 +288,7 @@ export function BufferCard() {
       </p>
       {state.monthIndex > 0 && (
         <button
-          className="mt-3 flex items-center gap-1 text-[14px] font-semibold text-chase-blue"
+          className="mt-3 flex items-center gap-1 text-[14px] font-semibold text-chase-accent-strong"
           onClick={() => dispatch({ type: 'NAVIGATE', screen: 'summary' })}
         >
           See this month's money check <ChevronRight className="h-4 w-4" />
@@ -323,8 +323,8 @@ function GrowthStoryTrigger() {
     <>
       <Card className="p-5">
         <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-chase-sky">
-            <GrowthIcon className="h-5 w-5 text-chase-blue" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-chase-accent-soft">
+            <GrowthIcon className="h-5 w-5 text-chase-accent-strong" />
           </div>
           <div className="flex-1">
             <h2 className="text-[16px] font-semibold text-chase-ink">{GROWTH_COPY.trigger.title(gbp(amount), DEFAULT_YEARS)}</h2>
@@ -382,7 +382,7 @@ function InvestTab() {
               <p className="pt-1 text-[11px]">Shows money paid in. The prototype doesn't simulate market movements.</p>
             </div>
           )}
-          <div className="mt-3 flex items-center gap-1 text-[14px] font-semibold text-chase-blue">
+          <div className="mt-3 flex items-center gap-1 text-[14px] font-semibold text-chase-accent-strong">
             Explore investments <ChevronRight className="h-4 w-4" />
           </div>
         </div>
@@ -393,12 +393,12 @@ function InvestTab() {
       {state.onboarded && state.monthIndex === 0 && (
         <Card className="p-5">
           <div className="flex items-center gap-2 text-[17px] font-semibold text-chase-ink">
-            <GrowthIcon className="h-5 w-5 text-chase-blue" /> You're all set
+            <GrowthIcon className="h-5 w-5 text-chase-accent-strong" /> You're all set
           </div>
           <p className="mt-2 text-[14px] leading-snug text-chase-muted">
             On the 1st of each month we'll send you a money check. Nothing is invested unless you confirm it.
           </p>
-          <button className="mt-3 text-[14px] font-semibold text-chase-blue" onClick={() => dispatch({ type: 'NAVIGATE', screen: 'onboarding' })}>
+          <button className="mt-3 text-[14px] font-semibold text-chase-accent-strong" onClick={() => dispatch({ type: 'NAVIGATE', screen: 'onboarding' })}>
             Edit my answers
           </button>
         </Card>
@@ -410,7 +410,7 @@ function InvestTab() {
             <div className="text-[15px] font-semibold text-chase-ink">Monthly plan is on</div>
             <div className="text-[13px] text-chase-muted">Prepared each month, you confirm with one tap.</div>
           </div>
-          <button className="rounded-full bg-chase-sky px-4 py-2 text-[14px] font-semibold text-chase-blue" onClick={() => dispatch({ type: 'STOP_MONTHLY_PLAN' })}>
+          <button className="rounded-full bg-chase-accent-soft px-4 py-2 text-[14px] font-semibold text-chase-accent-strong" onClick={() => dispatch({ type: 'STOP_MONTHLY_PLAN' })}>
             Stop
           </button>
         </Card>
@@ -431,7 +431,7 @@ function InvestTab() {
       )}
 
       {state.onboarded && state.monthIndex > 0 && (
-        <button className="w-full text-center text-[14px] font-semibold text-chase-blue" onClick={() => dispatch({ type: 'NAVIGATE', screen: 'onboarding' })}>
+        <button className="w-full text-center text-[14px] font-semibold text-chase-accent-strong" onClick={() => dispatch({ type: 'NAVIGATE', screen: 'onboarding' })}>
           Edit my answers
         </button>
       )}

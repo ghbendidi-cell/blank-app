@@ -91,7 +91,7 @@ export function Onboarding() {
               placeholder="e.g. 27"
               value={a.age ?? ''}
               onChange={(e) => set({ age: e.target.value === '' ? null : Number(e.target.value) })}
-              className="w-full rounded-xl border border-chase-line px-4 py-4 text-[22px] font-semibold outline-none focus:border-chase-blue"
+              className="w-full rounded-xl border border-chase-line px-4 py-4 text-[22px] font-semibold outline-none focus:border-chase-accent"
               autoFocus
             />
           </Question>
@@ -107,7 +107,7 @@ export function Onboarding() {
                 <button
                   key={n}
                   onClick={() => set({ dependants: n })}
-                  className={`rounded-xl border py-4 text-[20px] font-semibold ${a.dependants === n ? 'border-chase-blue bg-chase-sky text-chase-blue' : 'border-chase-line text-chase-ink'}`}
+                  className={`rounded-xl border py-4 text-[20px] font-semibold ${a.dependants === n ? 'border-chase-accent bg-chase-accent-soft text-chase-accent-strong' : 'border-chase-line text-chase-ink'}`}
                 >
                   {n === 3 ? '3+' : n}
                 </button>
@@ -118,7 +118,7 @@ export function Onboarding() {
 
         {step === 3 && (
           <Question title="What do you spend in a typical month?" hint="Include rent or mortgage, bills, food, transport and anything you pay for others.">
-            <div className="rounded-xl bg-chase-sky p-3 text-[13px] text-chase-navy">
+            <div className="rounded-xl bg-chase-accent-soft p-3 text-[13px] text-chase-accent-strong">
               From your Chase account over the last 3 months, you spent about{' '}
               <strong>{gbp(averageMonthlySpending())}</strong> a month. Adjust it if that doesn't look right.
               <div className="mt-2 flex gap-2">
@@ -129,7 +129,7 @@ export function Onboarding() {
                 ))}
               </div>
             </div>
-            <div className="mt-5 flex items-center gap-2 rounded-xl border border-chase-line px-4 py-3 focus-within:border-chase-blue">
+            <div className="mt-5 flex items-center gap-2 rounded-xl border border-chase-line px-4 py-3 focus-within:border-chase-accent">
               <span className="text-[22px] font-semibold text-chase-muted">£</span>
               <input
                 type="number"
@@ -150,7 +150,7 @@ export function Onboarding() {
               step={50}
               value={Math.min(a.monthlySpending ?? 0, 8000)}
               onChange={(e) => set({ monthlySpending: Number(e.target.value) })}
-              className="mt-5 w-full accent-chase-blue"
+              className="mt-5 w-full accent-chase-accent"
               aria-label="Monthly spending slider"
             />
             <div className="flex justify-between text-[12px] text-chase-muted">
@@ -165,11 +165,11 @@ export function Onboarding() {
             <div className="space-y-2 rounded-xl border border-chase-line p-3 text-[13px] text-chase-ink">
               <p className="font-semibold">Leave these out. We'll keep both in cash for you:</p>
               <p className="flex gap-2">
-                <WalletIcon className="h-4 w-4 shrink-0 text-chase-blue" />
+                <WalletIcon className="h-4 w-4 shrink-0 text-chase-accent-strong" />
                 <span><strong>Money you live on</strong>: rent, bills and everyday spending.</span>
               </p>
               <p className="flex gap-2">
-                <ShieldIcon className="h-4 w-4 shrink-0 text-chase-blue" />
+                <ShieldIcon className="h-4 w-4 shrink-0 text-chase-accent-strong" />
                 <span><strong>Your safety buffer</strong>: money for emergencies, like losing your job or a big repair.</span>
               </p>
             </div>
@@ -194,8 +194,8 @@ export function Onboarding() {
               label="Share of spare money to invest"
             />
             <div className="mt-4 flex h-3 overflow-hidden rounded-full bg-chase-line">
-              <div className="bg-chase-blue transition-all" style={{ width: `${a.investPct ?? 0}%` }} />
-              <div className="flex-1 bg-[#9CC3F5]" />
+              <div className="bg-chase-accent transition-all" style={{ width: `${a.investPct ?? 0}%` }} />
+              <div className="flex-1 bg-[#EBC3AF]" />
             </div>
             <p className="mt-4 text-[12px] text-chase-muted">
               Investing is usually for money you can leave alone for at least 5 years.
@@ -210,11 +210,11 @@ export function Onboarding() {
                 <button
                   key={r.id}
                   onClick={() => set({ risk: r.id })}
-                  className={`w-full rounded-xl border p-4 text-left ${a.risk === r.id ? 'border-chase-blue bg-chase-sky' : 'border-chase-line'}`}
+                  className={`w-full rounded-xl border p-4 text-left ${a.risk === r.id ? 'border-chase-accent bg-chase-accent-soft' : 'border-chase-line'}`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[17px] font-semibold text-chase-ink">{r.title} risk</span>
-                    <span className={`flex h-5 w-5 items-center justify-center rounded-full border-2 ${a.risk === r.id ? 'border-chase-blue bg-chase-blue' : 'border-[#C9D0DA]'}`}>
+                    <span className={`flex h-5 w-5 items-center justify-center rounded-full border-2 ${a.risk === r.id ? 'border-chase-accent bg-chase-accent' : 'border-[#C9D0DA]'}`}>
                       {a.risk === r.id && <CheckIcon className="h-3 w-3 text-white" />}
                     </span>
                   </div>
@@ -258,7 +258,7 @@ function Question({ title, hint, children }: { title: string; hint?: string; chi
 function PercentSlider({ value, onChange, caption, label }: { value: number; onChange: (v: number) => void; caption: string; label: string }) {
   return (
     <div className="mt-5">
-      <div className="text-center text-[40px] font-semibold text-chase-blue">{value}%</div>
+      <div className="text-center text-[40px] font-semibold text-chase-accent-strong">{value}%</div>
       <div className="mb-3 text-center text-[14px] text-chase-muted">{caption}</div>
       <input
         type="range"
@@ -267,7 +267,7 @@ function PercentSlider({ value, onChange, caption, label }: { value: number; onC
         step={5}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full accent-chase-blue"
+        className="w-full accent-chase-accent"
         aria-label={label}
       />
       <div className="flex justify-between text-[12px] text-chase-muted">
@@ -283,8 +283,8 @@ function Intro({ onStart, onExit }: { onStart: () => void; onExit: () => void })
     <div className="flex h-full flex-col bg-white">
       <StatusBar />
       <div className="flex-1 overflow-y-auto px-6 pt-6">
-        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-chase-sky">
-          <ShieldIcon className="h-8 w-8 text-chase-blue" />
+        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-chase-accent-soft">
+          <ShieldIcon className="h-8 w-8 text-chase-accent-strong" />
         </div>
         <h1 className="text-[28px] font-semibold leading-tight text-chase-ink">Safety Buffer + Invest</h1>
         <p className="mt-3 text-[16px] leading-relaxed text-chase-muted">
@@ -311,7 +311,7 @@ function Intro({ onStart, onExit }: { onStart: () => void; onExit: () => void })
 }
 
 const Num = ({ n }: { n: number }) => (
-  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-chase-blue text-[13px] font-semibold text-white">{n}</span>
+  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-chase-accent-strong text-[13px] font-semibold text-white">{n}</span>
 );
 
 function UnderEighteen({ onBack, onExit }: { onBack: () => void; onExit: () => void }) {

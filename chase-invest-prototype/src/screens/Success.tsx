@@ -14,7 +14,7 @@ export function Success() {
     <div className="flex h-full flex-col bg-white">
       <StatusBar />
       <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
-        <div className="flex h-20 w-20 animate-pop items-center justify-center rounded-full bg-chase-blue">
+        <div className="flex h-20 w-20 animate-pop items-center justify-center rounded-full bg-chase-accent">
           <CheckIcon className="h-10 w-10 text-white" />
         </div>
         <h1 className="mt-6 text-[26px] font-semibold text-chase-ink">Done</h1>
@@ -25,7 +25,7 @@ export function Success() {
           </p>
         )}
         {inv?.recurring && (
-          <p className="mt-3 rounded-xl bg-chase-sky px-4 py-2 text-[13px] text-chase-navy">
+          <p className="mt-3 rounded-xl bg-chase-accent-soft px-4 py-2 text-[13px] text-chase-accent-strong">
             Monthly plan on: we'll prepare next month's amount for you to confirm. Stop any time from the Invest tab.
           </p>
         )}

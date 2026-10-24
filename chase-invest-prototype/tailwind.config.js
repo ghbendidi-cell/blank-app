@@ -5,10 +5,13 @@ export default {
     extend: {
       colors: {
         chase: {
-          navy: '#0B2A5B',
-          blue: '#0060F0',
-          bright: '#117ACA',
-          sky: '#E6F1FD',
+          /** App accent (#D0805C). 3.0:1 on white: use it for fills, lines, icons and large numbers. */
+          accent: '#D0805C',
+          /** Same hue, darker: 4.6:1 on white. For text, links, and backgrounds behind white text. */
+          'accent-strong': '#B0603E',
+          'accent-hover': '#9A5234',
+          /** Light tint for chips, selected states and soft backgrounds. */
+          'accent-soft': '#FBEFE9',
           bg: '#F3F5F8',
           ink: '#1B2633',
           muted: '#5B6675',
@@ -19,6 +22,7 @@ export default {
           DEFAULT: '#D0805C',
           strong: '#B0603E',
           hover: '#9A5234',
+          // Same values as chase.accent*, kept as the pop-up's own tokens.
         },
         jpm: {
           cream: '#F8F6F1',

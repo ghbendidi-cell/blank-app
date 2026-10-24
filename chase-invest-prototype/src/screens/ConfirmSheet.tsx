@@ -35,7 +35,7 @@ export function ConfirmSheet({ open, onClose, maxAmount }: { open: boolean; onCl
       <p className="mt-1 text-[14px] text-chase-muted">Nothing happens until you tap Confirm.</p>
 
       <Section label="Amount">
-        <div className="flex items-center gap-2 rounded-xl border border-chase-line px-4 py-3 focus-within:border-chase-blue">
+        <div className="flex items-center gap-2 rounded-xl border border-chase-line px-4 py-3 focus-within:border-chase-accent">
           <span className="text-[22px] font-semibold text-chase-muted">£</span>
           <input
             type="number"
@@ -111,7 +111,7 @@ export function ConfirmSheet({ open, onClose, maxAmount }: { open: boolean; onCl
           role="checkbox"
           aria-checked={understood}
           onClick={() => setUnderstood(!understood)}
-          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 ${understood ? 'border-chase-blue bg-chase-blue' : 'border-[#C9D0DA]'}`}
+          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 ${understood ? 'border-chase-accent bg-chase-accent' : 'border-[#C9D0DA]'}`}
         >
           {understood && <CheckIcon className="h-3 w-3 text-white" />}
         </button>
@@ -144,7 +144,7 @@ function WrapperOption({ selected, onClick, title, sub }: { selected: boolean; o
   return (
     <button
       onClick={onClick}
-      className={`rounded-xl border p-3 text-left ${selected ? 'border-chase-blue bg-chase-sky' : 'border-chase-line'}`}
+      className={`rounded-xl border p-3 text-left ${selected ? 'border-chase-accent bg-chase-accent-soft' : 'border-chase-line'}`}
       aria-pressed={selected}
     >
       <div className="text-[14px] font-semibold leading-tight text-chase-ink">{title}</div>

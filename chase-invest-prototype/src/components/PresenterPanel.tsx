@@ -22,7 +22,7 @@ export function PresenterPanel() {
         <button
           onClick={() => dispatch({ type: 'SIMULATE_MONTH' })}
           disabled={!state.onboarded}
-          className="mt-4 w-full rounded-xl bg-chase-navy px-4 py-3 text-[15px] font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40"
+          className="mt-4 w-full rounded-xl bg-chase-accent-strong px-4 py-3 text-[15px] font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40"
         >
           📅 Simulate 1st of the month
         </button>
