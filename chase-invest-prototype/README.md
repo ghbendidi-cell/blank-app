@@ -51,6 +51,12 @@ captions change at years 0 / 3 / 7 / 10, and at the end the gap is bracketed (+Â
 - Component: `src/components/GrowthStoryModal.tsx` (props `initialAmount`, `currency`, `onClose`, `onLearnMore`), render-tested.
 - Analytics: `src/logic/analytics.ts` logs `modal_viewed`, `scroll_depth` (25/50/75/100), `learn_more_clicked`, `dismissed` to the console.
 
+## Guides (J.P. Morgan "Investments" page)
+
+Each card opens a short document: **ISAs**, **General Investment Account**, **Personal Pension** (2026/27 UK figures, with
+GOV.UK sources), and the **free consultation** with a mock booking (pick a day, time and phone/video; nothing is really booked).
+Content lives in `src/data/guides.ts`; the screen is `src/screens/Guide.tsx`.
+
 ## The maths (`src/logic/buckets.ts`)
 
 | Step | Formula (defaults) |

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import type { GuideId } from '../data/guides';
 import { gbp } from '../logic/buckets';
 import { totalInvested, useStore } from '../state/store';
 import { StatusBar } from '../components/PhoneChrome';
@@ -10,7 +11,7 @@ const SAND = '#D9B999';
 export function JpmInvestments() {
   const { state, dispatch } = useStore();
   const invested = totalInvested(state);
-  const toast = (message: string) => dispatch({ type: 'SHOW_TOAST', message });
+  const openGuide = (guideId: GuideId) => dispatch({ type: 'OPEN_GUIDE', guideId });
   const openFeature = () =>
     dispatch({ type: 'NAVIGATE', screen: state.onboarded && state.monthIndex > 0 ? 'summary' : 'onboarding' });
 
@@ -69,24 +70,22 @@ export function JpmInvestments() {
               onClick={openFeature}
               highlight
             />
-            <ProductCard icon={<IsaIcon />} title="ISAs" text="A range of ISAs to invest for your long-term goals with tax-free returns." onClick={() => toast('ISAs: opened from your monthly money check in this prototype')} />
-            <ProductCard icon={<GiaIcon />} title="General Investment Account" text="Invest beyond your ISA allowance with no contribution limits, but you'll pay tax on any returns." onClick={() => toast('General Investment Account: choose it on the confirmation screen')} />
-            <ProductCard icon={<PensionIcon />} title="Personal Pension" text="Invest tax-efficiently for your retirement, with 20% tax relief on contributions." onClick={() => toast('Pensions aren’t part of this prototype')} />
+            <ProductCard icon={<IsaIcon />} title="ISAs" text="A range of ISAs to invest for your long-term goals with tax-free returns." onClick={() => openGuide('isa')} />
+            <ProductCard icon={<GiaIcon />} title="General Investment Account" text="Invest beyond your ISA allowance with no contribution limits, but you'll pay tax on any returns." onClick={() => openGuide('gia')} />
+            <ProductCard icon={<PensionIcon />} title="Personal Pension" text="Invest tax-efficiently for your retirement, with 20% tax relief on contributions." onClick={() => openGuide('pension')} />
 
-            <div className="rounded-3xl border border-chase-line bg-white p-5">
+            <button onClick={() => openGuide('consultation')} className="block w-full rounded-3xl border border-chase-line bg-white p-5 text-left">
               <div className="flex gap-3">
                 <div className="flex-1">
                   <h2 className="text-[19px] font-medium leading-snug text-chase-ink">Book your free investment consultation</h2>
                   <p className="mt-2 text-[15px] leading-relaxed text-[#5B6675]">
                     Speak to J.P. Morgan Personal Investing's expert team to discuss your investment strategy and options, and see if you're making the most of your money.
                   </p>
-                  <button className="mt-3 text-[15px] font-semibold text-chase-accent-strong" onClick={() => toast('Booking isn’t part of this prototype')}>
-                    Book a call
-                  </button>
+                  <span className="mt-3 block text-[15px] font-semibold text-chase-accent-strong">Book a call</span>
                 </div>
                 <CalendarIcon />
               </div>
-            </div>
+            </button>
             <div className="mx-1">
               <CapitalAtRisk />
             </div>

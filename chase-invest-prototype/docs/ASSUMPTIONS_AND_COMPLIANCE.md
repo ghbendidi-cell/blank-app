@@ -98,7 +98,19 @@ Points compliance would need to validate:
 - **Disclaimer** is visible on the final screen and read in the screen-reader summary. The wording needs sign-off.
 - **Frequency.** The trigger card can be hidden for 30 days; the pop-up never opens on its own.
 
-## 5. Sources
+## 5. Guides (ISA, GIA, Personal Pension, consultation)
+
+Content in `src/data/guides.ts`, checked October 2026 for the 2026/27 tax year. Compliance should re-check every figure and approve the
+copy as a financial promotion.
+- ISA £20,000; Lifetime ISA £4,000 + 25% bonus (open 18–39, £450,000 home cap, 25% withdrawal charge); Junior ISA £9,000; cash ISA
+  £12,000 sub-limit for under-65s from 6 April 2027.
+- Dividend allowance £500, dividend tax 10.75% / 35.75% / 39.35% (from April 2026); CGT exempt amount £3,000, rates 18% / 24%
+  (one secondary source still lists the pre-October-2024 10% / 20%: superseded).
+- Pension annual allowance £60,000; relief at source 20%; access 55 → 57 from 6 April 2028; lump sum allowance £268,275.
+- **[verify]** JPMPI minimums (£500 ISA/GIA/pension, £100 LISA/JISA) come from a secondary source; whether the consultation is
+  free guidance or (fee-charging) restricted advice is not confirmed.
+
+## 6. Sources
 
 - FCA targeted support, PS25/22: reported via [Slaughter and May](https://www.slaughterandmay.com/insights/new-insights/insurance-outlook-2026-targeted-support/) and [International Adviser](https://international-adviser.com/fca-confirms-introduction-of-targeted-support-from-spring-2026/). Confirm on fca.org.uk.
 - FSCS deposit limit: [Bank of England / PRA, Nov 2025](https://www.bankofengland.co.uk/news/2025/november/pra-confirms-fscs-deposit-limit-to-be-increased-to-120000-from-1-december), [FSCS](https://www.fscs.org.uk/what-we-cover/banks-building-societies-credit-unions/deposit-limit-increase/).

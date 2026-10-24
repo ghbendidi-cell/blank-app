@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { GrowthStoryModal } from './components/GrowthStoryModal';
 import { PhoneFrame, PushNotification, Toast } from './components/PhoneChrome';
 import { PresenterPanel } from './components/PresenterPanel';
+import { Guide } from './screens/Guide';
 import { Home } from './screens/Home';
 import { JpmInvestments } from './screens/JpmInvestments';
 import { MonthlySummary } from './screens/MonthlySummary';
@@ -20,6 +21,7 @@ export function App() {
       <PhoneFrame>
         {state.screen === 'home' && <Home />}
         {state.screen === 'jpm' && <JpmInvestments />}
+        {state.screen === 'guide' && <Guide />}
         {state.screen === 'onboarding' && <Onboarding key={state.onboarded ? 'edit' : 'new'} />}
         {state.screen === 'summary' && <MonthlySummary />}
         {state.screen === 'success' && <Success />}
