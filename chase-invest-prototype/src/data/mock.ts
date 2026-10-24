@@ -1,6 +1,9 @@
 /** All data below is fictional seed data for the prototype. */
 
-export const MOCK_USER = { firstName: 'Alex' };
+export const MOCK_USER = { firstName: 'Kyle' };
+
+/** Linked account at another bank (Open Banking), as in the real Chase app. Not counted as Chase cash. */
+export const LINKED_ACCOUNT = { name: 'Natwest', balance: 0 };
 
 export const SEED_ACCOUNTS = {
   current: 2_400,

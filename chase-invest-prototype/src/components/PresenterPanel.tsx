@@ -1,9 +1,17 @@
+import { useEffect, useState } from 'react';
 import { gbp } from '../logic/buckets';
 import { monthLabel, totalCash, totalInvested, useStore } from '../state/store';
 
 /** Demo controls that sit OUTSIDE the phone, so the app itself stays clean. */
 export function PresenterPanel() {
   const { state, dispatch } = useStore();
+  // Two-tap reset: browser confirm() dialogs are blocked when the page is hosted as an artifact.
+  const [armed, setArmed] = useState(false);
+  useEffect(() => {
+    if (!armed) return;
+    const t = setTimeout(() => setArmed(false), 3000);
+    return () => clearTimeout(t);
+  }, [armed]);
   return (
     <aside className="w-full max-w-[390px] px-4 pb-10 lg:w-[300px] lg:px-0 lg:pt-6">
       <div className="rounded-2xl bg-white p-5 shadow-card">
@@ -38,10 +46,13 @@ export function PresenterPanel() {
           <Jump label="Questions" onClick={() => dispatch({ type: 'NAVIGATE', screen: 'onboarding' })} />
           <Jump label="Money check" onClick={() => dispatch({ type: 'NAVIGATE', screen: 'summary' })} disabled={!state.onboarded} />
           <Jump
-            label="Reset demo"
+            label={armed ? 'Tap again to reset' : 'Reset demo'}
             danger
             onClick={() => {
-              if (confirm('Reset the prototype to its starting state?')) dispatch({ type: 'RESET' });
+              if (armed) {
+                dispatch({ type: 'RESET' });
+                setArmed(false);
+              } else setArmed(true);
             }}
           />
         </div>

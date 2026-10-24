@@ -19,13 +19,17 @@ npm test           # unit tests for the maths (calculateBuckets + fees)
 npm run build      # type-check + production build into dist/
 ```
 
+**Live version for the pitch:** https://claude.ai/artifact/YRgSbJrQFEYtu7Xi24Eu8S (private until shared from its Share menu).
+To update it, run `npm run build:single`; this writes one self-contained file, `dist/safety-buffer-invest.html`, which is the file that gets published.
+
 Requires Node 18+. On a laptop the app shows inside a 390×844 phone frame, with the **presenter controls** on the
 right. On a real phone (< 440 px wide) it goes full screen and the controls sit below.
 State is saved in `localStorage`. Use **Reset demo** before presenting.
 
 ## Screen flow
 
-1. **Home (Chase).** Spend / Save / Invest / Insure tabs. Before set-up it shows one suggestion: *"Set my buffer"*, with *Not now*.
+1. **Home (Chase)**, rebuilt from the real app: Debit card header with *See card*, Current accounts (*Kyle's Account*, linked *Natwest*), the credit card promo, and the Spend / Save / Invest / Insure tabs.
+   **Invest** tab leads to the **J.P. Morgan Personal Investing "Investments" page** (ISAs, General Investment Account, Personal Pension, Book a consultation). The new **Safety Buffer + Invest** card sits on top of it, with the single *Set my buffer* / *Not now* suggestion.
 2. **Onboarding.** One question per screen, with a progress bar: age (blocked under 18), dependants, monthly spending (pre-filled from
    3 months of mock transactions), % of savings not needed day to day, % of that to invest, and risk level.
 3. **Simulate 1st of the month** (presenter panel). A push notification appears: *"Your monthly money check is ready"*.
@@ -58,10 +62,10 @@ and the fee tiers.
 
 | Time | Do | Say |
 |---|---|---|
-| 0–8 s | Show the home screen | "This is the Chase app Alex already uses. £17,000 is sitting in cash, and most of it isn't working." |
-| 8–20 s | *Set my buffer* and click through the 6 questions (spending is pre-filled) | "One minute, six questions. We pre-fill spending from their own transactions, and we keep living money and a safety buffer in cash first." |
+| 0–8 s | Show the home screen | "This is the Chase app Kyle already uses. £17,000 is sitting in cash, and most of it isn't working." |
+| 8–20 s | **Invest** tab → *Set my buffer* (or *Explore investments* to show the J.P. Morgan page with the new card) and click through the 6 questions (spending is pre-filled) | "One minute, six questions. We pre-fill spending from their own transactions, and we keep living money and a safety buffer in cash first." |
 | 20–28 s | **Simulate 1st of the month**, then tap the notification | "On the 1st of every month, one calm notification. No pressure and no daily nagging." |
-| 28–40 s | Money check, then open *How we worked this out* | "Living money, a 3-month safety buffer, and spare money. The maths is visible, a simple rule, not a black box and not advice. We take the more cautious of the formula and what Alex told us." |
+| 28–40 s | Money check, then open *How we worked this out* | "Living money, a 3-month safety buffer, and spare money. The maths is visible, a simple rule, not a black box and not advice. We take the more cautious of the formula and what Kyle told us." |
 | 40–52 s | *Invest £5,100…*. Show fees, Capital at risk, the ISA toggle, Repeat monthly. Tick and confirm. | "Fees and risk are shown before anything happens. One explicit tap. 'Not now' is always one tap away." |
 | 52–60 s | Success, then home | "Investments now sit next to the current account and savings, in one app. Next month only new spare money is split, so the safety buffer is never touched." |
 
@@ -78,7 +82,8 @@ src/
   state/store.tsx         reducer + localStorage persistence
   state/selectors.ts      buckets for the current state
   components/             phone frame, status bar, push notification, tab bar, sheet, UI kit, presenter panel
-  screens/                Home, Onboarding, MonthlySummary, ConfirmSheet, Success
+  screens/                Home, JpmInvestments, Onboarding, MonthlySummary, ConfirmSheet, Success
+scripts/build-single-file.mjs   inlines the build into one HTML file for the live link
 docs/ASSUMPTIONS_AND_COMPLIANCE.md
 ```
 

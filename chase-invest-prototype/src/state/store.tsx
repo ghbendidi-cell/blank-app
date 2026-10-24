@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useReducer, type Dispatch, type R
 import { DEFAULT_ASSUMPTIONS, type BucketAssumptions, type RiskLevel } from '../logic/buckets';
 import { MOCK_NET_MONTHLY_INCOME, SEED_ACCOUNTS } from '../data/mock';
 
-export type Screen = 'home' | 'onboarding' | 'summary' | 'success';
+export type Screen = 'home' | 'jpm' | 'onboarding' | 'summary' | 'success';
 export type HomeTab = 'spend' | 'save' | 'invest' | 'insure';
 export type Wrapper = 'isa' | 'gia';
 
@@ -43,6 +43,9 @@ export interface State {
   monthlyPlan: { active: boolean; wrapper: Wrapper } | null;
   history: Investment[];
   lastInvestment: Investment | null;
+  /** Short message for buttons that are outside the prototype's scope. */
+  toast: string | null;
+  creditCardPromoDismissed: boolean;
 }
 
 export const EMPTY_ANSWERS: Answers = {
@@ -67,6 +70,8 @@ export const INITIAL_STATE: State = {
   monthlyPlan: null,
   history: [],
   lastInvestment: null,
+  toast: null,
+  creditCardPromoDismissed: false,
 };
 
 /** The prototype's "today" is October 2026, so the first simulated check is 1 November 2026. */
@@ -88,6 +93,9 @@ export type Action =
   | { type: 'DISMISS_NOTIFICATION' }
   | { type: 'INVEST'; amount: number; wrapper: Wrapper; repeat: boolean }
   | { type: 'STOP_MONTHLY_PLAN' }
+  | { type: 'SHOW_TOAST'; message: string }
+  | { type: 'HIDE_TOAST' }
+  | { type: 'DISMISS_CREDIT_CARD_PROMO' }
   | { type: 'RESET' };
 
 function reducer(state: State, action: Action): State {
@@ -148,6 +156,12 @@ function reducer(state: State, action: Action): State {
     }
     case 'STOP_MONTHLY_PLAN':
       return { ...state, monthlyPlan: state.monthlyPlan ? { ...state.monthlyPlan, active: false } : null };
+    case 'SHOW_TOAST':
+      return { ...state, toast: action.message };
+    case 'HIDE_TOAST':
+      return { ...state, toast: null };
+    case 'DISMISS_CREDIT_CARD_PROMO':
+      return { ...state, creditCardPromoDismissed: true };
     case 'RESET':
       return INITIAL_STATE;
     default:
@@ -163,7 +177,7 @@ function load(): State {
     if (!raw) return INITIAL_STATE;
     const parsed = JSON.parse(raw) as Partial<State>;
     // Always reopen on home without a stale notification.
-    return { ...INITIAL_STATE, ...parsed, notificationVisible: false, screen: parsed.screen === 'onboarding' ? 'onboarding' : 'home' };
+    return { ...INITIAL_STATE, ...parsed, notificationVisible: false, toast: null, screen: parsed.screen === 'onboarding' ? 'onboarding' : 'home' };
   } catch {
     return INITIAL_STATE;
   }

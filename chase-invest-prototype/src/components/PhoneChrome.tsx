@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { useStore, type Screen } from '../state/store';
 import { PlaceholderLogo } from './ui';
 
@@ -85,13 +85,16 @@ export function BottomTabBar() {
   return (
     <nav className="flex shrink-0 justify-around border-t border-chase-line bg-white pb-6 pt-2">
       {TABS.map((t) => {
-        const active = t.screen === 'home' && state.screen === 'home';
+        const active = t.screen === 'home' && (state.screen === 'home' || state.screen === 'jpm');
         return (
           <button
             key={t.label}
-            className={`flex w-20 flex-col items-center gap-0.5 text-[12px] ${active ? 'text-chase-blue' : 'text-chase-muted'} ${t.screen ? '' : 'cursor-default'}`}
-            onClick={() => t.screen && dispatch({ type: 'NAVIGATE', screen: t.screen })}
-            title={t.screen ? undefined : 'Not part of this prototype'}
+            className={`flex w-20 flex-col items-center gap-0.5 text-[12px] ${active ? 'text-chase-blue' : 'text-chase-muted'} `}
+            onClick={() =>
+              t.screen
+                ? dispatch({ type: 'NAVIGATE', screen: t.screen })
+                : dispatch({ type: 'SHOW_TOAST', message: `${t.label} isn’t part of this prototype` })
+            }
           >
             {t.icon}
             {t.label}
@@ -112,6 +115,22 @@ export function BottomSheet({ open, onClose, children, label }: { open: boolean;
         <div className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-chase-line" />
         {children}
       </div>
+    </div>
+  );
+}
+
+/** Small message for buttons that are outside the prototype's scope. */
+export function Toast() {
+  const { state, dispatch } = useStore();
+  useEffect(() => {
+    if (!state.toast) return;
+    const t = setTimeout(() => dispatch({ type: 'HIDE_TOAST' }), 2600);
+    return () => clearTimeout(t);
+  }, [state.toast, dispatch]);
+  if (!state.toast) return null;
+  return (
+    <div className="pointer-events-none absolute inset-x-6 bottom-28 z-40 flex justify-center">
+      <div className="animate-fadeIn rounded-full bg-chase-ink/90 px-4 py-2.5 text-center text-[13px] text-white shadow-lg">{state.toast}</div>
     </div>
   );
 }
