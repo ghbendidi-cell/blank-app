@@ -39,6 +39,17 @@ State is saved in `localStorage`. Use **Reset demo** before presenting.
    a *Repeat every month* toggle, a "I understand" tick box, then **Confirm** or **Not now**.
 6. **Success.** Then home shows **Current account · Savings · Investments** together, plus *"approx. £X above your buffer"*.
 
+## "What you could have earned" pop-up
+
+**Save** tab → *Show me*. Scrolling moves time from year 0 to year 10: the two lines draw themselves, the numbers count up,
+captions change at years 0 / 3 / 7 / 10, and at the end the gap is bracketed (+£4,840) with *Learn about investing* /
+*Maybe later* and the disclaimer. Scrolling back rewinds it. With reduced motion turned on, the final state is shown at once.
+
+- Maths: `src/logic/growth.ts` (`projectGrowth`, `progressToYear`, `valueAtYear`, captions), tested in `growth.test.ts`.
+- Config and all copy: `src/config/growthStory.ts`.
+- Component: `src/components/GrowthStoryModal.tsx` (props `initialAmount`, `currency`, `onClose`, `onLearnMore`), render-tested.
+- Analytics: `src/logic/analytics.ts` logs `modal_viewed`, `scroll_depth` (25/50/75/100), `learn_more_clicked`, `dismissed` to the console.
+
 ## The maths (`src/logic/buckets.ts`)
 
 | Step | Formula (defaults) |

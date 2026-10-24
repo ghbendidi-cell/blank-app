@@ -23,6 +23,8 @@
  *   Keep in cash      K = X − V
  */
 
+import { formatMoney, roundForDisplay } from './format';
+
 export type RiskLevel = 'low' | 'medium' | 'high';
 
 export interface BucketAssumptions {
@@ -151,15 +153,9 @@ export function calculateBuckets(
 
 /** "approx. £X" style display, rounded to the nearest £10 (or £1 for small values). */
 export function approx(amount: number): string {
-  const rounded = Math.abs(amount) >= 100 ? Math.round(amount / 10) * 10 : Math.round(amount);
-  return `approx. ${gbp(rounded)}`;
+  return `approx. ${gbp(roundForDisplay(amount))}`;
 }
 
 export function gbp(amount: number, decimals = 0): string {
-  return new Intl.NumberFormat('en-GB', {
-    style: 'currency',
-    currency: 'GBP',
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  }).format(amount);
+  return formatMoney(amount, 'GBP', decimals);
 }

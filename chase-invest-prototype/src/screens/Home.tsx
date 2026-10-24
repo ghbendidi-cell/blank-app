@@ -4,6 +4,9 @@ import { approx, gbp } from '../logic/buckets';
 import { selectBuckets } from '../state/selectors';
 import { totalInvested, useStore, type HomeTab } from '../state/store';
 import { BottomTabBar, StatusBar } from '../components/PhoneChrome';
+import { GrowthStoryModal } from '../components/GrowthStoryModal';
+import { DEFAULT_INITIAL_AMOUNT, DEFAULT_YEARS, GROWTH_COPY, PROMO_SNOOZE_DAYS } from '../config/growthStory';
+import { isSnoozed, snoozeUntil } from '../logic/snooze';
 import { Button, CapitalAtRisk, Card, Chevron, ChevronRight, CloseIcon, GrowthIcon, JpmWordmark, PlaceholderLogo, ShieldIcon, Tag } from '../components/ui';
 
 const TABS: { id: HomeTab; label: string }[] = [
@@ -305,6 +308,53 @@ function SaveTab() {
         <div className="mt-2 text-[13px] text-chase-muted">Interest rate: placeholder · Mock data</div>
       </Card>
       {state.onboarded && <BufferCard />}
+      <GrowthStoryTrigger />
+    </>
+  );
+}
+
+/** Quiet card on the savings screen that opens "What you could have earned". */
+function GrowthStoryTrigger() {
+  const { state, dispatch } = useStore();
+  const [open, setOpen] = useState(false);
+  if (isSnoozed(state.growthPromoHiddenUntil, Date.now()) && !open) return null;
+  const amount = DEFAULT_INITIAL_AMOUNT;
+  return (
+    <>
+      <Card className="p-5">
+        <div className="flex items-start gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-chase-sky">
+            <GrowthIcon className="h-5 w-5 text-chase-blue" />
+          </div>
+          <div className="flex-1">
+            <h2 className="text-[16px] font-semibold text-chase-ink">{GROWTH_COPY.trigger.title(gbp(amount), DEFAULT_YEARS)}</h2>
+            <p className="mt-1 text-[14px] leading-snug text-chase-muted">{GROWTH_COPY.trigger.body}</p>
+          </div>
+        </div>
+        <div className="mt-4 flex gap-2">
+          <Button className="!py-2.5 !text-[15px]" onClick={() => setOpen(true)}>
+            {GROWTH_COPY.trigger.cta}
+          </Button>
+          <Button
+            variant="ghost"
+            className="!py-2.5 !text-[15px]"
+            onClick={() => dispatch({ type: 'HIDE_GROWTH_PROMO', until: snoozeUntil(Date.now(), PROMO_SNOOZE_DAYS) })}
+          >
+            {GROWTH_COPY.trigger.hide}
+          </Button>
+        </div>
+      </Card>
+      {open && (
+        <GrowthStoryModal
+          initialAmount={amount}
+          currency="GBP"
+          onClose={() => setOpen(false)}
+          onLearnMore={() => {
+            setOpen(false);
+            dispatch({ type: 'NAVIGATE', screen: 'jpm' });
+          }}
+        />
+      )}
     </>
   );
 }

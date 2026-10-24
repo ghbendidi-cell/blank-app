@@ -46,6 +46,8 @@ export interface State {
   /** Short message for buttons that are outside the prototype's scope. */
   toast: string | null;
   creditCardPromoDismissed: boolean;
+  /** "What you could have earned" trigger card hidden until this timestamp (ms). */
+  growthPromoHiddenUntil: number | null;
 }
 
 export const EMPTY_ANSWERS: Answers = {
@@ -72,6 +74,7 @@ export const INITIAL_STATE: State = {
   lastInvestment: null,
   toast: null,
   creditCardPromoDismissed: false,
+  growthPromoHiddenUntil: null,
 };
 
 /** The prototype's "today" is October 2026, so the first simulated check is 1 November 2026. */
@@ -96,6 +99,7 @@ export type Action =
   | { type: 'SHOW_TOAST'; message: string }
   | { type: 'HIDE_TOAST' }
   | { type: 'DISMISS_CREDIT_CARD_PROMO' }
+  | { type: 'HIDE_GROWTH_PROMO'; until: number }
   | { type: 'RESET' };
 
 function reducer(state: State, action: Action): State {
@@ -162,6 +166,8 @@ function reducer(state: State, action: Action): State {
       return { ...state, toast: null };
     case 'DISMISS_CREDIT_CARD_PROMO':
       return { ...state, creditCardPromoDismissed: true };
+    case 'HIDE_GROWTH_PROMO':
+      return { ...state, growthPromoHiddenUntil: action.until };
     case 'RESET':
       return INITIAL_STATE;
     default:

@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode, type RefObject } from 'react';
 import { useStore, type Screen } from '../state/store';
 import { PlaceholderLogo } from './ui';
 
@@ -105,14 +105,87 @@ export function BottomTabBar() {
   );
 }
 
-/** Bottom sheet that stays inside the phone frame. */
-export function BottomSheet({ open, onClose, children, label }: { open: boolean; onClose: () => void; children: ReactNode; label: string }) {
+const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
+
+/**
+ * Bottom sheet that stays inside the phone frame. Traps focus, closes on Escape and returns
+ * focus to whatever opened it. `fullScreen` makes it a near-full-height sheet whose body is
+ * the scroll container (exposed through `bodyRef`).
+ */
+export function BottomSheet({
+  open,
+  onClose,
+  children,
+  label,
+  labelledBy,
+  describedBy,
+  fullScreen = false,
+  bodyRef,
+}: {
+  open: boolean;
+  onClose: () => void;
+  children: ReactNode;
+  label?: string;
+  labelledBy?: string;
+  describedBy?: string;
+  fullScreen?: boolean;
+  bodyRef?: RefObject<HTMLDivElement>;
+}) {
+  const innerRef = useRef<HTMLDivElement>(null);
+  const sheetRef = bodyRef ?? innerRef;
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
+  useEffect(() => {
+    if (!open) return;
+    const sheet = sheetRef.current;
+    const opener = document.activeElement as HTMLElement | null;
+    (sheet?.querySelector<HTMLElement>(FOCUSABLE) ?? sheet)?.focus({ preventScroll: true });
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onCloseRef.current();
+        return;
+      }
+      if (e.key !== 'Tab' || !sheet) return;
+      const items = Array.from(sheet.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      opener?.focus?.({ preventScroll: true });
+    };
+  }, [open, sheetRef]);
+
   if (!open) return null;
   return (
-    <div className="absolute inset-0 z-30 flex flex-col justify-end" role="dialog" aria-modal="true" aria-label={label}>
-      <button className="absolute inset-0 animate-fadeIn bg-black/40" aria-label="Close" onClick={onClose} />
-      <div className="relative max-h-[90%] animate-slideUp overflow-y-auto rounded-t-[28px] bg-white px-5 pb-8 pt-3">
-        <div className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-chase-line" />
+    <div
+      className="absolute inset-0 z-30 flex flex-col justify-end"
+      role="dialog"
+      aria-modal="true"
+      aria-label={labelledBy ? undefined : label}
+      aria-labelledby={labelledBy}
+      aria-describedby={describedBy}
+    >
+      <button className="absolute inset-0 animate-fadeIn bg-black/40" aria-label="Close" tabIndex={-1} onClick={onClose} />
+      <div
+        ref={sheetRef}
+        tabIndex={-1}
+        className={`relative animate-slideUp overflow-y-auto rounded-t-[28px] bg-white outline-none ${
+          fullScreen ? 'h-[calc(100%-44px)]' : 'max-h-[90%] px-5 pb-8 pt-3'
+        }`}
+      >
+        {!fullScreen && <div className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-chase-line" />}
         {children}
       </div>
     </div>
