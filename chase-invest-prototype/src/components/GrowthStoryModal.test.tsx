@@ -27,7 +27,7 @@ describe('GrowthStoryModal: animated path (first frame)', () => {
   it('starts at year 0 with both values at the initial amount', () => {
     expect(text(html)).toContain('Year 0');
     expect(html).toMatch(/tabular-nums text-chase-ink">£5,000</);
-    expect(html).toMatch(/tabular-nums text-chase-blue">£5,000</);
+    expect(html).toMatch(/tabular-nums text-growth">£5,000</);
   });
 
   it('shows the scroll hint and hides the end state until the end', () => {
@@ -49,7 +49,7 @@ describe('GrowthStoryModal: reduced-motion path', () => {
 
   it('shows the final state straight away, with no scroll track or hint', () => {
     expect(text(html)).toContain('Year 10');
-    expect(html).toMatch(/tabular-nums text-chase-blue">£9,836</);
+    expect(html).toMatch(/tabular-nums text-growth">£9,836</);
     expect(text(html)).not.toContain('Scroll to see');
     expect(html).toContain('data-visible="true"');
     expect(html).toMatch(/<g style="opacity:1;[^"]*" data-testid="growth-gap">/);

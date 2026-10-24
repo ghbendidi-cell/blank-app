@@ -25,6 +25,8 @@ export interface GrowthStoryModalProps extends Omit<GrowthInputs, 'initialAmount
   currency?: string;
   onClose: () => void;
   onLearnMore: () => void;
+  /** Where the pop-up was opened from, sent with modal_viewed. */
+  source?: 'app_open' | 'savings_card';
   /** Overrides the prefers-reduced-motion media query (used by tests). */
   reducedMotion?: boolean;
 }
@@ -104,6 +106,7 @@ export function GrowthStoryModal({
   investAnnualRate,
   onClose,
   onLearnMore,
+  source = 'savings_card',
   reducedMotion,
 }: GrowthStoryModalProps) {
   const reduced = usePrefersReducedMotion(reducedMotion);
@@ -153,7 +156,7 @@ export function GrowthStoryModal({
   useEffect(() => {
     if (viewedRef.current) return;
     viewedRef.current = true;
-    track('modal_viewed', { modal: 'what_you_could_have_earned', reduced_motion: reduced, initial_amount: projection.inputs.initialAmount });
+    track('modal_viewed', { modal: 'what_you_could_have_earned', source, reduced_motion: reduced, initial_amount: projection.inputs.initialAmount });
   }, []);
 
   useEffect(() => {
@@ -248,7 +251,7 @@ export function GrowthStoryModal({
   const legendSwatch = (dashed: boolean) => (
     <svg width="22" height="8" aria-hidden className="shrink-0">
       <line x1="1" y1="4" x2="21" y2="4" strokeWidth="3" strokeLinecap="round"
-        className={dashed ? 'stroke-chase-muted' : 'stroke-chase-blue'} strokeDasharray={dashed ? '4 4' : undefined} />
+        className={dashed ? 'stroke-chase-muted' : 'stroke-growth'} strokeDasharray={dashed ? '4 4' : undefined} />
     </svg>
   );
 
@@ -269,16 +272,16 @@ export function GrowthStoryModal({
 
       {/* gap highlight, shown at the end */}
       <g ref={gapRef} style={{ opacity: first.end ? 1 : 0, transition: 'opacity 300ms ease-out' }} data-testid="growth-gap">
-        <path d={paths.gap} className="fill-chase-blue" fillOpacity="0.08" />
+        <path d={paths.gap} className="fill-growth" fillOpacity="0.08" />
         {Math.abs(endInvY - endCashY) > 8 && (
           <>
             <path
               d={`M${endX - 10} ${endInvY + 4} h-4 V${endCashY - 4} h4`}
               fill="none"
-              className="stroke-chase-blue"
+              className="stroke-growth"
               strokeWidth="1.5"
             />
-            <text x={endX - 18} y={(endInvY + endCashY) / 2 + 4} textAnchor="end" className="fill-chase-blue text-[13px] font-semibold">
+            <text x={endX - 18} y={(endInvY + endCashY) / 2 + 4} textAnchor="end" className="fill-growth-strong text-[13px] font-semibold">
               {gapLabel}
             </text>
           </>
@@ -288,7 +291,7 @@ export function GrowthStoryModal({
       {/* lines, revealed by the clip */}
       <g clipPath={`url(#${clipId})`}>
         <path d={paths.cash} fill="none" className="stroke-chase-muted" strokeWidth="2.5" strokeDasharray="6 5" strokeLinecap="round" />
-        <path d={paths.invested} fill="none" className="stroke-chase-blue" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d={paths.invested} fill="none" className="stroke-growth" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
       </g>
 
       {/* markers with direct labels, so colour is not the only signal */}
@@ -297,8 +300,8 @@ export function GrowthStoryModal({
         <text x="8" y="15" className="fill-chase-muted text-[11px] font-semibold">{GROWTH_COPY.cashLabel}</text>
       </g>
       <g ref={investedDotRef} transform={first.investedDot}>
-        <circle r="5" className="fill-chase-blue" />
-        <text x="8" y="-9" className="fill-chase-blue text-[11px] font-semibold">{GROWTH_COPY.investedLabel}</text>
+        <circle r="5" className="fill-growth" />
+        <text x="8" y="-9" className="fill-growth-strong text-[11px] font-semibold">{GROWTH_COPY.investedLabel}</text>
       </g>
     </svg>
   );
@@ -316,8 +319,16 @@ export function GrowthStoryModal({
       <p className="rounded-xl bg-chase-bg p-3 text-[12px] leading-snug text-chase-muted" data-testid="growth-disclaimer">
         {GROWTH_COPY.disclaimer}
       </p>
-      <Button onClick={learnMore}>{GROWTH_COPY.learnMore}</Button>
-      <Button variant="ghost" onClick={() => dismiss('maybe_later')}>{GROWTH_COPY.maybeLater}</Button>
+      <Button onClick={learnMore} className="!bg-growth-strong hover:!bg-growth-hover focus-visible:!ring-growth-strong">
+        {GROWTH_COPY.learnMore}
+      </Button>
+      <Button
+        variant="ghost"
+        onClick={() => dismiss('maybe_later')}
+        className="!text-growth-strong hover:!bg-[#FBEFE9] focus-visible:!ring-growth-strong"
+      >
+        {GROWTH_COPY.maybeLater}
+      </Button>
     </div>
   );
 
@@ -327,7 +338,7 @@ export function GrowthStoryModal({
         <h2 id={titleId} className="text-[18px] font-semibold text-chase-ink">{GROWTH_COPY.title}</h2>
         <button
           onClick={() => dismiss('close_button')}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-chase-bg text-chase-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-chase-blue"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-chase-bg text-chase-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-growth-strong"
           aria-label={GROWTH_COPY.close}
         >
           <CloseIcon className="h-5 w-5" />
@@ -342,7 +353,7 @@ export function GrowthStoryModal({
       <div ref={trackRef} className={`flex flex-col ${reduced ? '' : 'h-[3200px] justify-between'}`} data-testid="growth-track">
         <div className={`${reduced ? '' : 'sticky top-[64px]'} px-5 pb-4`}>
           <div className="h-1 overflow-hidden rounded-full bg-chase-line" aria-hidden>
-            <div ref={progressRef} className="h-full origin-left bg-chase-blue" style={{ transform: first.progressBar }} />
+            <div ref={progressRef} className="h-full origin-left bg-growth" style={{ transform: first.progressBar }} />
           </div>
 
           <div className="mt-4" aria-hidden>
@@ -360,7 +371,7 @@ export function GrowthStoryModal({
             </div>
             <div>
               <div className="flex items-center gap-2 text-[13px] text-chase-muted">{legendSwatch(false)}{GROWTH_COPY.investedLabel}</div>
-              <span ref={investedNumRef} className="mt-0.5 block text-[26px] font-semibold tabular-nums text-chase-blue">
+              <span ref={investedNumRef} className="mt-0.5 block text-[26px] font-semibold tabular-nums text-growth">
                 {fmt(Math.round(first.invested))}
               </span>
             </div>

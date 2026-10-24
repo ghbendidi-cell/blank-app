@@ -14,6 +14,12 @@ export default {
           muted: '#5B6675',
           line: '#E3E7ED',
         },
+        /** "What you could have earned" pop-up accent. `strong` is the same hue darkened to 4.6:1 on white, for small text and the button. */
+        growth: {
+          DEFAULT: '#D0805C',
+          strong: '#B0603E',
+          hover: '#9A5234',
+        },
         jpm: {
           cream: '#F8F6F1',
           brown: '#3B2A1A',
